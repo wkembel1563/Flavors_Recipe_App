@@ -49,7 +49,7 @@ class Activity2 : AppCompatActivity() {
 
             }.addOnFailureListener {
 
-                // process failed
+                // process failed .
                 Toast.makeText(this, "Failed.", Toast.LENGTH_SHORT).show()
 
             }
