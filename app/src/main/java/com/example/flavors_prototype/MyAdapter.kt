@@ -20,7 +20,7 @@ class MyAdapter(private val dataList : ArrayList<Recipe>) : RecyclerView.Adapter
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
 
         val currentitem = dataList[position]
-
+        //assign the text in each node from database to a text variable
         holder.nameOfPlace.text = currentitem.Place
         holder.Recipe.text = currentitem.Recipe
         holder.prepTime.text = currentitem.PrepTime
@@ -30,14 +30,14 @@ class MyAdapter(private val dataList : ArrayList<Recipe>) : RecyclerView.Adapter
 
 
     }
-
+    //number of items in array
     override fun getItemCount(): Int {
 
         return dataList.size
     }
     //this class binds variables to the textViews in data_item
     class MyViewHolder(itemView : View) : RecyclerView.ViewHolder(itemView){
-
+        //assign text from variables to proper displays in data_item.xml
         val nameOfPlace : TextView = itemView.findViewById(R.id.tvnameOfPlace)
         val Recipe : TextView = itemView.findViewById(R.id.tvrecipe)
         val prepTime : TextView = itemView.findViewById(R.id.tvpreptime)
