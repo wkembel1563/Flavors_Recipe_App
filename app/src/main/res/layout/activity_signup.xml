@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:layout_margin="16dp"
     android:orientation="vertical"
-    tools:context=".LoginActivity">
+    tools:context=".SignupActivity">
 
     <TextView
         android:id="@+id/tvFlavors"
@@ -14,7 +14,7 @@
         android:layout_height="wrap_content"
         android:gravity="center"
         android:text="Flavors"
-        android:textColor="@color/purple_500"
+        android:textColor="#8BC34A"
         android:textSize="60sp"
         android:textStyle="bold" />
 
@@ -27,16 +27,16 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/etLoginEmail"
+        android:id="@+id/etRegEmail"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:hint="Email "
+        android:hint="Email"
         android:inputType="textPersonName"
         android:minHeight="48dp" />
 
     <EditText
-        android:id="@+id/etLoginPassword"
+        android:id="@+id/etRegPassword"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
@@ -45,10 +45,11 @@
         android:minHeight="48dp" />
 
     <Button
-        android:id="@+id/btnLogin"
+        android:id="@+id/btnSignup"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="LOG IN" />
+        android:backgroundTint="#8BC34A"
+        android:text="SIGN UP" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -60,15 +61,15 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Not registered yet"
-            android:textSize="16sp"/>
+            android:text="Already registered"
+            android:textSize="16sp" />
 
         <TextView
-            android:id="@+id/tvSignUpHere"
+            android:id="@+id/tvLoginHere"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="8dp"
-            android:text="Sign Up here"
+            android:text="Login here"
             android:textColor="@color/teal_700"
             android:textSize="20sp"
             android:textStyle="bold" />

@@ -9,28 +9,23 @@ import android.widget.TextView
 import com.google.android.material.textfield.TextInputEditText
 import com.google.firebase.auth.FirebaseAuth
 
-class LoginActivity : AppCompatActivity() {
+class SignupActivity : AppCompatActivity() {
 
-
-    var etLoginEmail: TextInputEditText? = null
-    private var etLoginPassword: TextInputEditText? = null
-    lateinit var btnLogin: Button
-    lateinit var tvSignupHere: TextView
+    var etRegEmail: TextInputEditText? = null
+    private var etRegPassword: TextInputEditText? = null
+    lateinit var btnSignup: Button
+    lateinit var tvLoginHere: TextView
 
     private lateinit var auth: FirebaseAuth
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_login)
+        setContentView(R.layout.activity_signup)
 
-        tvSignupHere = findViewById(R.id.tvSignUpHere)
+        tvLoginHere = findViewById(R.id.tvLoginHere)
 
-
-        tvSignupHere.setOnClickListener(View.OnClickListener {
-            startActivity(Intent(this, SignupActivity::class.java))
+        tvLoginHere.setOnClickListener(View.OnClickListener {
+            startActivity(Intent(this, LoginActivity::class.java))
         })
-
     }
-
-
 }
