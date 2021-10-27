@@ -9,8 +9,14 @@
         android:id="@+id/tvCountry"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="List item"
         android:textColor="#000000"
-        android:textSize="20sp"></TextView>
+        android:textSize="20sp"
+        />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#CCCCCC"
+        />
 
 </LinearLayout>
