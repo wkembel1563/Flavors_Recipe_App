@@ -6,15 +6,17 @@ import android.os.Bundle
 import android.text.TextUtils
 import android.view.View
 import android.widget.Button
+import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
 import com.google.android.material.textfield.TextInputEditText
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseUser
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.ktx.Firebase
 
 class LoginActivity : AppCompatActivity() {
 
-//    var etLoginEmail: TextInputEditText? = null
-//    private var etLoginPassword: TextInputEditText? = null
     lateinit var btnLogin: Button
     lateinit var tvSignupHere: TextView
 
@@ -24,43 +26,47 @@ class LoginActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
 
-//        etLoginEmail = findViewById(R.id.etLoginEmail)
-//        etLoginPassword = findViewById(R.id.etLoginPassword)
+        val etLoginEmail = findViewById<EditText>(R.id.etLoginEmail)
+        var etLoginPassword = findViewById<EditText>(R.id.etLoginPassword)
+
         btnLogin = findViewById(R.id.btnLogin)
         tvSignupHere = findViewById(R.id.tvSignUpHere)
 
-//        auth = FirebaseAuth.getInstance()
+        auth = Firebase.auth
 
         btnLogin.setOnClickListener(View.OnClickListener {
-//            loginUser()
+            loginUser(etLoginEmail!!.text.toString(), etLoginPassword!!.text.toString())
         })
 
         tvSignupHere.setOnClickListener(View.OnClickListener {
             startActivity(Intent(this, SignupActivity::class.java))
         })
-
     }
 
-    /*
-    private fun loginUser() {
-        val email = etLoginEmail!!.text.toString()
-        val password = etLoginPassword!!.text.toString()
-        if (TextUtils.isEmpty(email)) {
-            etLoginEmail!!.error = "Email cannot be empty"
-            etLoginEmail!!.requestFocus()
-        } else if (TextUtils.isEmpty(password)) {
-            etLoginPassword!!.error = "Password cannot be empty"
-            etLoginPassword!!.requestFocus()
-        } else {
-            auth!!.signInWithEmailAndPassword(email, password).addOnCompleteListener { task ->
-                if (task.isSuccessful) {
-                    Toast.makeText(this@LoginActivity,"User logged in successfully",Toast.LENGTH_SHORT).show()
-                    startActivity(Intent(this@LoginActivity, MainActivity::class.java))
-                } else {
-                    Toast.makeText(this@LoginActivity,"Log in Error: " + task.exception!!.message,Toast.LENGTH_SHORT).show()
-                }
+    public override fun onStart() {
+        super.onStart()
+        //Check for User login
+        val currentUser = auth.currentUser
+        if(currentUser != null){
+            startActivity(Intent(this@LoginActivity, CountryActivity::class.java))
+        }
+    }
+
+    private fun loginUser(email: String, password: String) {
+        auth!!.signInWithEmailAndPassword(email, password).addOnCompleteListener { task ->
+            if (task.isSuccessful) {
+                var user = auth.currentUser
+                updateUI(user)
+                Toast.makeText(this@LoginActivity,"User logged in successfully",Toast.LENGTH_SHORT).show()
+                startActivity(Intent(this@LoginActivity, CountryActivity::class.java))
+            } else {
+                Toast.makeText(this@LoginActivity,"Log in Error: " + task.exception!!.message,Toast.LENGTH_SHORT).show()
+                updateUI(null)
             }
         }
     }
-    */
+
+    private fun updateUI(user: FirebaseUser?) {
+
+    }
 }

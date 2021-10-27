@@ -19,11 +19,13 @@ import androidx.annotation.NonNull
 import com.google.android.gms.tasks.OnCompleteListener
 
 import android.text.TextUtils
+import android.widget.EditText
+import com.google.firebase.auth.FirebaseUser
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.ktx.Firebase
 
 class SignupActivity : AppCompatActivity() {
 
-//    var etRegEmail: TextInputEditText? = null
-//    private var etRegPassword: TextInputEditText? = null
     lateinit var btnSignup: Button
     lateinit var tvLoginHere: TextView
 
@@ -33,15 +35,15 @@ class SignupActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_signup)
 
-//        etRegEmail = findViewById(R.id.etRegEmail)
-//        etRegPassword = findViewById(R.id.etRegPassword)
-          btnSignup = findViewById(R.id.btnSignup)
-          tvLoginHere = findViewById(R.id.tvLoginHere)
+        val etRegEmail = findViewById<EditText>(R.id.etRegEmail)
+        val etRegPassword = findViewById<EditText>(R.id.etRegPassword)
+        btnSignup = findViewById(R.id.btnSignup)
+        tvLoginHere = findViewById(R.id.tvLoginHere)
 
-//        auth = FirebaseAuth.getInstance()
+        auth = Firebase.auth
 
         btnSignup.setOnClickListener(View.OnClickListener {
-//            createUser()
+             createUser(etRegEmail!!.text.toString(), etRegPassword!!.text.toString())
         })
         tvLoginHere.setOnClickListener(View.OnClickListener {
             startActivity(Intent(this, LoginActivity::class.java))
@@ -49,28 +51,33 @@ class SignupActivity : AppCompatActivity() {
 
     }
 
-    /*
-    private fun createUser() {
-        val email = etRegEmail!!.text.toString()
-        val password = etRegPassword!!.text.toString()
+    private fun createUser(email: String, password: String) {
+        auth.createUserWithEmailAndPassword(email, password)
+            .addOnCompleteListener(OnCompleteListener<AuthResult?> { task ->
+                if (task.isSuccessful) {
+                    val user = auth.currentUser
+                    updateUI(user)
+                    Toast.makeText(this@SignupActivity, "User registered successfully",Toast.LENGTH_SHORT).show()
+                    startActivity(Intent(this@SignupActivity, CountryActivity::class.java))
 
-        if (TextUtils.isEmpty(email)) {
-            etRegEmail!!.error = "Email cannot be empty"
-            etRegEmail!!.requestFocus()
-        } else if (TextUtils.isEmpty(password)) {
-            etRegPassword!!.error = "Password cannot be empty"
-            etRegPassword!!.requestFocus()
-        } else {
-            auth.createUserWithEmailAndPassword(email, password)
-                .addOnCompleteListener(OnCompleteListener<AuthResult?> { task ->
-                    if (task.isSuccessful) {
-                        Toast.makeText(this@SignupActivity, "User registered successfully",Toast.LENGTH_SHORT).show()
-                        startActivity(Intent(this@SignupActivity, LoginActivity::class.java))
-                    } else {
-                        Toast.makeText(this@SignupActivity,"Registration Error: " + task.exception!!.message, Toast.LENGTH_SHORT).show()
-                    }
-                })
-        }
+                } else {
+                    Toast.makeText(this@SignupActivity,"Registration Error: " + task.exception!!.message, Toast.LENGTH_SHORT).show()
+                    updateUI(null)
+                }
+            })
     }
-    */
+
+//    private fun sendEmailVerification(){
+//        val user = auth.currentUser!!
+//        user.sendEmailVerification().addOnCompleteListener(this){
+//            task ->
+//            //Email verification sent
+//        }
+//        //END Email send verification
+//    }
+
+    private fun updateUI(user: FirebaseUser?) {
+
+    }
+
 }
