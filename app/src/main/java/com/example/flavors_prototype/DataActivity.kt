@@ -31,7 +31,9 @@ class DataActivity : AppCompatActivity()
     //retrieves data from firebase
     private fun getRecipeData()
     {
-        dbreference = FirebaseDatabase.getInstance().getReference("countries")
+        // TODO: get path from country view, and place in here
+        // for now use arbitrary single country to populate
+        dbreference = FirebaseDatabase.getInstance().getReference().child("kembel_test_tree").child("USA")
         dbreference.addValueEventListener(object : ValueEventListener{
 
 
