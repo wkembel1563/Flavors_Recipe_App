@@ -3,7 +3,6 @@ package com.example.flavors_prototype
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.database.*
@@ -41,6 +40,10 @@ class DataActivity : AppCompatActivity()
 
             override fun onDataChange(snapshot: DataSnapshot) {
                 if (snapshot.exists()){
+
+                    // add dummy item for header
+                    val dummy = Recipe("", "", "", "", "", "")
+                    dataArrayList.add(dummy)
 
                     for (countrySnapshot in snapshot.children){
 
