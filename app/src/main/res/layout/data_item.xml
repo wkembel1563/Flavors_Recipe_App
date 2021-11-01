@@ -14,53 +14,61 @@
         android:layout_marginStart="16dp"
         android:orientation="vertical">
 
+<!--        <LinearLayout-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_gravity="center_vertical"-->
+<!--            android:orientation="horizontal">-->
+
+<!--            <TextView-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:text="Country Name: "-->
+<!--                android:textColor="@color/black"-->
+<!--                android:textSize="26sp"-->
+<!--                android:textStyle="bold" />-->
+
+<!--            <TextView-->
+<!--                android:id="@+id/tvnameOfPlace"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginStart="8dp"-->
+<!--                android:text="Country Name 1"-->
+<!--                android:textColor="@color/black"-->
+<!--                android:textSize="20sp" />-->
+
+<!--        </LinearLayout>-->
+
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
             android:orientation="horizontal">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Country Name: "
-                android:textColor="@color/black"
-                android:textSize="26sp"
-                android:textStyle="bold" />
+<!--            <TextView-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:text="Recipe: "-->
+<!--                android:textColor="@color/black"-->
+<!--                android:textSize="26sp"-->
+<!--                android:textStyle="bold" />-->
 
-            <TextView
-                android:id="@+id/tvnameOfPlace"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:text="Country Name 1"
-                android:textColor="@color/black"
-                android:textSize="20sp" />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:orientation="horizontal">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Recipe: "
-                android:textColor="@color/black"
-                android:textSize="26sp"
-                android:textStyle="bold" />
+            <ImageView
+                android:id="@+id/recipeListImage"
+                android:layout_width="91dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                app:srcCompat="@drawable/world_food" />
 
             <TextView
                 android:id="@+id/tvrecipe"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
-                android:text="recipe name"
+                android:text="Recipe Name"
                 android:textColor="@color/black"
-                android:textSize="20sp" />
+                android:textSize="26sp"
+                android:textStyle="bold"  />
 
         </LinearLayout>
 <!--        <LinearLayout-->
@@ -162,12 +170,6 @@
 <!--                android:textSize="20sp" />-->
 
 <!--        </LinearLayout>-->
-
-        <ImageButton
-            android:id="@+id/btnViewDish"
-            android:layout_width="66dp"
-            android:layout_height="41dp"
-            app:srcCompat="@drawable/ic_launcher_foreground" />
 
 
     </LinearLayout>

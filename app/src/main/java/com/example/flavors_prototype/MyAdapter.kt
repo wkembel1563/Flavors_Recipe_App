@@ -12,6 +12,8 @@ class MyAdapter(
     private val dataList : ArrayList<Recipe>,
     ) : RecyclerView.Adapter<MyAdapter.MyViewHolder>() {
 
+
+    // SET UP CLICK LISTENER FOR CARDS
     private lateinit var mListener : OnItemClickListener
 
     // any class that implements OnItemClickListener
@@ -20,11 +22,9 @@ class MyAdapter(
         // pass the position of the item clicked to method
         fun onItemClick(position: Int)
     }
-
     fun setOnItemClickListener(listener: OnItemClickListener){
         mListener = listener
     }
-
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
 
         //layout inflater using the layout from data_item.xml
@@ -34,14 +34,14 @@ class MyAdapter(
 
     }
 
-    //will store data from each node in currentitem, and populates each card item with text from given place
+    // will store data from each node in currentItem, and populates each card item with text from given place
     // this method is called everytime a card scrolls onto screen
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
 
-        val currentitem = dataList[position]
+        val currentItem = dataList[position]
 
-        holder.nameOfPlace.text = currentitem.Place
-        holder.Recipe.text = currentitem.Recipe
+        //holder.nameOfPlace.text = currentItem.Place
+        holder.Recipe.text = currentItem.Recipe
 
     }
 
@@ -53,7 +53,7 @@ class MyAdapter(
     // setting the clickListener for the recycler view card in here as well
     class MyViewHolder(itemView : View, listener: OnItemClickListener) : RecyclerView.ViewHolder(itemView){
 
-        val nameOfPlace : TextView = itemView.findViewById(R.id.tvnameOfPlace)
+        //val nameOfPlace : TextView = itemView.findViewById(R.id.tvnameOfPlace)
         val Recipe : TextView = itemView.findViewById(R.id.tvrecipe)
 
         // set a clickListener on itemview to activate DishView after

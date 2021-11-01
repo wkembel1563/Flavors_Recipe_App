@@ -1,6 +1,7 @@
 package com.example.flavors_prototype
 
 import android.os.Bundle
+import android.util.Log
 import android.widget.ImageButton
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
@@ -30,7 +31,7 @@ class DishViewActivity : AppCompatActivity(){
         val dataCountry = bundle!!.getString("dish_Place")
         val dataRecipe = bundle.getString("dish_Recipe")
         val dataCookTime = bundle.getString("dish_CookTime")
-        val dataPrepTime = bundle.getString("data_PrepTime")
+        val dataPrepTime = bundle.getString("dish_PrepTime")
         val dataInstructions = bundle.getString("dish_Instructions")
         val dataIngredients = bundle.getString("dish_Ingredients")
 
