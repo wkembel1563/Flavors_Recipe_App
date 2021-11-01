@@ -1,14 +1,15 @@
 package com.example.flavors_prototype
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.database.*
 
-class DataActivity : AppCompatActivity()
+class DataActivity : AppCompatActivity(), MyAdapter.OnItemClickListener
 {
-
 
     private  lateinit var  dbreference : DatabaseReference
     private  lateinit var  dataItemRecyclerView : RecyclerView
@@ -28,6 +29,26 @@ class DataActivity : AppCompatActivity()
         getRecipeData()
 
     }
+
+    // CARD OnItemClickListener interface
+    override fun onItemClick(position: Int) {
+       // Toast.makeText(this, "Item $position clicked", Toast.LENGTH_SHORT).show()
+
+        // when a card is clicked, go to DishView
+        val intent = Intent(this, DishViewActivity::class.java)
+
+        // pass dish data to DishView
+        intent.putExtra("dish_Place", dataArrayList[position].Place)
+        intent.putExtra("dish_Recipe", dataArrayList[position].Recipe)
+        intent.putExtra("dish_CookTime", dataArrayList[position].CookTime)
+        intent.putExtra("dish_PrepTime", dataArrayList[position].PrepTime)
+        intent.putExtra("dish_Instructions", dataArrayList[position].Instructions)
+        intent.putExtra("dish_Ingredients", dataArrayList[position].Ingredients)
+
+        // begin DishView
+        startActivity(intent)
+    }
+
     //retrieves data from firebase
     private fun getRecipeData()
     {
@@ -48,8 +69,7 @@ class DataActivity : AppCompatActivity()
 
                     }
 
-                    dataItemRecyclerView.adapter = MyAdapter(dataArrayList)
-
+                    dataItemRecyclerView.adapter = MyAdapter(dataArrayList, this@DataActivity)
 
                 }
             }

@@ -10,7 +10,7 @@ import androidx.recyclerview.widget.RecyclerView
 //this class stores the data from every CountryName node in an array
 class MyAdapter(
     private val dataList : ArrayList<Recipe>,
-    //private val listener : OnItemClickListener
+    private val listener : OnItemClickListener
     ) : RecyclerView.Adapter<MyAdapter.MyViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
@@ -23,6 +23,7 @@ class MyAdapter(
     }
 
     //will store data from each node in currentitem, and populates each card item with text from given place
+    // this method is called everytime a card scrolls onto screen
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
 
         val currentitem = dataList[position]
@@ -41,6 +42,7 @@ class MyAdapter(
     }
 
     //this class binds variables to the textViews in data_item
+    // setting the clickListener for the recycler view card in here as well
     inner class MyViewHolder(itemView : View) : RecyclerView.ViewHolder(itemView),
     View.OnClickListener{
 
@@ -51,17 +53,33 @@ class MyAdapter(
        // val ingredients : TextView = itemView.findViewById(R.id.tvingredients)
        // val instructions : TextView = itemView.findViewById(R.id.tvinstructions)
 
+        // set a clickListener on itemview to activate DishView after
+        // clicking anywhere on the recyclerview card
         init {
+            // 'this' is the MyViewHolder class
+            // View.onClickListener is needed above as an interface
             itemView.setOnClickListener(this)
         }
 
+        // define what happens when an itemview (card) is clicked
         override fun onClick(p0: View?) {
-            //listener.onItemClick()
+
+            // forward the click event to the screen displaying the recycler view.
+            // 'listener' = activity calling the adapter
+            // position = pos of click
+            val position = adapterPosition
+            if(position != RecyclerView.NO_POSITION) { // make sure pos still valid
+                listener.onItemClick(position)
+            }
         }
     }
 
+    // any class that implements OnItemClickListener
+    // must also implement onItemClick
+    // the DataActivity will implement this
     interface OnItemClickListener{
-        fun onItemClick()
+        // pass the position of the item clicked to method
+        fun onItemClick(position: Int)
     }
 
 }
