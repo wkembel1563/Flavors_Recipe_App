@@ -10,6 +10,7 @@
 
 
     <color name="background">#F0F4F3</color>
+    <color name="cardBackground">#D7D7D7</color>
     <color name="statusbar">#50C2C9</color>
     <color name="forgotpassword">#50C2C9</color>
     <color name="signup">#134B4F</color>

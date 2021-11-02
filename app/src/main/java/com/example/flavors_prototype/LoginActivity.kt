@@ -48,7 +48,7 @@ class LoginActivity : AppCompatActivity() {
         //Check for User login
         val currentUser = auth.currentUser
         if(currentUser != null){
-            startActivity(Intent(this@LoginActivity, CountryActivity::class.java))
+            startActivity(Intent(this@LoginActivity, DataActivity::class.java))
         }
     }
 
@@ -58,7 +58,7 @@ class LoginActivity : AppCompatActivity() {
                 var user = auth.currentUser
                 updateUI(user)
                 Toast.makeText(this@LoginActivity,"User logged in successfully",Toast.LENGTH_SHORT).show()
-                startActivity(Intent(this@LoginActivity, CountryActivity::class.java))
+                startActivity(Intent(this@LoginActivity, DataActivity::class.java))
             } else {
                 Toast.makeText(this@LoginActivity,"Log in Error: " + task.exception!!.message,Toast.LENGTH_SHORT).show()
                 updateUI(null)

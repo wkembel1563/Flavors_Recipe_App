@@ -3,14 +3,22 @@ package com.example.flavors_prototype
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageButton
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseUser
+import com.google.firebase.database.*
 
 //this class stores the data from every CountryName node in an array
 class MyAdapter(private val dataList : ArrayList<Recipe>) : RecyclerView.Adapter<MyAdapter.MyViewHolder>() {
 
     //
+    lateinit var LikesRef : DatabaseReference
+    var LikeChecker : Boolean = false;
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
+
+        LikesRef = FirebaseDatabase.getInstance().getReference().child("Likes")
         //layout inflater using the layout from data_item.xml
         val recipeView = LayoutInflater.from(parent.context).inflate(R.layout.data_item,
             parent,false)
@@ -18,7 +26,8 @@ class MyAdapter(private val dataList : ArrayList<Recipe>) : RecyclerView.Adapter
     }
     //will store data from each node in currentitem, and populates each card item with text from given place
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
-
+        val currentUserID : String = FirebaseAuth.getInstance().currentUser?.uid.toString()
+        val RecipeKey = getItemId(position).toString()
         val currentitem = dataList[position]
 
         holder.nameOfPlace.text = currentitem.Place
@@ -27,7 +36,34 @@ class MyAdapter(private val dataList : ArrayList<Recipe>) : RecyclerView.Adapter
         holder.cookTime.text = currentitem.CookTime
         holder.ingredients.text = currentitem.Ingredients
         holder.instructions.text = currentitem.Instructions
+        holder.LikePostButton.setOnClickListener {
 
+            LikeChecker = true;
+
+            LikesRef.addValueEventListener(object : ValueEventListener{
+                override fun onDataChange(snapshot: DataSnapshot) {
+                    if (LikeChecker.equals(true))
+                    {
+                        if(snapshot.child(RecipeKey).hasChild(currentUserID))
+                        {
+                            LikesRef.child(RecipeKey).child(currentUserID).removeValue()
+                            LikeChecker = false
+                        }
+                        else
+                        {
+                            LikesRef.child(RecipeKey).child(currentUserID).setValue(true)
+                            LikeChecker = false
+                        }
+                    }
+                }
+
+                override fun onCancelled(error: DatabaseError) {
+                    TODO("Not yet implemented")
+                }
+
+            })
+        }
+        holder.setLikeButtonStatus(RecipeKey)
 
     }
 
@@ -37,7 +73,11 @@ class MyAdapter(private val dataList : ArrayList<Recipe>) : RecyclerView.Adapter
     }
     //this class binds variables to the textViews in data_item
     class MyViewHolder(itemView : View) : RecyclerView.ViewHolder(itemView){
-
+        var LikesRef : DatabaseReference = FirebaseDatabase.getInstance().getReference().child("Likes")
+        val currentUserID : String = FirebaseAuth.getInstance().currentUser?.uid.toString()
+        var countLikes = 0
+        val LikePostButton : ImageButton = itemView.findViewById(R.id.like_button)
+        val NumberOfLikes : TextView = itemView.findViewById(R.id.numberOfLikes)
         val nameOfPlace : TextView = itemView.findViewById(R.id.tvnameOfPlace)
         val Recipe : TextView = itemView.findViewById(R.id.tvrecipe)
         val prepTime : TextView = itemView.findViewById(R.id.tvpreptime)
@@ -45,6 +85,35 @@ class MyAdapter(private val dataList : ArrayList<Recipe>) : RecyclerView.Adapter
         val ingredients : TextView = itemView.findViewById(R.id.tvingredients)
         val instructions : TextView = itemView.findViewById(R.id.tvinstructions)
 
+        fun setLikeButtonStatus(RecipeKey : String) {
+
+            LikesRef.addValueEventListener(object : ValueEventListener{
+                override fun onDataChange(snapshot: DataSnapshot) {
+
+                    if(snapshot.child(RecipeKey).hasChild(currentUserID))
+                    {
+                        countLikes = snapshot.child(RecipeKey).childrenCount.toInt()
+                        LikePostButton.setImageResource(R.drawable.like)
+                        NumberOfLikes.setText(countLikes.toString())
+                    }
+                    else
+                    {
+                        countLikes = snapshot.child(RecipeKey).childrenCount.toInt()
+                        LikePostButton.setImageResource(R.drawable.dislike)
+                        NumberOfLikes.setText(countLikes.toString())
+                    }
+
+                }
+
+                override fun onCancelled(error: DatabaseError) {
+                    TODO("Not yet implemented")
+                }
+
+            })
+        }
+
     }
+
+
 
 }

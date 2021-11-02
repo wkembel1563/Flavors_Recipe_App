@@ -58,7 +58,7 @@ class SignupActivity : AppCompatActivity() {
                     val user = auth.currentUser
                     updateUI(user)
                     Toast.makeText(this@SignupActivity, "User registered successfully",Toast.LENGTH_SHORT).show()
-                    startActivity(Intent(this@SignupActivity, CountryActivity::class.java))
+                    startActivity(Intent(this@SignupActivity, DataActivity::class.java))
 
                 } else {
                     Toast.makeText(this@SignupActivity,"Registration Error: " + task.exception!!.message, Toast.LENGTH_SHORT).show()

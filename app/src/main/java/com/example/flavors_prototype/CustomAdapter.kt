@@ -15,7 +15,19 @@ class CustomAdapter(private val dataSet: MutableList<String>) : RecyclerView.Ada
         }
     }
 
-    //Create new views
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
+        TODO("Not yet implemented")
+    }
+
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+        TODO("Not yet implemented")
+    }
+
+    override fun getItemCount(): Int {
+        TODO("Not yet implemented")
+    }
+
+    /*/Create new views
     override fun onCreateViewHolder(viewGroup: ViewGroup, viewType: Int): ViewHolder {
         //Create a new view, which defines the UI of list item
         val view = LayoutInflater.from(viewGroup.context).inflate(R.layout.item_list, viewGroup, false)
@@ -31,6 +43,6 @@ class CustomAdapter(private val dataSet: MutableList<String>) : RecyclerView.Ada
 
     override fun getItemCount(): Int {
         return dataSet.size
-    }
+    }*/
 
 }
