@@ -27,7 +27,7 @@ class MyAdapter(private val dataList : ArrayList<Recipe>) : RecyclerView.Adapter
     //will store data from each node in currentitem, and populates each card item with text from given place
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         val currentUserID : String = FirebaseAuth.getInstance().currentUser?.uid.toString()
-        val RecipeKey = getItemId(position).toString()
+        val RecipeKey = (position).toString()
         val currentitem = dataList[position]
 
         holder.nameOfPlace.text = currentitem.Place
