@@ -1,19 +1,23 @@
 package com.example.flavors_prototype
 
+import android.content.Context
+import android.content.Intent
+import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageButton
 import android.widget.TextView
+import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.database.*
 
 //this class stores the data from every CountryName node in an array
 class MyAdapter(private val dataList : ArrayList<Recipe>) : RecyclerView.Adapter<MyAdapter.MyViewHolder>() {
 
     //
+
     lateinit var LikesRef : DatabaseReference
     var LikeChecker : Boolean = false;
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
@@ -63,7 +67,14 @@ class MyAdapter(private val dataList : ArrayList<Recipe>) : RecyclerView.Adapter
 
             })
         }
+        holder.CommentButton.setOnClickListener {
+
+            startActivity(holder.context,holder.StartComment, Bundle())
+        }
+
         holder.setLikeButtonStatus(RecipeKey)
+
+
 
     }
 
@@ -73,11 +84,15 @@ class MyAdapter(private val dataList : ArrayList<Recipe>) : RecyclerView.Adapter
     }
     //this class binds variables to the textViews in data_item
     class MyViewHolder(itemView : View) : RecyclerView.ViewHolder(itemView){
+        val context: Context = itemView.context
+        val StartComment = Intent(context, CommentActivity::class.java)
         var LikesRef : DatabaseReference = FirebaseDatabase.getInstance().getReference().child("Likes")
         val currentUserID : String = FirebaseAuth.getInstance().currentUser?.uid.toString()
         var countLikes = 0
         val LikePostButton : ImageButton = itemView.findViewById(R.id.like_button)
         val NumberOfLikes : TextView = itemView.findViewById(R.id.numberOfLikes)
+        val CommentButton : ImageButton = itemView.findViewById(R.id.comment_button)
+
         val nameOfPlace : TextView = itemView.findViewById(R.id.tvnameOfPlace)
         val Recipe : TextView = itemView.findViewById(R.id.tvrecipe)
         val prepTime : TextView = itemView.findViewById(R.id.tvpreptime)
@@ -85,7 +100,8 @@ class MyAdapter(private val dataList : ArrayList<Recipe>) : RecyclerView.Adapter
         val ingredients : TextView = itemView.findViewById(R.id.tvingredients)
         val instructions : TextView = itemView.findViewById(R.id.tvinstructions)
 
-        fun setLikeButtonStatus(RecipeKey : String) {
+        fun setLikeButtonStatus(RecipeKey : String)
+        {
 
             LikesRef.addValueEventListener(object : ValueEventListener{
                 override fun onDataChange(snapshot: DataSnapshot) {
@@ -111,6 +127,11 @@ class MyAdapter(private val dataList : ArrayList<Recipe>) : RecyclerView.Adapter
 
             })
         }
+
+        //fun startCommentActivity()
+        //{
+        //    startActivity(context,StartComment, Bundle.EMPTY)
+        //}
 
     }
 

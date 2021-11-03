@@ -144,7 +144,8 @@
             android:layout_width="wrap_content"
             android:layout_height="313dp"
             android:layout_gravity="center_vertical"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:inputType="textMultiLine">
 
             <TextView
                 android:layout_width="wrap_content"
@@ -152,6 +153,7 @@
                 android:text="Instructions: \n"
                 android:textColor="@color/black"
                 android:textSize="26sp"
+
                 android:textStyle="bold" />
 
             <TextView

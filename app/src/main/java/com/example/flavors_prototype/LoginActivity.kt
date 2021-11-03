@@ -1,15 +1,13 @@
 package com.example.flavors_prototype
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.text.TextUtils
 import android.view.View
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
-import com.google.android.material.textfield.TextInputEditText
+import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.ktx.auth
@@ -40,6 +38,7 @@ class LoginActivity : AppCompatActivity() {
 
         tvSignupHere.setOnClickListener(View.OnClickListener {
             startActivity(Intent(this, SignupActivity::class.java))
+
         })
     }
 
