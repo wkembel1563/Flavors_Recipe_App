@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Flavors_Prototype</string>
+    <string name="title_activity_country">CountryActivity</string>
 </resources>

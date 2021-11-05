@@ -9,7 +9,6 @@ import com.google.firebase.database.*
 
 class DataActivity : AppCompatActivity()
 {
-
     private  lateinit var  dbreference : DatabaseReference
     private  lateinit var  dataItemRecyclerView : RecyclerView
     private  lateinit var  dataArrayList: ArrayList<Recipe>
@@ -37,17 +36,13 @@ class DataActivity : AppCompatActivity()
         dbreference = FirebaseDatabase.getInstance().getReference().child("kembel_test_tree").child("USA")
         dbreference.addValueEventListener(object : ValueEventListener{
 
-
             override fun onDataChange(snapshot: DataSnapshot) {
                 if (snapshot.exists()){
-
-                    // add dummy item for header
-                    val dummy = Recipe("", "", "", "", "", "")
-                    dataArrayList.add(dummy)
+                      // Dummy Item for Header
+//                    val dummy = Recipe("", "", "", "", "", "")
+//                    dataArrayList.add(dummy)
 
                     for (countrySnapshot in snapshot.children){
-
-
                         val dataItem = countrySnapshot.getValue(Recipe::class.java)
                         dataArrayList.add(dataItem!!)// !! checks that object is not null
 
@@ -72,21 +67,14 @@ class DataActivity : AppCompatActivity()
 
                             // begin DishView
                             startActivity(intent)
-
-
                         }
-
                     })
-
                 }
             }
-
 
             override fun onCancelled(error: DatabaseError) {
                 TODO("Not yet implemented")
             }
-
-
         })
     }
 }
