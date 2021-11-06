@@ -35,6 +35,7 @@ class CommentActivity : AppCompatActivity() {
 
 
     }
+    //creates menu bar
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         super.onCreateOptionsMenu(menu)
         val inflater : MenuInflater = menuInflater
@@ -43,19 +44,20 @@ class CommentActivity : AppCompatActivity() {
         }
         return true
     }
+    //when user selects option from menu, start that activity
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         super.onOptionsItemSelected(item)
 
         if(item.itemId == R.id.cook_book)
         {
             startActivity(Intent(this, cookBookActivity::class.java))
-            //return true
+            return true
         }
         if(item.itemId == R.id.country_selection)
         {
 
             startActivity(Intent(this, CountryActivity::class.java))
-            //return true
+            return true
         }
         return super.onOptionsItemSelected(item)
     }

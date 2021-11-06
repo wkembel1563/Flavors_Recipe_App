@@ -83,6 +83,7 @@ class CountryActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMar
         }
         return false
     }
+    //will create manin menu bar
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         super.onCreateOptionsMenu(menu)
         val inflater : MenuInflater = menuInflater
@@ -91,6 +92,7 @@ class CountryActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMar
         }
         return true
     }
+    //when user selects option from menu, start that activity
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         super.onOptionsItemSelected(item)
 

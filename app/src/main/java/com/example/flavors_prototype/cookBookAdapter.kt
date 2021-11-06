@@ -14,12 +14,14 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
 
 class cookBookAdapter (private val dataList : ArrayList<Recipe>) : RecyclerView.Adapter<cookBookAdapter.MyViewHolder>() {
-
+    //database reference variable and like status tracker
     lateinit var LikesRef : DatabaseReference
     var LikeChecker : Boolean = false;
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
 
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
+        //get everything under likes
         LikesRef = FirebaseDatabase.getInstance().getReference().child("Likes")
+
         //layout inflater using the layout from data_item.xml
         val recipeView = LayoutInflater.from(parent.context).inflate(R.layout.cookbook_item,
             parent,false)
@@ -27,9 +29,12 @@ class cookBookAdapter (private val dataList : ArrayList<Recipe>) : RecyclerView.
     }
     //will store data from each node in currentitem, and populates each card item with text from given place
      override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
+
+        //current user id and key used to track likes and comments
         val currentUserID : String = FirebaseAuth.getInstance().currentUser?.uid.toString()
         val RecipeKey = (position).toString()
 
+        //current position of item in array
         val currentitem = dataList[position]
 
         holder.nameOfPlace.text = currentitem.Place
@@ -42,15 +47,18 @@ class cookBookAdapter (private val dataList : ArrayList<Recipe>) : RecyclerView.
 
             LikeChecker = true;
 
+            //listen for change in Likes node
             LikesRef.addValueEventListener(object : ValueEventListener{
                 override fun onDataChange(snapshot: DataSnapshot) {
                     if (LikeChecker.equals(true))
                     {
+                        //if like already exists, remove it
                         if(snapshot.child(RecipeKey).hasChild(currentUserID))
                         {
                             LikesRef.child(RecipeKey).child(currentUserID).removeValue()
                             LikeChecker = false
                         }
+                        //if no like exists, add it
                         else
                         {
                             LikesRef.child(RecipeKey).child(currentUserID).setValue(true)
@@ -65,11 +73,14 @@ class cookBookAdapter (private val dataList : ArrayList<Recipe>) : RecyclerView.
 
             })
         }
+        //listen for click on comment button and start the comment activity
+        //defined in fuction below
         holder.CommentButton.setOnClickListener {
 
             startActivity(holder.context,holder.StartComment, Bundle())
         }
 
+        ///listen for click on like button
         holder.setLikeButtonStatus(RecipeKey)
 
 
@@ -98,18 +109,21 @@ class cookBookAdapter (private val dataList : ArrayList<Recipe>) : RecyclerView.
         val ingredients : TextView = itemView.findViewById(R.id.tvingredients)
         val instructions : TextView = itemView.findViewById(R.id.tvinstructions)
 
+
+        //definiton for likes function
         fun setLikeButtonStatus(RecipeKey : String)
         {
-
+            //listen for changes in Likes node
             LikesRef.addValueEventListener(object : ValueEventListener{
                 override fun onDataChange(snapshot: DataSnapshot) {
-
+                    //this will count all likes when user checks like button and sets the red heart image
                     if(snapshot.child(RecipeKey).hasChild(currentUserID))
                     {
                         countLikes = snapshot.child(RecipeKey).childrenCount.toInt()
                         LikePostButton.setImageResource(R.drawable.like)
                         NumberOfLikes.setText(countLikes.toString())
                     }
+                    //counts likes when user dislikes a dish and removes red heart imaga
                     else
                     {
                         countLikes = snapshot.child(RecipeKey).childrenCount.toInt()
@@ -126,14 +140,11 @@ class cookBookAdapter (private val dataList : ArrayList<Recipe>) : RecyclerView.
             })
         }
 
-        //fun startCommentActivity()
-        //{
-        //    startActivity(context,StartComment, Bundle.EMPTY)
-        //}
+
 
     }
 
 
 
 }
-///////////////////////////////////////////////////////////////////////
+
