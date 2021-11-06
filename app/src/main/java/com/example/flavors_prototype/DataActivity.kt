@@ -31,7 +31,7 @@ class DataActivity : AppCompatActivity()
     //retrieves data from firebase
     private fun getRecipeData()
     {
-        dbreference = FirebaseDatabase.getInstance().getReference("countries")
+        dbreference = FirebaseDatabase.getInstance().getReference("kembel_test_tree").child("USA")
         dbreference.addValueEventListener(object : ValueEventListener{
 
 
