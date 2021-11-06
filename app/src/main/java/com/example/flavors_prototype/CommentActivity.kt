@@ -1,6 +1,10 @@
 package com.example.flavors_prototype
 
+import android.content.Intent
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuInflater
+import android.view.MenuItem
 import android.widget.ImageButton
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -30,5 +34,29 @@ class CommentActivity : AppCompatActivity() {
         //comment activity needs to be started here
 
 
+    }
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        super.onCreateOptionsMenu(menu)
+        val inflater : MenuInflater = menuInflater
+        with(inflater) {
+            inflate(R.menu.main_menu,menu)
+        }
+        return true
+    }
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        super.onOptionsItemSelected(item)
+
+        if(item.itemId == R.id.cook_book)
+        {
+            startActivity(Intent(this, cookBookActivity::class.java))
+            //return true
+        }
+        if(item.itemId == R.id.country_selection)
+        {
+
+            startActivity(Intent(this, CountryActivity::class.java))
+            //return true
+        }
+        return super.onOptionsItemSelected(item)
     }
 }

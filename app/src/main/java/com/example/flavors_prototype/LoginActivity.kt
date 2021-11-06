@@ -46,7 +46,7 @@ class LoginActivity : AppCompatActivity() {
         super.onStart()
         //Check for User login
         val currentUser = auth.currentUser
-        if(currentUser != null){
+        if(currentUser == null){
             startActivity(Intent(this@LoginActivity, CountryActivity::class.java))
         }
     }
