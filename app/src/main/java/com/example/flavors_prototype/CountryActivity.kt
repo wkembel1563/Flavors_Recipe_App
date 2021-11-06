@@ -1,16 +1,17 @@
 package com.example.flavors_prototype
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
-
+import androidx.appcompat.app.AppCompatActivity
+import com.example.flavors_prototype.databinding.ActivityCountryBinding
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
-import com.example.flavors_prototype.databinding.ActivityCountryBinding
-import com.google.android.gms.maps.model.*
+import com.google.android.gms.maps.model.LatLng
+import com.google.android.gms.maps.model.Marker
+import com.google.android.gms.maps.model.MarkerOptions
 
 class CountryActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMarkerClickListener {
 
@@ -51,6 +52,7 @@ class CountryActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMar
         val usa = LatLng(37.0902, 264.2871)
 
         //Create Saved Markers on the Map & add data object to the Markers
+        //Best to hardcode these values, it's redundant to call them from database
         markerChina = mMap.addMarker(MarkerOptions().position(china).title("China"))//.icon(BitmapDescriptorFactory.fromResource(R.drawable.china)))
         markerChina?.tag = 0
         markerIndia = mMap.addMarker(MarkerOptions().position(india).title("India"))//.icon(BitmapDescriptorFactory.fromResource(R.drawable.india)))
