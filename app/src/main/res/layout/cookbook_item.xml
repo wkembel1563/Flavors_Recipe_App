@@ -117,7 +117,7 @@
         </LinearLayout>
 
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="115dp"
             android:layout_gravity="center_vertical"
             android:orientation="horizontal">
@@ -142,11 +142,11 @@
         </LinearLayout>
 
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="313dp"
             android:layout_gravity="center_vertical"
-            android:orientation="horizontal"
-            android:inputType="textMultiLine">
+            android:inputType="textMultiLine"
+            android:orientation="horizontal">
 
             <TextView
                 android:layout_width="wrap_content"
@@ -167,38 +167,6 @@
                 android:textSize="20sp" />
 
         </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp">
-            <ImageButton
-                android:id="@+id/like_button"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:src="@drawable/dislike"/>
-
-            <TextView
-                android:id="@+id/numberOfLikes"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:padding="15dp"
-                android:text="0 likes"
-                android:textSize="14sp"
-                android:textColor="@color/black"
-                android:textStyle="bold"/>
-            <ImageButton
-                android:id="@+id/comment_button"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginLeft="150dp"
-                android:baselineAlignBottom="false"
-                android:src="@drawable/comment"/>
-
-        </LinearLayout>
-
 
 
     </LinearLayout>

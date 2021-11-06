@@ -1,12 +1,11 @@
 package com.example.flavors_prototype
 
-import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 
-class CustomAdapter(private val dataSet: MutableList<String>) : RecyclerView.Adapter<CustomAdapter.ViewHolder>() {
+class CountryAdapter(private val dataSet: MutableList<String>) : RecyclerView.Adapter<CountryAdapter.ViewHolder>() {
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val tvCountry: TextView
 

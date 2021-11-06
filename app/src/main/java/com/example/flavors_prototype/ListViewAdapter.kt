@@ -5,10 +5,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
-import java.util.ArrayList
 import androidx.recyclerview.widget.RecyclerView
+import java.util.*
 
-class RecyclerViewAdapter(private val context: Context, private val list: ArrayList<String>) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+class ListViewAdapter(private val context: Context, private val list: ArrayList<String>) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
         private inner class ViewHolder internal constructor(itemView: View) : RecyclerView.ViewHolder(itemView) {
 

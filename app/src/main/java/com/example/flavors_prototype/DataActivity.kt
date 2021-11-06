@@ -52,9 +52,9 @@ class DataActivity : AppCompatActivity()
                     }
 
                     //go to DishView Activity on click
-                    var adapter = MyAdapter(dataArrayList)
+                    var adapter = DishAdapter(dataArrayList)/////////////////////////////////////////////
                     dataItemRecyclerView.adapter = adapter
-                    adapter.setOnItemClickListener(object : MyAdapter.OnItemClickListener{
+                    adapter.setOnItemClickListener(object : DishAdapter.OnItemClickListener{
                         override fun onItemClick(position: Int) {
 
                             // when a card is clicked, go to DishView

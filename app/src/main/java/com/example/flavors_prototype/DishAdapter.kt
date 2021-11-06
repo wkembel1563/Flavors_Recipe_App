@@ -3,14 +3,14 @@ package com.example.flavors_prototype
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageButton
-import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 
 //this class stores the data from every CountryName node in an array
-class MyAdapter(
+class DishAdapter(
     private val dataList : ArrayList<Recipe>,
-    ) : RecyclerView.Adapter<MyAdapter.MyViewHolder>() {
+    ) : RecyclerView.Adapter<DishAdapter.MyViewHolder>() {
+
+
 
 
     // SET UP CLICK LISTENER FOR CARDS
@@ -26,11 +26,14 @@ class MyAdapter(
         mListener = listener
     }
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
+        //database reference variable and like status tracker
+        //lateinit var LikesRef : DatabaseReference
+
 
         //layout inflater using the layout from data_item.xml
         val recipeView = LayoutInflater.from(parent.context).inflate(R.layout.data_item,
             parent,false)
-        return MyViewHolder(recipeView, mListener)
+        return MyViewHolder(recipeView, mListener, )
 
     }
 
@@ -38,10 +41,7 @@ class MyAdapter(
     // this method is called everytime a card scrolls onto screen
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
 
-        val currentItem = dataList[position]
 
-        //holder.nameOfPlace.text = currentItem.Place
-        holder.Recipe.text = currentItem.Recipe
 
     }
 
@@ -54,17 +54,26 @@ class MyAdapter(
     class MyViewHolder(itemView : View, listener: OnItemClickListener) : RecyclerView.ViewHolder(itemView){
 
         //val nameOfPlace : TextView = itemView.findViewById(R.id.tvnameOfPlace)
-        val Recipe : TextView = itemView.findViewById(R.id.tvrecipe)
+
+
 
         // set a clickListener on itemview to activate DishView after
         // clicking anywhere on the recyclerview card
+
+
         init {
+
+
+
+
 
             itemView.setOnClickListener{
                 listener.onItemClick(adapterPosition)
             }
 
         }
+
     }
+
 
 }

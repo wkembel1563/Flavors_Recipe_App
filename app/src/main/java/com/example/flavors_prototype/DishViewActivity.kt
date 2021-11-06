@@ -8,14 +8,37 @@ import android.view.MenuItem
 import android.widget.ImageButton
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.*
 
 
 class DishViewActivity : AppCompatActivity(){
+
+
+
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_dish)
 
+
+        val NumberOfLikes : TextView = findViewById(R.id.numberOfLikes)
+        var countLikes = 0
+        val LikesRef : DatabaseReference = FirebaseDatabase.getInstance().getReference().child("Likes")
+        val currentUserID : String = FirebaseAuth.getInstance().currentUser?.uid.toString()
+
+        val LikePostButton : ImageButton = findViewById(R.id.like_button)
+
+        val CommentButton : ImageButton = findViewById(R.id.comment_button)
+
+        // dish data passed from DataActivity
+        val bundle : Bundle?= intent.extras
+
+        //current user id and key used to track likes and comments
+        //val currentUserID : String = FirebaseAuth.getInstance().currentUser?.uid.toString()
+        val RecipeKey = bundle?.getString("data_Recipe").toString()
+        var LikeChecker : Boolean = false;
         // dishView display variables
         val countryName : TextView = findViewById(R.id.dishCountryName)
         val recipe : TextView = findViewById(R.id.dishRecipe)
@@ -23,13 +46,85 @@ class DishViewActivity : AppCompatActivity(){
         val cookTime : TextView = findViewById(R.id.dishCookTime)
         val ingredients : TextView = findViewById(R.id.dishIngredients)
         val instructions : TextView = findViewById(R.id.dishInstructions)
-        
+        ////comment and like variables
+
+
+
+        //val Recipe : TextView = findViewById(R.id.tvrecipe)
+
+
+        LikePostButton.setOnClickListener {
+
+            LikeChecker = true;
+
+            //listen for change in Likes node
+            LikesRef.addValueEventListener(object : ValueEventListener{
+                override fun onDataChange(snapshot: DataSnapshot) {
+                    if (LikeChecker.equals(true))
+                    {
+                        //if like already exists, remove it
+                        if(snapshot.child(RecipeKey).hasChild(currentUserID))
+                        {
+                            LikesRef.child(RecipeKey).child(currentUserID).removeValue()
+                            LikeChecker = false
+                        }
+                        //if no like exists, add it
+                        else
+                        {
+                            LikesRef.child(RecipeKey).child(currentUserID).setValue(true)
+                            LikeChecker = false
+                        }
+                    }
+                }
+
+                override fun onCancelled(error: DatabaseError) {
+                    TODO("Not yet implemented")
+                }
+
+            })
+        }
+        //listen for click on comment button and start the comment activity
+        //defined in fuction below
+        CommentButton.setOnClickListener {
+
+            //startActivity(context,StartComment, Bundle())
+        }
+
+        ///listen for click on like button
+        //setLikeButtonStatus(RecipeKey)
+        //listen for changes in Likes node
+        LikesRef.addValueEventListener(object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                //this will count all likes when user checks like button and sets the red heart image
+                if(snapshot.child(RecipeKey).hasChild(currentUserID))
+                {
+                    countLikes = snapshot.child(RecipeKey).childrenCount.toInt()
+                    LikePostButton.setImageResource(R.drawable.like)
+                    NumberOfLikes.setText(countLikes.toString())
+                }
+                //counts likes when user dislikes a dish and removes red heart imaga
+                else
+                {
+                    countLikes = snapshot.child(RecipeKey).childrenCount.toInt()
+                    LikePostButton.setImageResource(R.drawable.dislike)
+                    NumberOfLikes.setText(countLikes.toString())
+                }
+
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+                TODO("Not yet implemented")
+            }
+
+        })
+
+
+
         // dishView image button
         // TODO: 11/1/21 create image for each dish. use this to manipulate
         val dishImage : ImageButton = findViewById(R.id.dishImageBtn)
 
-        // dish data passed from DataActivity
-        val bundle : Bundle?= intent.extras
+
 
         val dataCountry = bundle!!.getString("dish_Place")
         val dataRecipe = bundle.getString("dish_Recipe")
@@ -48,6 +143,7 @@ class DishViewActivity : AppCompatActivity(){
         instructions.text = dataInstructions
 
     }
+
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         super.onCreateOptionsMenu(menu)
         val inflater : MenuInflater = menuInflater

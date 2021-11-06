@@ -50,7 +50,7 @@ class cookBookActivity : AppCompatActivity()
 
                     }
 
-                    dataItemRecyclerView.adapter = cookBookAdapter(dataArrayList)
+                    dataItemRecyclerView.adapter = cookBookAdapter(dataArrayList)//////////////////////////////////////////////
 
 
                 }
