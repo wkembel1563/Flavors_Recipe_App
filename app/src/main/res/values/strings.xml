@@ -1,6 +1,4 @@
 <resources>
     <string name="app_name">Flavors_Prototype</string>
-
-    <string name="google_maps_api_key">AIzaSyBpE3e4OePmvhZUavgkTE8rmMJo4dUj0gE</string>
-
+    <string name="title_activity_country">CountryActivity</string>
 </resources>
