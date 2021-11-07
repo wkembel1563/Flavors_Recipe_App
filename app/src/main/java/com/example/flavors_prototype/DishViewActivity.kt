@@ -37,7 +37,7 @@ class DishViewActivity : AppCompatActivity(){
 
         //current user id and key used to track likes and comments
         //val currentUserID : String = FirebaseAuth.getInstance().currentUser?.uid.toString()
-        val RecipeKey = bundle?.getString("data_Recipe").toString()
+        val RecipeKey = bundle?.getString("dish_Recipe").toString()
         var LikeChecker : Boolean = false;
         // dishView display variables
         val countryName : TextView = findViewById(R.id.dishCountryName)
@@ -50,7 +50,7 @@ class DishViewActivity : AppCompatActivity(){
 
 
 
-        //val Recipe : TextView = findViewById(R.id.tvrecipe)
+
 
 
         LikePostButton.setOnClickListener {
@@ -63,15 +63,15 @@ class DishViewActivity : AppCompatActivity(){
                     if (LikeChecker.equals(true))
                     {
                         //if like already exists, remove it
-                        if(snapshot.child(RecipeKey).hasChild(currentUserID))
+                        if(snapshot.child(currentUserID).hasChild(RecipeKey))
                         {
-                            LikesRef.child(RecipeKey).child(currentUserID).removeValue()
+                            LikesRef.child(currentUserID).child(RecipeKey).removeValue()
                             LikeChecker = false
                         }
                         //if no like exists, add it
                         else
                         {
-                            LikesRef.child(RecipeKey).child(currentUserID).setValue(true)
+                            LikesRef.child(currentUserID).child(RecipeKey).setValue(true)
                             LikeChecker = false
                         }
                     }
@@ -96,16 +96,16 @@ class DishViewActivity : AppCompatActivity(){
         LikesRef.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 //this will count all likes when user checks like button and sets the red heart image
-                if(snapshot.child(RecipeKey).hasChild(currentUserID))
+                if(snapshot.child(currentUserID).hasChild(RecipeKey))
                 {
-                    countLikes = snapshot.child(RecipeKey).childrenCount.toInt()
+                    countLikes = snapshot.child(currentUserID).childrenCount.toInt()
                     LikePostButton.setImageResource(R.drawable.like)
                     NumberOfLikes.setText(countLikes.toString())
                 }
                 //counts likes when user dislikes a dish and removes red heart imaga
                 else
                 {
-                    countLikes = snapshot.child(RecipeKey).childrenCount.toInt()
+                    countLikes = snapshot.child(currentUserID).childrenCount.toInt()
                     LikePostButton.setImageResource(R.drawable.dislike)
                     NumberOfLikes.setText(countLikes.toString())
                 }
