@@ -21,34 +21,31 @@
             android:layout_height="200dp"
             app:srcCompat="@drawable/world_food"
             tools:ignore="SpeakableTextPresentCheck" />
+
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
+            android:layout_marginLeft="0dp"
+            android:layout_marginRight="0dp"
+
             android:orientation="horizontal">
 
             <ImageButton
                 android:id="@+id/like_button"
+               android:background="@color/white"
+                android:layout_marginLeft="15dp"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:src="@drawable/dislike" />
 
-            <TextView
-                android:id="@+id/numberOfLikes"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:padding="15dp"
-                android:text="0 likes"
-                android:textColor="@color/black"
-                android:textSize="14sp"
-                android:textStyle="bold" />
+
 
             <ImageButton
                 android:id="@+id/comment_button"
                 android:layout_width="match_parent"
+                android:background="@color/white"
                 android:layout_height="match_parent"
-                android:layout_marginLeft="200dp"
+                android:layout_marginLeft="295dp"
                 android:baselineAlignBottom="false"
                 android:src="@drawable/comment" />
 

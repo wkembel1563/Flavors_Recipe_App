@@ -23,8 +23,8 @@ class DishViewActivity : AppCompatActivity(){
         setContentView(R.layout.activity_dish)
 
 
-        val NumberOfLikes : TextView = findViewById(R.id.numberOfLikes)
-        var countLikes = 0
+        //val NumberOfLikes : TextView = findViewById(R.id.numberOfLikes)
+        //var countLikes = 0
         val LikesRef : DatabaseReference = FirebaseDatabase.getInstance().getReference().child("Likes")
         val currentUserID : String = FirebaseAuth.getInstance().currentUser?.uid.toString()
 
@@ -87,7 +87,7 @@ class DishViewActivity : AppCompatActivity(){
         //defined in fuction below
         CommentButton.setOnClickListener {
 
-            //startActivity(context,StartComment, Bundle())
+            //startActivity(context,StartComment, Bundle())//need to pass context for comment button
         }
 
         ///listen for click on like button
@@ -98,16 +98,16 @@ class DishViewActivity : AppCompatActivity(){
                 //this will count all likes when user checks like button and sets the red heart image
                 if(snapshot.child(currentUserID).hasChild(RecipeKey))
                 {
-                    countLikes = snapshot.child(currentUserID).childrenCount.toInt()
+                    //countLikes = snapshot.child(currentUserID).childrenCount.toInt()
                     LikePostButton.setImageResource(R.drawable.like)
-                    NumberOfLikes.setText(countLikes.toString())
+                    //NumberOfLikes.setText(countLikes.toString())
                 }
                 //counts likes when user dislikes a dish and removes red heart imaga
                 else
                 {
-                    countLikes = snapshot.child(currentUserID).childrenCount.toInt()
+                    //countLikes = snapshot.child(currentUserID).childrenCount.toInt()
                     LikePostButton.setImageResource(R.drawable.dislike)
-                    NumberOfLikes.setText(countLikes.toString())
+                    //NumberOfLikes.setText(countLikes.toString())
                 }
 
             }
