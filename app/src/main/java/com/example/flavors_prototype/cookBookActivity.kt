@@ -13,26 +13,37 @@ import com.google.firebase.database.*
 
 class cookBookActivity : AppCompatActivity()
 {
-
-
     private  lateinit var  dbreference : DatabaseReference
     private  lateinit var  getReference : DataSnapshot
     private  lateinit var  dataItemRecyclerView : RecyclerView
     private  lateinit var  dataArrayList: ArrayList<Recipe>
-
     private  lateinit var  dishItem : Recipe
-    val currentUserID : String = FirebaseAuth.getInstance().currentUser?.uid.toString()
-    //val LikesRef = FirebaseDatabase.getInstance().getReference("likes").child(currentUserID)
+
 
     override fun onCreate(savedInstanceState: Bundle?)
     {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_data)
 
+        val currentUserID : String = FirebaseAuth.getInstance().currentUser?.uid.toString()
+        //val LikesRef = FirebaseDatabase.getInstance().getReference("likes")
+
+        /*LikesRef.child(currentUserID).addValueEventListener(object : ValueEventListener{
+            override fun onDataChange(snapshot: DataSnapshot) {
+                if(snapshot.exists())
+                {
+
+                }
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+                TODO("Not yet implemented")
+            }
+        })*/
+
         dataItemRecyclerView = findViewById(R.id.dataList)
         dataItemRecyclerView.layoutManager = LinearLayoutManager(this)
         dataItemRecyclerView.setHasFixedSize(true)
-
         dataArrayList = arrayListOf<Recipe>()
         getRecipeData()
 
@@ -41,10 +52,9 @@ class cookBookActivity : AppCompatActivity()
     private fun getRecipeData()
     {
 
-        //this is where you will be looking for information about likes , still look on tree with countries and recipes but create method above to retrieve the names of what you need first
+
         dbreference = FirebaseDatabase.getInstance().getReference("kembel_test_tree").child("USA")
         dbreference.addValueEventListener(object : ValueEventListener {
-
 
             override fun onDataChange(snapshot: DataSnapshot) {
 
@@ -52,31 +62,17 @@ class cookBookActivity : AppCompatActivity()
 
                     for (countrySnapshot in snapshot.children){
 
-
                        val dataItem = countrySnapshot.getValue(Recipe::class.java)
                        dataArrayList.add(dataItem!!)// !! checks that object is not null
 
                    }
-
-
-
-
-                    dataItemRecyclerView.adapter = cookBookAdapter(dataArrayList)//////////////////////////////////////////////
-
-
-
-
-
-
-
+                    dataItemRecyclerView.adapter = cookBookAdapter(dataArrayList)
                 }
             }
-
 
             override fun onCancelled(error: DatabaseError) {
                 TODO("Not yet implemented")
             }
-
 
         })
     }

@@ -1,25 +1,16 @@
 package com.example.flavors_prototype
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.Button
-import android.widget.TextView
-import com.google.android.material.textfield.TextInputEditText
-import com.google.firebase.auth.FirebaseAuth
-import android.widget.Toast
-
-import com.google.firebase.auth.AuthResult
-
-import com.google.android.gms.tasks.Task
-
-import androidx.annotation.NonNull
-
-import com.google.android.gms.tasks.OnCompleteListener
-
-import android.text.TextUtils
 import android.widget.EditText
+import android.widget.TextView
+import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
+import com.google.android.gms.tasks.OnCompleteListener
+import com.google.firebase.auth.AuthResult
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
@@ -67,14 +58,6 @@ class SignupActivity : AppCompatActivity() {
             })
     }
 
-//    private fun sendEmailVerification(){
-//        val user = auth.currentUser!!
-//        user.sendEmailVerification().addOnCompleteListener(this){
-//            task ->
-//            //Email verification sent
-//        }
-//        //END Email send verification
-//    }
 
     private fun updateUI(user: FirebaseUser?) {
 

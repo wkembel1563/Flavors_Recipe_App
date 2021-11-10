@@ -15,9 +15,6 @@ import com.google.firebase.database.*
 class DishViewActivity : AppCompatActivity(){
 
 
-
-
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_dish)
@@ -50,6 +47,28 @@ class DishViewActivity : AppCompatActivity(){
 
 
 
+        // dishView image button
+        // TODO: 11/1/21 create image for each dish. use this to manipulate
+        val dishImage : ImageButton = findViewById(R.id.dishImageBtn)
+
+
+
+        val dataCountry = bundle!!.getString("dish_Place")
+        val dataRecipe = bundle.getString("dish_Recipe")
+        val dataCookTime = bundle.getString("dish_CookTime")
+        val dataPrepTime = bundle.getString("dish_PrepTime")
+        val dataInstructions = bundle.getString("dish_Instructions")
+        val dataIngredients = bundle.getString("dish_Ingredients")
+
+
+        // pass dish data to UI
+        countryName.text = dataCountry
+        recipe.text = dataRecipe
+        prepTime.text = dataPrepTime
+        cookTime.text = dataCookTime
+        ingredients.text = dataIngredients
+        instructions.text = dataInstructions
+
 
 
 
@@ -71,7 +90,7 @@ class DishViewActivity : AppCompatActivity(){
                         //if no like exists, add it
                         else
                         {
-                            LikesRef.child(currentUserID).child(RecipeKey).setValue(true)
+                            LikesRef.child(currentUserID).child(RecipeKey).setValue(RecipeKey)
                             LikeChecker = false
                         }
                     }
@@ -87,7 +106,9 @@ class DishViewActivity : AppCompatActivity(){
         //defined in fuction below
         CommentButton.setOnClickListener {
 
-            //startActivity(context,StartComment, Bundle())//need to pass context for comment button
+
+            //val dataCountry = bundle!!.getString("dish_Place")
+            startActivity(Intent(this, CommentActivity::class.java).putExtra("Place", dataCountry).putExtra("Recipe", dataRecipe).putExtra("user_id",currentUserID))//need to pass context for comment button
         }
 
         ///listen for click on like button
@@ -120,27 +141,7 @@ class DishViewActivity : AppCompatActivity(){
 
 
 
-        // dishView image button
-        // TODO: 11/1/21 create image for each dish. use this to manipulate
-        val dishImage : ImageButton = findViewById(R.id.dishImageBtn)
 
-
-
-        val dataCountry = bundle!!.getString("dish_Place")
-        val dataRecipe = bundle.getString("dish_Recipe")
-        val dataCookTime = bundle.getString("dish_CookTime")
-        val dataPrepTime = bundle.getString("dish_PrepTime")
-        val dataInstructions = bundle.getString("dish_Instructions")
-        val dataIngredients = bundle.getString("dish_Ingredients")
-
-
-        // pass dish data to UI
-        countryName.text = dataCountry
-        recipe.text = dataRecipe
-        prepTime.text = dataPrepTime
-        cookTime.text = dataCookTime
-        ingredients.text = dataIngredients
-        instructions.text = dataInstructions
 
     }
 
