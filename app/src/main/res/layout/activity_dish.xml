@@ -32,30 +32,37 @@
 
             <ImageButton
                 android:id="@+id/like_button"
-               android:background="@color/white"
-                android:layout_marginLeft="15dp"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:layout_marginLeft="15dp"
+                android:background="@color/white"
                 android:src="@drawable/dislike" />
-
 
 
             <ImageButton
                 android:id="@+id/comment_button"
                 android:layout_width="match_parent"
-                android:background="@color/white"
                 android:layout_height="match_parent"
                 android:layout_marginLeft="295dp"
+                android:background="@color/white"
                 android:baselineAlignBottom="false"
                 android:src="@drawable/comment" />
 
         </LinearLayout>
 
         <RatingBar
-            android:id="@+id/ratingBar2"
+            android:id="@+id/ratingBar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="center"
             android:numStars="5" />
+
+        <Button
+            android:id="@+id/delRating"
+            android:layout_width="134dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="CLEAR" />
 
         <LinearLayout
             android:layout_width="match_parent"
