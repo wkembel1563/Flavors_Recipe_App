@@ -7,7 +7,7 @@
     tools:context=".cookBookActivity">
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@id/dataList"
+        android:id="@+id/dishList"
         android:layout_width="409dp"
         android:layout_height="729dp"
         app:layout_constraintBottom_toBottomOf="parent"

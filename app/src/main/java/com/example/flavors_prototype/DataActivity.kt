@@ -34,9 +34,10 @@ class DataActivity : AppCompatActivity()
     //retrieves data from firebase
     private fun getRecipeData()
     {
+        val countryName = intent.extras?.get("country_name").toString()
         // TODO: get path from country view, and place in here
         // for now use arbitrary single country to populate
-        dbreference = FirebaseDatabase.getInstance().getReference().child("kembel_test_tree").child("USA")
+        dbreference = FirebaseDatabase.getInstance().getReference().child("kembel_test_tree").child(countryName)
         dbreference.addValueEventListener(object : ValueEventListener{
 
             override fun onDataChange(snapshot: DataSnapshot) {

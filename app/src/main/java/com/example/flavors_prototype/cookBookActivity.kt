@@ -23,25 +23,11 @@ class cookBookActivity : AppCompatActivity()
     override fun onCreate(savedInstanceState: Bundle?)
     {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_data)
+        setContentView(R.layout.activity_cook_book)//activity_data
 
         val currentUserID : String = FirebaseAuth.getInstance().currentUser?.uid.toString()
-        //val LikesRef = FirebaseDatabase.getInstance().getReference("likes")
 
-        /*LikesRef.child(currentUserID).addValueEventListener(object : ValueEventListener{
-            override fun onDataChange(snapshot: DataSnapshot) {
-                if(snapshot.exists())
-                {
-
-                }
-            }
-
-            override fun onCancelled(error: DatabaseError) {
-                TODO("Not yet implemented")
-            }
-        })*/
-
-        dataItemRecyclerView = findViewById(R.id.dataList)
+        dataItemRecyclerView = findViewById(R.id.dishList)
         dataItemRecyclerView.layoutManager = LinearLayoutManager(this)
         dataItemRecyclerView.setHasFixedSize(true)
         dataArrayList = arrayListOf<Recipe>()

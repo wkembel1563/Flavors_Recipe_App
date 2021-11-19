@@ -1,44 +1,42 @@
 package com.example.flavors_prototype
 
+
 import android.content.Intent
 import android.os.Bundle
-import android.view.Menu
-import android.view.MenuInflater
-import android.view.MenuItem
+import android.view.*
 import android.widget.EditText
 import android.widget.ImageButton
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.google.android.gms.tasks.OnCompleteListener
-import com.google.android.gms.tasks.Task
-import com.google.firebase.database.DatabaseReference
-import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.*
 import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.collections.HashMap
 
 class CommentActivity : AppCompatActivity() {
 
+    private  lateinit var  commentArrayList: ArrayList<Comments>
+    private  lateinit var  commentItemRecyclerView : RecyclerView
+    private  lateinit var  commentRef : DatabaseReference
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_comment)
 
-        val country : String = intent.extras?.get("Place").toString()
+        commentItemRecyclerView = findViewById(R.id.comments_list)
+        commentItemRecyclerView.layoutManager = LinearLayoutManager(this)
+        commentItemRecyclerView.setHasFixedSize(true)
+        commentArrayList = arrayListOf<Comments>()
+        getCommentData()
+
         val dish : String = intent.extras?.get("Recipe").toString()
+        val country : String = intent.extras?.get("Place").toString()
         val currentUserID = intent.extras?.get("user_id").toString()
         val RecipeRef : DatabaseReference = FirebaseDatabase.getInstance().getReference("kembel_test_tree").child(country).child(dish).child("Comments")
 
-
-        val CommentList : RecyclerView = findViewById(R.id.comments_list)
-        CommentList.setHasFixedSize(true)
-        val linearLayoutManager = LinearLayoutManager(this)
-        linearLayoutManager.reverseLayout = true
-        linearLayoutManager.stackFromEnd = true
-        CommentList.layoutManager = linearLayoutManager
 
         //comment activity needs to be started here
         val commentInputText : EditText =findViewById(R.id.comment_input)
@@ -63,7 +61,42 @@ class CommentActivity : AppCompatActivity() {
            // })
         }
 
+
+
     }
+
+    private fun getCommentData()
+    {
+        val dish : String = intent.extras?.get("Recipe").toString()
+        val country : String = intent.extras?.get("Place").toString()
+        commentRef = FirebaseDatabase.getInstance().getReference("kembel_test_tree").child(country).child(dish).child("Comments")
+        commentRef.addValueEventListener(object : ValueEventListener {
+
+            override fun onDataChange(snapshot: DataSnapshot) {
+
+                if (snapshot.exists()){
+
+                    for (commentSnapshot in snapshot.children){
+
+                        val commentItem = commentSnapshot.getValue(Comments::class.java)
+                        commentArrayList.add(commentItem!!)// !! checks that object is not null
+
+                    }
+                    commentItemRecyclerView.adapter = CommentsAdapter(commentArrayList)
+                }
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+                TODO("Not yet implemented")
+            }
+
+        })
+    }
+
+
+
+
+
 
     private fun ValidateComment(currentUserID: String, commentIpuntText : EditText, RecipeRef : DatabaseReference) {
 
@@ -76,36 +109,43 @@ class CommentActivity : AppCompatActivity() {
         else
         {
             val callDate : Calendar = Calendar.getInstance()
-            val currentDate : SimpleDateFormat = SimpleDateFormat("dd--MM--yyyy")
+            val currentDate : SimpleDateFormat = SimpleDateFormat("dd/MM/yyyy")
             val saveCurrentDate = currentDate.format(callDate.time)
 
             val callTime : Calendar = Calendar.getInstance()
             val currentTime : SimpleDateFormat = SimpleDateFormat("HH:mm")
-            val saveCurrentTime = currentDate.format(callTime.time)
+            val saveCurrentTime = currentTime.format(callTime.time)
+            fun putCharTogehter(stringSize: Int): String {
+                return CharArray(stringSize) {
+                    ('a'..'z').random()
+                }.concatToString()
+            }
 
-            val randomKey = currentUserID + currentDate + currentTime
+            var randomKey = putCharTogehter(8)
+
             //this is the format that will be stored in database, make reference to the node you want to put in
             val commentsMap : HashMap<String, Any> = HashMap()
-            commentsMap.put("uid", currentUserID)
-            commentsMap.put("comment", commentText)
-            commentsMap.put("date", saveCurrentDate)
-            commentsMap.put("time", saveCurrentTime)
+            commentsMap["uid"] = currentUserID
+            commentsMap["comment"] = commentText
+            commentsMap["date"] = saveCurrentDate
+            commentsMap["time"] = saveCurrentTime
 
-            RecipeRef.child(currentUserID).updateChildren(commentsMap).addOnCompleteListener(object : OnCompleteListener<Void>{
+            RecipeRef.child(randomKey).updateChildren(commentsMap).addOnCompleteListener { p0 ->
+                if (p0.isSuccessful) {
+                    Toast.makeText(
+                        this@CommentActivity,
+                        "you have commented successfully...",
+                        Toast.LENGTH_SHORT
+                    ).show()
 
-                override fun onComplete(p0: Task<Void>) {
-                    if(p0.isSuccessful)
-                    {
-                        Toast.makeText(this@CommentActivity, "you have commented successfully...", Toast.LENGTH_SHORT).show()
-
-                    }
-                    else
-                    {
-                        Toast.makeText(this@CommentActivity, "Error occurred, try again...", Toast.LENGTH_SHORT).show()
-                    }
-
+                } else {
+                    Toast.makeText(
+                        this@CommentActivity,
+                        "Error occurred, try again...",
+                        Toast.LENGTH_SHORT
+                    ).show()
                 }
-            })
+            }
 
 
         }
