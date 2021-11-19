@@ -17,13 +17,20 @@
         <entry key="..\:/Users/carlo/StudioProjects/se_flavors/app/src/main/res/layout/cookbook_item.xml" value="0.35208333333333336" />
         <entry key="..\:/Users/carlo/StudioProjects/se_flavors/app/src/main/res/layout/data_item.xml" value="0.264" />
         <entry key="..\:/Users/carlo/StudioProjects/se_flavors/app/src/main/res/layout/item_list.xml" value="0.2765625" />
+        <entry key="..\:/Users/faray/Desktop/se_flavors/app/src/main/res/layout/activity_dish.xml" value="0.33" />
         <entry key="app/src/main/res/layout/activity_comment.xml" value="0.15715579710144928" />
         <entry key="app/src/main/res/layout/activity_cook_book.xml" value="0.15715579710144928" />
         <entry key="app/src/main/res/layout/activity_country.xml" value="0.15715579710144928" />
         <entry key="app/src/main/res/layout/activity_data.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_dish.xml" value="0.15070921985815602" />
-        <entry key="..\:/Users/faray/Desktop/se_flavors/app/src/main/res/layout/activity_dish.xml" value="0.33" />
+        <entry key="app/src/main/res/layout/activity_login.xml" value="0.17708333333333334" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.25743589743589745" />
+        <entry key="app/src/main/res/layout/activity_shopping_list.xml" value="0.17708333333333334" />
+        <entry key="app/src/main/res/layout/activity_signup.xml" value="0.17708333333333334" />
+        <entry key="app/src/main/res/layout/cookbook_item.xml" value="0.17708333333333334" />
+        <entry key="app/src/main/res/layout/data_item.xml" value="0.17708333333333334" />
+        <entry key="app/src/main/res/layout/item_list.xml" value="0.17708333333333334" />
+        <entry key="app/src/main/res/menu/main_menu.xml" value="0.26927083333333335" />
       </map>
     </option>
   </component>

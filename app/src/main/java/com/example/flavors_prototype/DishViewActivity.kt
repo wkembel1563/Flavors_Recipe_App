@@ -27,12 +27,15 @@ class DishViewActivity : AppCompatActivity(){
         //var countLikes = 0
         val LikesRef : DatabaseReference = FirebaseDatabase.getInstance().getReference().child("Likes")
         val RatingRef : DatabaseReference = FirebaseDatabase.getInstance().getReference().child("Ratings")
+        val ShoppingRef : DatabaseReference = FirebaseDatabase.getInstance().getReference().child("ShoppingList")
         val currentUserID : String = FirebaseAuth.getInstance().currentUser?.uid.toString()
 
         val LikePostButton : ImageButton = findViewById(R.id.like_button)
         val CommentButton : ImageButton = findViewById(R.id.comment_button)
         val RatingBar : RatingBar = findViewById(R.id.ratingBar)
         val DelRating: Button = findViewById(R.id.delRating)
+        val SaveShoppingList: Button = findViewById(R.id.saveToShoppingList)
+
 
         // dish data passed from DataActivity
         val bundle : Bundle?= intent.extras
@@ -184,6 +187,15 @@ class DishViewActivity : AppCompatActivity(){
 //        })
 
 
+        //shopping list
+        SaveShoppingList.setOnClickListener{
+            //add ingredients to list
+            if (bundle != null) {
+                ShoppingRef.child(currentUserID).child(RecipeKey).push().setValue(bundle.getString("dish_Ingredients"))
+            }
+
+        }
+
         // dishView image button
         // TODO: 11/1/21 create image for each dish. use this to manipulate
         val dishImage : ImageButton = findViewById(R.id.dishImageBtn)
@@ -226,6 +238,15 @@ class DishViewActivity : AppCompatActivity(){
             startActivity(Intent(this, CountryActivity::class.java))
             //return true
         }
+
+
+        if(item.itemId == R.id.shoppingList_selection)
+        {
+            startActivity(Intent(this, ShoppingListActivity::class.java))
+            //return true
+        }
+
+
         return super.onOptionsItemSelected(item)
     }
 }

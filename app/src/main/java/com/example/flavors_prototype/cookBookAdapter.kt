@@ -44,18 +44,12 @@ class cookBookAdapter (private val dataList : ArrayList<Recipe>) : RecyclerView.
     //this class binds variables to the textViews in data_item
     class MyViewHolder(itemView : View) : RecyclerView.ViewHolder(itemView){
 
-
         val nameOfPlace : TextView = itemView.findViewById(R.id.tvnameOfPlace)
         val Recipe : TextView = itemView.findViewById(R.id.tvrecipe)
         val prepTime : TextView = itemView.findViewById(R.id.tvpreptime)
         val cookTime : TextView = itemView.findViewById(R.id.tvcooktime)
         val ingredients : TextView = itemView.findViewById(R.id.tvingredients)
         val instructions : TextView = itemView.findViewById(R.id.tvinstructions)
-
-
-
-
-
 
     }
 
