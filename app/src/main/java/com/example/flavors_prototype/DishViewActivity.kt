@@ -6,16 +6,13 @@ import android.util.Log
 import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
-import android.widget.*
+import android.widget.Button
+import android.widget.ImageButton
+import android.widget.RatingBar
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
-import com.google.firebase.database.DatabaseError
-
-import com.google.firebase.database.DataSnapshot
-
-import com.google.firebase.database.ValueEventListener
-import androidx.annotation.NonNull
 
 class DishViewActivity : AppCompatActivity(){
 
@@ -50,7 +47,15 @@ class DishViewActivity : AppCompatActivity(){
         val recipe : TextView = findViewById(R.id.dishRecipe)
         val prepTime : TextView = findViewById(R.id.dishPrepTime)
         val cookTime : TextView = findViewById(R.id.dishCookTime)
-        val ingredients : TextView = findViewById(R.id.dishIngredients)
+        val ingredient1 : TextView = findViewById(R.id.dishIngredient1)
+        val ingredient2 : TextView = findViewById(R.id.dishIngredient2)
+        val ingredient3 : TextView = findViewById(R.id.dishIngredient3)
+        val ingredient4 : TextView = findViewById(R.id.dishIngredient4)
+        val ingredient5 : TextView = findViewById(R.id.dishIngredient5)
+        val ingredient6 : TextView = findViewById(R.id.dishIngredient6)
+        val ingredient7 : TextView = findViewById(R.id.dishIngredient7)
+        val ingredient8 : TextView = findViewById(R.id.dishIngredient8)
+        val ingredient9 : TextView = findViewById(R.id.dishIngredient9)
         val instructions : TextView = findViewById(R.id.dishInstructions)
 
         ////comment and like variables
@@ -190,7 +195,7 @@ class DishViewActivity : AppCompatActivity(){
         //shopping list
         SaveShoppingList.setOnClickListener{
             //add ingredients to list
-            if (bundle != null) {
+            if (bundle != null) {/////instead of Recipekey the ingredient node needs to be passed here
                 ShoppingRef.child(currentUserID).child(RecipeKey).push().setValue(bundle.getString("dish_Ingredients"))
             }
 
@@ -205,14 +210,30 @@ class DishViewActivity : AppCompatActivity(){
         val dataCookTime = bundle.getString("dish_CookTime")
         val dataPrepTime = bundle.getString("dish_PrepTime")
         val dataInstructions = bundle.getString("dish_Instructions")
-        val dataIngredients = bundle.getString("dish_Ingredients")
+        val dataIngredient1 = bundle.getString("dish_Ingredient1")
+        val dataIngredient2 = bundle.getString("dish_Ingredient2")
+        val dataIngredient3 = bundle.getString("dish_Ingredient3")
+        val dataIngredient4 = bundle.getString("dish_Ingredient4")
+        val dataIngredient5 = bundle.getString("dish_Ingredient5")
+        val dataIngredient6 = bundle.getString("dish_Ingredient6")
+        val dataIngredient7 = bundle.getString("dish_Ingredient7")
+        val dataIngredient8 = bundle.getString("dish_Ingredient8")
+        val dataIngredient9 = bundle.getString("dish_Ingredient9")
 
         // pass dish data to UI
         countryName.text = dataCountry
         recipe.text = dataRecipe
         prepTime.text = dataPrepTime
         cookTime.text = dataCookTime
-        ingredients.text = dataIngredients
+        ingredient1.text = dataIngredient1
+        ingredient1.text = dataIngredient2
+        ingredient1.text = dataIngredient3
+        ingredient1.text = dataIngredient4
+        ingredient1.text = dataIngredient5
+        ingredient1.text = dataIngredient6
+        ingredient1.text = dataIngredient7
+        ingredient1.text = dataIngredient8
+        ingredient1.text = dataIngredient9
         instructions.text = dataInstructions
     }
 
