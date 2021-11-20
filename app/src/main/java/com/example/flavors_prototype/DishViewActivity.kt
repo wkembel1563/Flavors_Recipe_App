@@ -31,7 +31,15 @@ class DishViewActivity : AppCompatActivity(){
         val CommentButton : ImageButton = findViewById(R.id.comment_button)
         val RatingBar : RatingBar = findViewById(R.id.ratingBar)
         val DelRating: Button = findViewById(R.id.delRating)
-        val SaveShoppingList: Button = findViewById(R.id.saveToShoppingList)
+        val SaveShoppingList1: Button = findViewById(R.id.saveToShoppingList1)
+        val SaveShoppingList2: Button = findViewById(R.id.saveToShoppingList2)
+        val SaveShoppingList3: Button = findViewById(R.id.saveToShoppingList3)
+        val SaveShoppingList4: Button = findViewById(R.id.saveToShoppingList4)
+        val SaveShoppingList5: Button = findViewById(R.id.saveToShoppingList5)
+        val SaveShoppingList6: Button = findViewById(R.id.saveToShoppingList6)
+        val SaveShoppingList7: Button = findViewById(R.id.saveToShoppingList7)
+        val SaveShoppingList8: Button = findViewById(R.id.saveToShoppingList8)
+        val SaveShoppingList9: Button = findViewById(R.id.saveToShoppingList9)
 
 
         // dish data passed from DataActivity
@@ -191,20 +199,11 @@ class DishViewActivity : AppCompatActivity(){
 //            }
 //        })
 
+//***********************************************************Shopping List***************************************************//
+        /*All of the buttons can be but in an array an then set an event lister for the children in a loop*/
+        /*There is a listener for each button, it works but the code can probably be condensed with method mentioned above*/
 
-        //shopping list
-        SaveShoppingList.setOnClickListener{
-            //add ingredients to list
-            if (bundle != null) {/////instead of Recipekey the ingredient node needs to be passed here
-                ShoppingRef.child(currentUserID).child(RecipeKey).push().setValue(bundle.getString("dish_Ingredients"))
-            }
-
-        }
-
-        // dishView image button
-        // TODO: 11/1/21 create image for each dish. use this to manipulate
         val dishImage : ImageButton = findViewById(R.id.dishImageBtn)
-
         val dataCountry = bundle!!.getString("dish_Place")
         val dataRecipe = bundle.getString("dish_Recipe")
         val dataCookTime = bundle.getString("dish_CookTime")
@@ -220,21 +219,131 @@ class DishViewActivity : AppCompatActivity(){
         val dataIngredient8 = bundle.getString("dish_Ingredient8")
         val dataIngredient9 = bundle.getString("dish_Ingredient9")
 
+
+
+        SaveShoppingList1.setOnClickListener{
+            //add ingredients to list
+            if (bundle != null) {/////instead of Recipekey the ingredient node needs to be passed here
+                if (dataRecipe != null) {
+                    ShoppingRef.child(currentUserID).child(dataRecipe).child("Ingredient1").setValue(bundle.getString("dish_Ingredient1"))
+                    //somewhere in here, the name of the dish name needs to be pushed onto database at same level as ingredients
+                    ShoppingRef.child(currentUserID).child(dataRecipe).child("Recipe").setValue(dataRecipe)
+                    //ShoppingRef.child(currentUserID).child(dataRecipe).child(dataCountry.toString()).setValue(dataCountry)
+                }
+
+            }
+
+        }
+        SaveShoppingList2.setOnClickListener{
+            //add ingredients to list
+            if (bundle != null) {/////instead of Recipekey the ingredient node needs to be passed here
+                if (dataRecipe != null) {
+                    ShoppingRef.child(currentUserID).child(dataRecipe).child("Ingredient2").setValue(bundle.getString("dish_Ingredient2"))
+                    ShoppingRef.child(currentUserID).child(dataRecipe).child("Recipe").setValue(dataRecipe)
+
+                }
+            }
+
+        }
+        SaveShoppingList3.setOnClickListener{
+            //add ingredients to list
+            if (bundle != null) {/////instead of Recipekey the ingredient node needs to be passed here
+                if (dataRecipe != null) {
+                    ShoppingRef.child(currentUserID).child(dataRecipe).child("Ingredient3").setValue(bundle.getString("dish_Ingredient3"))
+                    ShoppingRef.child(currentUserID).child(dataRecipe).child("Recipe").setValue(dataRecipe)
+
+                }
+            }
+
+        }
+        SaveShoppingList4.setOnClickListener{
+            //add ingredients to list
+            if (bundle != null) {/////instead of Recipekey the ingredient node needs to be passed here
+                if (dataRecipe != null) {
+                    ShoppingRef.child(currentUserID).child(dataRecipe).child("Ingredient4").setValue(bundle.getString("dish_Ingredient4"))
+                    ShoppingRef.child(currentUserID).child(dataRecipe).child("Recipe").setValue(dataRecipe)
+
+                }
+            }
+
+        }
+        SaveShoppingList5.setOnClickListener{
+            //add ingredients to list
+            if (bundle != null) {/////instead of Recipekey the ingredient node needs to be passed here
+                if (dataRecipe != null) {
+                    ShoppingRef.child(currentUserID).child(dataRecipe).child("Ingredient5").setValue(bundle.getString("dish_Ingredient5"))
+                    ShoppingRef.child(currentUserID).child(dataRecipe).child("Recipe").setValue(dataRecipe)
+
+                }
+            }
+
+        }
+        SaveShoppingList6.setOnClickListener{
+            //add ingredints to list
+            if (bundle != null) {/////instead of Recipekey the ingredient node needs to be passed here
+                if (dataRecipe != null) {
+                    ShoppingRef.child(currentUserID).child(dataRecipe).child("Ingredient6").setValue(bundle.getString("dish_Ingredient6"))
+                    ShoppingRef.child(currentUserID).child(dataRecipe).child("Recipe").setValue(dataRecipe)
+
+                }
+            }
+
+        }
+        SaveShoppingList7.setOnClickListener{
+            //add ingredients to list
+            if (bundle != null) {/////instead of Recipekey the ingredient node needs to be passed here
+                if (dataRecipe != null) {
+                    ShoppingRef.child(currentUserID).child(dataRecipe).child("Ingredient7").setValue(bundle.getString("dish_Ingredient7"))
+                    ShoppingRef.child(currentUserID).child(dataRecipe).child("Recipe").setValue(dataRecipe)
+
+                }
+            }
+
+        }
+        SaveShoppingList8.setOnClickListener{
+            //add ingredients to list
+            if (bundle != null) {/////instead of Recipekey the ingredient node needs to be passed here
+                if (dataRecipe != null) {
+                    ShoppingRef.child(currentUserID).child(dataRecipe).child("Ingredient8").setValue(bundle.getString("dish_Ingredient8"))
+
+                    ShoppingRef.child(currentUserID).child(dataRecipe).child("Recipe").setValue(dataRecipe)
+
+                }
+            }
+
+        }
+        SaveShoppingList9.setOnClickListener{
+            //add ingredients to list
+            if (bundle != null) {/////instead of Recipekey the ingredient node needs to be passed here
+                if (dataRecipe != null) {
+                    ShoppingRef.child(currentUserID).child(dataRecipe).child("Ingredient9").setValue(bundle.getString("dish_Ingredient9"))
+                    ShoppingRef.child(currentUserID).child(dataRecipe).child("Recipe").setValue(dataRecipe)
+
+                }
+            }
+
+        }
+//************************************************************************************************************************//
+        // dishView image button
+        // TODO: 11/1/21 create image for each dish. use this to manipulate
+
+
         // pass dish data to UI
         countryName.text = dataCountry
         recipe.text = dataRecipe
         prepTime.text = dataPrepTime
         cookTime.text = dataCookTime
         ingredient1.text = dataIngredient1
-        ingredient1.text = dataIngredient2
-        ingredient1.text = dataIngredient3
-        ingredient1.text = dataIngredient4
-        ingredient1.text = dataIngredient5
-        ingredient1.text = dataIngredient6
-        ingredient1.text = dataIngredient7
-        ingredient1.text = dataIngredient8
-        ingredient1.text = dataIngredient9
+        ingredient2.text = dataIngredient2
+        ingredient3.text = dataIngredient3
+        ingredient4.text = dataIngredient4
+        ingredient5.text = dataIngredient5
+        ingredient6.text = dataIngredient6
+        ingredient7.text = dataIngredient7
+        ingredient8.text = dataIngredient8
+        ingredient9.text = dataIngredient9
         instructions.text = dataInstructions
+
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {

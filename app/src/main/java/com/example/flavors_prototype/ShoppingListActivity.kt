@@ -6,6 +6,7 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
 
 
@@ -40,9 +41,7 @@ class ShoppingListActivity : AppCompatActivity() {
     private fun getShoppingListData()
     {
 
-
-
-        val currentUserID : String = "eIE3h1iriEbTtZugWI5L1MZswBk1"
+        val currentUserID : String = FirebaseAuth.getInstance().currentUser?.uid.toString()
         lateinit var  dbreference : DatabaseReference
         lateinit var  getReference : DataSnapshot
 
