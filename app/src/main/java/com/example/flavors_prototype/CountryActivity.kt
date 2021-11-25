@@ -12,6 +12,7 @@ import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
+import com.google.android.gms.maps.model.BitmapDescriptorFactory
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.Marker
 import com.google.android.gms.maps.model.MarkerOptions
@@ -56,11 +57,12 @@ class CountryActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMar
 
         //Create Saved Markers on the Map & add data object to the Markers
         //Best to hardcode these values, it's redundant to call them from database
-        markerChina = mMap.addMarker(MarkerOptions().position(china).title("China"))//.icon(BitmapDescriptorFactory.fromResource(R.drawable.china)))
+        markerChina = mMap.addMarker(MarkerOptions().position(china).title("China").icon(
+            BitmapDescriptorFactory.fromResource(R.drawable.china)))
         markerChina?.tag = 0
-        markerIndia = mMap.addMarker(MarkerOptions().position(india).title("India"))//.icon(BitmapDescriptorFactory.fromResource(R.drawable.india)))
+        markerIndia = mMap.addMarker(MarkerOptions().position(india).title("India").icon(BitmapDescriptorFactory.fromResource(R.drawable.india)))
         markerIndia?.tag = 1
-        markerUsa = mMap.addMarker(MarkerOptions().position(usa).title("USA"))//.icon(BitmapDescriptorFactory.fromResource(R.drawable.usa)))
+        markerUsa = mMap.addMarker(MarkerOptions().position(usa).title("USA").icon(BitmapDescriptorFactory.fromResource(R.drawable.usa)))
         markerUsa?.tag = 2
 
         //Move Camera to USA marker
