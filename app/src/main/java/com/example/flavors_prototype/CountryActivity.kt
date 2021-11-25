@@ -72,13 +72,14 @@ class CountryActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMar
     override fun onMarkerClick(marker: Marker): Boolean {
         //Retrieve data of the marker tag
         val countrySelected = marker.tag as? Int
+        val countryName = marker.title
         //Check if data was set before attempting to display the data
         countrySelected?.let{
             //Tag allows modification of Displayed Dishes depending on Country
             marker.tag = countrySelected
             //Toast.makeText(this, "${marker.title} has been clicked: Country = $countrySelected", Toast.LENGTH_SHORT).show()   //Debug tool
-            Toast.makeText(this, "${marker.title}", Toast.LENGTH_SHORT).show()
-            val countryDishes = Intent(this, DataActivity::class.java)
+            Toast.makeText(this, countryName, Toast.LENGTH_SHORT).show()
+            val countryDishes = Intent(this, DataActivity::class.java).putExtra("country_name", countryName)
             startActivity(countryDishes)
         }
         return false
