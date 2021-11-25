@@ -179,7 +179,7 @@
 
                 <TextView
                     android:id="@+id/ingredients"
-                    android:layout_width="13dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:text="Ingredients: "
@@ -189,13 +189,20 @@
 
                 <TextView
                     android:id="@+id/dishIngredients"
-                    android:layout_width="48dp"
+                    android:layout_width="136dp"
                     android:layout_height="match_parent"
                     android:layout_marginTop="5dp"
                     android:layout_weight="1"
                     android:text="ingredients"
                     android:textColor="@color/black"
                     android:textSize="20sp" />
+
+                <Button
+                    android:id="@+id/saveToShoppingList"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Save to List" />
             </LinearLayout>
 
         </ScrollView>

@@ -2,6 +2,11 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item android:id="@+id/cook_book"
         android:title="Go to cook book"/>
-    <item android:id="@+id/country_selection"
-        android:title="Select Country"/>
+    <item
+        android:id="@+id/country_selection"
+        android:title="Select Country" />
+    <item
+        android:id="@+id/shoppingList_selection"
+        android:title="Go to Shopping List" />
+
 </menu>
