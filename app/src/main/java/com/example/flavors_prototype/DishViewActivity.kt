@@ -2,10 +2,13 @@ package com.example.flavors_prototype
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
+import android.widget.Button
 import android.widget.ImageButton
+import android.widget.RatingBar
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuth
@@ -23,11 +26,13 @@ class DishViewActivity : AppCompatActivity(){
         //val NumberOfLikes : TextView = findViewById(R.id.numberOfLikes)
         //var countLikes = 0
         val LikesRef : DatabaseReference = FirebaseDatabase.getInstance().getReference().child("Likes")
+        val RatingRef : DatabaseReference = FirebaseDatabase.getInstance().getReference().child("Ratings")
         val currentUserID : String = FirebaseAuth.getInstance().currentUser?.uid.toString()
 
         val LikePostButton : ImageButton = findViewById(R.id.like_button)
-
         val CommentButton : ImageButton = findViewById(R.id.comment_button)
+        val RatingBar : RatingBar = findViewById(R.id.ratingBar)
+        val DelRating: Button = findViewById(R.id.delRating)
 
         // dish data passed from DataActivity
         val bundle : Bundle?= intent.extras
@@ -102,6 +107,56 @@ class DishViewActivity : AppCompatActivity(){
 
             })
         }
+
+        //Set Initial Rating and Rate Change Checker to 0
+        var oldRating: Float = 0.0F
+        var RateChecker: Boolean = true
+
+        //Pull rating if any from database
+        RatingRef.child(currentUserID).child(RecipeKey).get().addOnSuccessListener {
+            Log.i("firebase", "Got value ${it.value}")
+            //Toast.makeText(this, "The Old Rating = ${it.value}", Toast.LENGTH_SHORT).show()
+            if (it.value == null) {
+                oldRating = 0.0F
+                RatingBar.setRating(oldRating)
+                RateChecker = false
+            } else {
+                oldRating = " ${it.value}F".toFloat()
+                RatingBar.setRating(oldRating)
+                RateChecker = false
+            }
+        }.addOnFailureListener{
+            Log.e("firebase", "Error getting data", it)
+        }
+
+
+        //Listen for a Change on the Rating bar
+        RatingBar.setOnRatingBarChangeListener(object : RatingBar.OnRatingBarChangeListener {
+            override fun onRatingChanged(p0: RatingBar?, p1: Float, p2: Boolean) {
+                //Toast.makeText(this@DishViewActivity, "Given rating is: $p1", Toast.LENGTH_SHORT).show()
+                RateChecker = true
+                RatingRef.addValueEventListener(object : ValueEventListener{
+                    override fun onDataChange(snapshot: DataSnapshot) {
+                        if (RateChecker.equals(true)){
+                            //If already rated, Update rating
+                            RatingRef.child(currentUserID).child(RecipeKey).setValue(p1)
+                            RateChecker = false
+                        }
+                    }
+                    override fun onCancelled(error: DatabaseError) {
+                        TODO("Not yet implemented")
+                    }
+                })
+            }
+        })
+
+        //Deleting Given Rating
+        DelRating.setOnClickListener{
+            RatingRef.child(currentUserID).child(RecipeKey).removeValue()
+            RatingBar.setRating(0.0F)
+            RateChecker = false
+        }
+
         //listen for click on comment button and start the comment activity
         //defined in fuction below
         CommentButton.setOnClickListener {
