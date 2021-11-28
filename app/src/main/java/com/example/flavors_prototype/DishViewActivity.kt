@@ -69,6 +69,14 @@ class DishViewActivity : AppCompatActivity(){
         ingredients.text = dataIngredients
         instructions.text = dataInstructions
 
+        val likesMap : HashMap<String, Any> = HashMap()
+        likesMap["CookTime"] = dataCookTime.toString()
+        likesMap["Recipe"] = dataRecipe.toString()
+        likesMap["Place"] = dataCountry.toString()
+        likesMap["PrepTime"] = dataPrepTime.toString()
+        likesMap["Ingredients"] = dataIngredients.toString()
+        likesMap["Instructions"] = dataInstructions.toString()
+
 
 
 
@@ -82,15 +90,15 @@ class DishViewActivity : AppCompatActivity(){
                     if (LikeChecker.equals(true))
                     {
                         //if like already exists, remove it
-                        if(snapshot.child(currentUserID).hasChild(RecipeKey))
+                        if(snapshot.child(currentUserID).hasChild(likesMap.toString()))
                         {
-                            LikesRef.child(currentUserID).child(RecipeKey).removeValue()
+                            LikesRef.child(currentUserID).child(likesMap.toString()).removeValue()
                             LikeChecker = false
                         }
                         //if no like exists, add it
                         else
                         {
-                            LikesRef.child(currentUserID).child(RecipeKey).setValue(RecipeKey)
+                            LikesRef.child(currentUserID).child(RecipeKey).setValue(likesMap)
                             LikeChecker = false
                         }
                     }
