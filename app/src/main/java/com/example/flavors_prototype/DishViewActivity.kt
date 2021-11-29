@@ -200,6 +200,8 @@ class DishViewActivity : AppCompatActivity(){
 //        })
 
 //***********************************************************Shopping List***************************************************//
+
+
         /*All of the buttons can be but in an array an then set an event lister for the children in a loop*/
         /*There is a listener for each button, it works but the code can probably be condensed with method mentioned above*/
 
@@ -209,17 +211,23 @@ class DishViewActivity : AppCompatActivity(){
         val dataCookTime = bundle.getString("dish_CookTime")
         val dataPrepTime = bundle.getString("dish_PrepTime")
         val dataInstructions = bundle.getString("dish_Instructions")
-        val dataIngredient1 = bundle.getString("dish_Ingredient1")
-        val dataIngredient2 = bundle.getString("dish_Ingredient2")
-        val dataIngredient3 = bundle.getString("dish_Ingredient3")
-        val dataIngredient4 = bundle.getString("dish_Ingredient4")
-        val dataIngredient5 = bundle.getString("dish_Ingredient5")
-        val dataIngredient6 = bundle.getString("dish_Ingredient6")
-        val dataIngredient7 = bundle.getString("dish_Ingredient7")
-        val dataIngredient8 = bundle.getString("dish_Ingredient8")
-        val dataIngredient9 = bundle.getString("dish_Ingredient9")
 
+        /* Access ingredients node directly */
+        val IngredRef : DatabaseReference =
+            FirebaseDatabase.getInstance().getReference().child("kembel_test_tree").child(dataCountry.toString()).child(dataRecipe.toString()).child("Ingredients")
 
+        /* Store ingredients in array list to be displayed in DishView recycler view */
+        IngredRef.addValueEventListener(object : ValueEventListener{
+            override fun onDataChange(snapshot: DataSnapshot) {
+                if (snapshot.exists()){
+
+                   for (ingredient in snapshot.children) {
+                       val dataItem = ingredient.getValue(Ingredient::class.java)
+                   }
+
+                }
+            }
+        })
 
         SaveShoppingList1.setOnClickListener{
             //add ingredients to list
