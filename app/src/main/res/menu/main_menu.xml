@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item android:id="@+id/cook_book"
-        android:title="Go to cook book"/>
+        android:title="Cook book"/>
+    <item android:id="@+id/dish_recommendation"
+        android:title="Dish Recommendation"/>
     <item android:id="@+id/country_selection"
         android:title="Select Country"/>
 </menu>

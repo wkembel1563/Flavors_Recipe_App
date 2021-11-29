@@ -5,13 +5,9 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 
-//this class stores the data from every CountryName node in an array
 class DishAdapter(
     private val dataList : ArrayList<Recipe>,
     ) : RecyclerView.Adapter<DishAdapter.MyViewHolder>() {
-
-
-
 
     // SET UP CLICK LISTENER FOR CARDS
     private lateinit var mListener : OnItemClickListener
@@ -29,11 +25,10 @@ class DishAdapter(
         //database reference variable and like status tracker
         //lateinit var LikesRef : DatabaseReference
 
-
         //layout inflater using the layout from data_item.xml
         val recipeView = LayoutInflater.from(parent.context).inflate(R.layout.data_item,
             parent,false)
-        return MyViewHolder(recipeView, mListener, )
+        return MyViewHolder(recipeView, mListener)
 
     }
 
@@ -41,39 +36,25 @@ class DishAdapter(
     // this method is called everytime a card scrolls onto screen
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
 
-
-
     }
 
     override fun getItemCount(): Int {
         return dataList.size
     }
 
-    //this class binds variables to the textViews in data_item
+    // this class binds variables to the textViews in data_item
     // setting the clickListener for the recycler view card in here as well
     class MyViewHolder(itemView : View, listener: OnItemClickListener) : RecyclerView.ViewHolder(itemView){
-
         //val nameOfPlace : TextView = itemView.findViewById(R.id.tvnameOfPlace)
-
-
 
         // set a clickListener on itemview to activate DishView after
         // clicking anywhere on the recyclerview card
 
-
         init {
-
-
-
-
 
             itemView.setOnClickListener{
                 listener.onItemClick(adapterPosition)
             }
-
         }
-
     }
-
-
 }

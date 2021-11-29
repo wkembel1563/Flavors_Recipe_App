@@ -47,12 +47,12 @@ class DataActivity : AppCompatActivity()
 
                     for (countrySnapshot in snapshot.children){
                         val dataItem = countrySnapshot.getValue(Recipe::class.java)
-                        dataArrayList.add(dataItem!!)// !! checks that object is not null
+                        dataArrayList.add(dataItem!!)  // !! checks that object is not null
 
                     }
 
                     //go to DishView Activity on click
-                    var adapter = DishAdapter(dataArrayList)/////////////////////////////////////////////
+                    var adapter = DishAdapter(dataArrayList)
                     dataItemRecyclerView.adapter = adapter
                     adapter.setOnItemClickListener(object : DishAdapter.OnItemClickListener{
                         override fun onItemClick(position: Int) {
