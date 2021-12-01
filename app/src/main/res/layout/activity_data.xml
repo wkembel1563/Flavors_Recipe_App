@@ -10,6 +10,8 @@
         android:id="@+id/textView2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="0dp"
         android:gravity="center"
         android:text="Filter"
         android:textSize="20sp" />
@@ -17,35 +19,30 @@
     <com.google.android.material.chip.ChipGroup
         android:id="@+id/gr"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_above="@+id/dataList"
+        android:layout_height="wrap_content"
         android:layout_below="@+id/textView2"
-        android:layout_marginTop="-2dp"
-        android:layout_marginBottom="20dp">
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="-3dp"
+        android:layout_marginTop="0dp"
+        android:layout_marginEnd="3dp">
 
         <com.google.android.material.chip.Chip
-            android:id="@+id/chip7"
+            android:id="@+id/likesChip"
             style="@style/CustomChipStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Likes" />
 
         <com.google.android.material.chip.Chip
-            android:id="@+id/chip6"
-            style="@style/CustomChipStyle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Ingredients" />
-
-        <com.google.android.material.chip.Chip
-            android:id="@+id/chip5"
+            android:id="@+id/ratingChip"
             style="@style/CustomChipStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Rating" />
 
         <com.google.android.material.chip.Chip
-            android:id="@+id/chip4"
+            android:id="@+id/cooktimeChip"
             style="@style/CustomChipStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -58,13 +55,14 @@
         android:layout_width="match_parent"
         android:layout_height="530dp"
 
-        android:layout_alignParentBottom="true"
-        android:layout_marginBottom="-77dp"
+        android:layout_below="@+id/gr"
+        android:layout_alignParentBottom="false"
+        android:layout_marginTop="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:listitem="@layout/data_item" >
+        tools:listitem="@layout/data_item">
 
     </androidx.recyclerview.widget.RecyclerView>
 
