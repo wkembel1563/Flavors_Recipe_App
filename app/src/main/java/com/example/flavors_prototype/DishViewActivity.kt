@@ -88,16 +88,16 @@ class DishViewActivity : AppCompatActivity(){
 //        val dataCookTime = bundle.getString("dish_CookTime")
 //        val dataPrepTime = bundle.getString("dish_PrepTime")
 //        val dataInstructions = bundle.getString("dish_Instructions")
-        val dataIngredients = bundle.getString("dish_Ingredients")
+//        val dataIngredients = bundle.getString("dish_Ingredients")
 
 
         // pass dish data to UI
-        countryName.text = dataCountry
-        recipe.text = dataRecipe
-        prepTime.text = dataPrepTime
-        cookTime.text = dataCookTime
-       // ingredients.text = dataIngredients
-        instructions.text = dataInstructions
+        countryName.text =  bundle!!.getString("dish_Place")
+        recipe.text =  bundle.getString("dish_Recipe")
+        prepTime.text = bundle.getString("dish_PrepTime")
+        cookTime.text = bundle.getString("dish_CookTime")
+        //ingredients.text = bundle.getString("dish_Ingredients")
+        instructions.text =bundle.getString("dish_Instructions")
 
 
 
@@ -188,7 +188,7 @@ class DishViewActivity : AppCompatActivity(){
 
 
             //val dataCountry = bundle!!.getString("dish_Place")
-            startActivity(Intent(this, CommentActivity::class.java).putExtra("Place", dataCountry).putExtra("Recipe", dataRecipe).putExtra("user_id",currentUserID))//need to pass context for comment button
+            startActivity(Intent(this, CommentActivity::class.java).putExtra("Place", countryName.text).putExtra("Recipe", recipe.text).putExtra("user_id",currentUserID))//need to pass context for comment button
         }
 
         ///listen for click on like button
