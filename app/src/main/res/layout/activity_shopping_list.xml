@@ -8,12 +8,15 @@
     app:cardCornerRadius="8dp"
     android:layout_margin="16dp">
 
+
     <LinearLayout
-        android:background="@color/cardBackground"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginVertical="6dp"
         android:layout_marginStart="16dp"
+        android:paddingTop="15dp"
+        android:paddingBottom="20dp"
+        android:background="@color/cardBackground"
         android:orientation="vertical">
 
         <LinearLayout
@@ -25,113 +28,40 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Country Name: "
+                android:text="Dish Name: "
                 android:textColor="@color/black"
                 android:textSize="26sp"
                 android:textStyle="bold" />
 
             <TextView
-                android:id="@+id/tvnameOfPlace"
+                android:id="@+id/tvdishName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
-                android:text="Country Name 1"
+                android:text="Dish Name "
                 android:textColor="@color/black"
                 android:textSize="20sp" />
 
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:orientation="horizontal">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Recipe: "
-                android:textColor="@color/black"
-                android:textSize="26sp"
-                android:textStyle="bold" />
-
-            <TextView
-                android:id="@+id/tvrecipe"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:text="recipe name"
-                android:textColor="@color/black"
-                android:textSize="20sp" />
 
         </LinearLayout>
 
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:orientation="horizontal">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Prep Time: "
-                android:textColor="@color/black"
-                android:textSize="26sp"
-                android:textStyle="bold" />
-
-            <TextView
-                android:id="@+id/tvpreptime"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:text="prep time"
-                android:textColor="@color/black"
-                android:textSize="20sp" />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:orientation="horizontal">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Cook Time: "
-                android:textColor="@color/black"
-                android:textSize="26sp"
-                android:textStyle="bold" />
-
-            <TextView
-                android:id="@+id/tvcooktime"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:text="cook time"
-                android:textColor="@color/black"
-                android:textSize="20sp" />
-
-        </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="115dp"
+            android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
             android:orientation="vertical">
 
             <TextView
                 android:layout_width="wrap_content"
-                android:layout_height="36dp"
+                android:layout_height="35dp"
                 android:text="Ingredients: \n"
                 android:textColor="@color/black"
                 android:textSize="26sp"
                 android:textStyle="bold" />
 
             <TextView
-                android:id="@+id/tvingredient1"
+                android:id="@+id/tvingredients1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
@@ -140,7 +70,7 @@
                 android:textSize="20sp" />
 
             <TextView
-                android:id="@+id/tvingredient2"
+                android:id="@+id/tvingredients2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
@@ -149,7 +79,7 @@
                 android:textSize="20sp" />
 
             <TextView
-                android:id="@+id/tvingredient3"
+                android:id="@+id/tvingredients3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
@@ -158,7 +88,7 @@
                 android:textSize="20sp" />
 
             <TextView
-                android:id="@+id/tvingredient4"
+                android:id="@+id/tvingredients4"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
@@ -167,7 +97,7 @@
                 android:textSize="20sp" />
 
             <TextView
-                android:id="@+id/tvingredient5"
+                android:id="@+id/tvingredients5"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
@@ -176,7 +106,7 @@
                 android:textSize="20sp" />
 
             <TextView
-                android:id="@+id/tvingredient6"
+                android:id="@+id/tvingredients6"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
@@ -185,23 +115,25 @@
                 android:textSize="20sp" />
 
             <TextView
-                android:id="@+id/tvingredient7"
+                android:id="@+id/tvingredients7"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
                 android:text="ingredients"
                 android:textColor="@color/black"
                 android:textSize="20sp" />
+
             <TextView
-                android:id="@+id/tvingredient8"
+                android:id="@+id/tvingredients8"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
                 android:text="ingredients"
                 android:textColor="@color/black"
                 android:textSize="20sp" />
+
             <TextView
-                android:id="@+id/tvingredient9"
+                android:id="@+id/tvingredients9"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
@@ -210,34 +142,6 @@
                 android:textSize="20sp" />
 
         </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="313dp"
-            android:layout_gravity="center_vertical"
-            android:inputType="textMultiLine"
-            android:orientation="horizontal">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Instructions: \n"
-                android:textColor="@color/black"
-                android:textSize="26sp"
-
-                android:textStyle="bold" />
-
-            <TextView
-                android:id="@+id/tvinstructions"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:text="instructions"
-                android:textColor="@color/black"
-                android:textSize="20sp" />
-
-        </LinearLayout>
-
 
     </LinearLayout>
 
