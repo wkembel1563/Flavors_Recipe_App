@@ -21,7 +21,7 @@
         android:layout_above="@+id/dataList"
         android:layout_below="@+id/textView2"
         android:layout_marginTop="-2dp"
-        android:layout_marginBottom="176dp">
+        android:layout_marginBottom="20dp">
 
         <com.google.android.material.chip.Chip
             android:id="@+id/chip7"
@@ -52,20 +52,6 @@
             android:text="Cook time" />
 
     </com.google.android.material.chip.ChipGroup>
-
-    <Button
-        android:id="@+id/button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/dataList"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentEnd="true"
-        android:layout_marginStart="155dp"
-        android:layout_marginTop="-27dp"
-        android:layout_marginEnd="155dp"
-        android:layout_marginBottom="100dp"
-        android:gravity="center"
-        android:text="Button" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/dataList"
