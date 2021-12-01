@@ -1,63 +1,55 @@
 package com.example.flavors_prototype
 
-import androidx.appcompat.app.AppCompatActivity
-import android.os.Bundle
-import android.widget.TextView
-import android.widget.Toast
-import androidx.recyclerview.widget.RecyclerView
-import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.database.DataSnapshot
-import com.google.firebase.database.DatabaseReference
-import com.google.firebase.database.FirebaseDatabase
-import com.google.firebase.ktx.Firebase
-import com.google.firebase.database.DatabaseError
-
-import androidx.annotation.NonNull
-
-import com.google.firebase.database.ValueEventListener
-
 //import android.R
 
-import android.view.View
-
-import android.widget.EditText
+import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.*
 
 
 class ShoppingListActivity : AppCompatActivity() {
 
-    /*
+
     private  lateinit var  dbreference : DatabaseReference
     private  lateinit var  getReference : DataSnapshot
-    private  lateinit var  dataItemRecyclerView : RecyclerView
+    private  lateinit var  shopListItemRecyclerView : RecyclerView
     private  lateinit var  dataArrayList: ArrayList<Recipe>
 
-    private  lateinit var  dishItem : Recipe
-    val currentUserID : String = FirebaseAuth.getInstance().currentUser?.uid.toString()
-    */
+    private  lateinit var  listItem : Recipe
+
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_shopping_list)
+        setContentView(R.layout.shoplistholder)
 
-        /*
-        dataItemRecyclerView = findViewById(R.id.dataList)
-        dataItemRecyclerView.layoutManager = LinearLayoutManager(this)
-        dataItemRecyclerView.setHasFixedSize(true)
+        ///this will be the from the shoplisthold.xml
+        shopListItemRecyclerView= findViewById(R.id.shopList)
+        shopListItemRecyclerView.layoutManager = LinearLayoutManager(this)
+        shopListItemRecyclerView.setHasFixedSize(true)
 
         dataArrayList = arrayListOf<Recipe>()
-        getRecipeData()
-        */
 
-    }}
+        //pass the database reference here as a parameter or make the call for the reference inside the functio
+        getShoppingListData()
 
-    /*
-    private fun getRecipeData()
+    }
+
+    private fun getShoppingListData()
     {
+
+        val currentUserID : String = FirebaseAuth.getInstance().currentUser?.uid.toString()
+        lateinit var  dbreference : DatabaseReference
+        lateinit var  getReference : DataSnapshot
+
 
         //this is where you will be looking for information about likes , still look on tree with countries and recipes but create method above to retrieve the names of what you need first
 
-        dbreference = FirebaseDatabase.getInstance().getReference().child("ShoppingList")
+        //you want the shopping lists for the specific user using the app, give the currentuser it look for that child
+        dbreference = FirebaseDatabase.getInstance().getReference().child("ShoppingList").child(currentUserID)
         dbreference.addValueEventListener(object : ValueEventListener {
 
 
@@ -65,12 +57,13 @@ class ShoppingListActivity : AppCompatActivity() {
 
                 if (snapshot.exists()){
 
-                    for (countrySnapshot in snapshot.children){
-                        val dataItem = countrySnapshot.getValue(Recipe::class.java)
+                    for (listSnapshot in snapshot.children){
+                        val countryName = snapshot.value.toString()
+                        val dataItem = listSnapshot.getValue(Recipe::class.java)
                         dataArrayList.add(dataItem!!)// !! checks that object is not null
                     }
 
-                    dataItemRecyclerView.adapter = cookBookAdapter(dataArrayList)
+                    shopListItemRecyclerView.adapter = ShopListAdapter(dataArrayList)
 
                 }
             }
@@ -83,4 +76,4 @@ class ShoppingListActivity : AppCompatActivity() {
         })
     }
 }
-*/
+
