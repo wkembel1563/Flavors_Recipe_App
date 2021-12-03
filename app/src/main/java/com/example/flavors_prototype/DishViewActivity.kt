@@ -13,12 +13,6 @@ import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
-import com.google.firebase.database.DatabaseError
-
-import com.google.firebase.database.DataSnapshot
-
-import com.google.firebase.database.ValueEventListener
-import androidx.annotation.NonNull
 
 class DishViewActivity : AppCompatActivity(){
 
@@ -91,6 +85,13 @@ class DishViewActivity : AppCompatActivity(){
 //        val dataIngredients = bundle.getString("dish_Ingredients")
 
 
+        val dataCountry = bundle!!.getString("dish_Place")
+        val dataRecipe = bundle.getString("dish_Recipe")
+        val dataCookTime = bundle.getString("dish_CookTime")
+        val dataPrepTime = bundle.getString("dish_PrepTime")
+        val dataInstructions = bundle.getString("dish_Instructions")
+        val dataIngredients = bundle.getString("dish_Ingredients")
+
         // pass dish data to UI
         countryName.text =  bundle!!.getString("dish_Place")
         recipe.text =  bundle.getString("dish_Recipe")
@@ -98,6 +99,14 @@ class DishViewActivity : AppCompatActivity(){
         cookTime.text = bundle.getString("dish_CookTime")
         //ingredients.text = bundle.getString("dish_Ingredients")
         instructions.text =bundle.getString("dish_Instructions")
+
+        val likesMap : HashMap<String, Any> = HashMap()
+        likesMap["CookTime"] = dataCookTime.toString()
+        likesMap["Recipe"] = dataRecipe.toString()
+        likesMap["Place"] = dataCountry.toString()
+        likesMap["PrepTime"] = dataPrepTime.toString()
+        likesMap["Ingredients"] = dataIngredients.toString()
+        likesMap["Instructions"] = dataInstructions.toString()
 
 
 
@@ -112,7 +121,7 @@ class DishViewActivity : AppCompatActivity(){
                     if (LikeChecker.equals(true))
                     {
                         //if like already exists, remove it
-                        if(snapshot.child(currentUserID).hasChild(RecipeKey))
+                        if(snapshot.child(currentUserID).child(RecipeKey).exists())
                         {
                             LikesRef.child(currentUserID).child(RecipeKey).removeValue()
                             LikeChecker = false
@@ -120,7 +129,7 @@ class DishViewActivity : AppCompatActivity(){
                         //if no like exists, add it
                         else
                         {
-                            LikesRef.child(currentUserID).child(RecipeKey).setValue(RecipeKey)
+                            LikesRef.child(currentUserID).child(RecipeKey).setValue(likesMap)
                             LikeChecker = false
                         }
                     }
@@ -197,7 +206,7 @@ class DishViewActivity : AppCompatActivity(){
         LikesRef.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 //this will count all likes when user checks like button and sets the red heart image
-                if(snapshot.child(currentUserID).hasChild(RecipeKey))
+                if(snapshot.child(currentUserID).child(RecipeKey).exists())
                 {
                     //countLikes = snapshot.child(currentUserID).childrenCount.toInt()
                     LikePostButton.setImageResource(R.drawable.like)
@@ -242,11 +251,11 @@ class DishViewActivity : AppCompatActivity(){
         /*There is a listener for each button, it works but the code can probably be condensed with method mentioned above*/
 
         val dishImage : ImageButton = findViewById(R.id.dishImageBtn)
-        val dataCountry = bundle!!.getString("dish_Place")
-        val dataRecipe = bundle.getString("dish_Recipe")
-        val dataCookTime = bundle.getString("dish_CookTime")
-        val dataPrepTime = bundle.getString("dish_PrepTime")
-        val dataInstructions = bundle.getString("dish_Instructions")
+        //val dataCountry = bundle!!.getString("dish_Place")
+        //val dataRecipe = bundle.getString("dish_Recipe")
+        //val dataCookTime = bundle.getString("dish_CookTime")
+        //val dataPrepTime = bundle.getString("dish_PrepTime")
+        //val dataInstructions = bundle.getString("dish_Instructions")
         val dataIngredient1 = bundle.getString("dish_Ingredient1")
         val dataIngredient2 = bundle.getString("dish_Ingredient2")
         val dataIngredient3 = bundle.getString("dish_Ingredient3")

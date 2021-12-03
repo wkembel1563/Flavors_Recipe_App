@@ -95,7 +95,6 @@ class CountryActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMar
         }
         return true
     }
-    //when user selects option from menu, start that activity
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         super.onOptionsItemSelected(item)
 
@@ -106,10 +105,18 @@ class CountryActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMar
         }
         if(item.itemId == R.id.country_selection)
         {
-
             startActivity(Intent(this, CountryActivity::class.java))
             //return true
         }
+
+
+        if(item.itemId == R.id.shoppingList_selection)
+        {
+            startActivity(Intent(this, ShoppingListActivity::class.java))
+            //return true
+        }
+
+
         return super.onOptionsItemSelected(item)
     }
 

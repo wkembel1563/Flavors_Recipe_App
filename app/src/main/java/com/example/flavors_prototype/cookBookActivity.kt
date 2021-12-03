@@ -25,7 +25,6 @@ class cookBookActivity : AppCompatActivity()
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_cook_book)//activity_data
 
-        val currentUserID : String = FirebaseAuth.getInstance().currentUser?.uid.toString()
 
         dataItemRecyclerView = findViewById(R.id.dishList)
         dataItemRecyclerView.layoutManager = LinearLayoutManager(this)
@@ -38,8 +37,9 @@ class cookBookActivity : AppCompatActivity()
     private fun getRecipeData()
     {
 
+        val currentUserID : String = FirebaseAuth.getInstance().currentUser?.uid.toString()
 
-        dbreference = FirebaseDatabase.getInstance().getReference("kembel_test_tree").child("USA")
+        dbreference = FirebaseDatabase.getInstance().getReference("Likes").child(currentUserID)
         dbreference.addValueEventListener(object : ValueEventListener {
 
             override fun onDataChange(snapshot: DataSnapshot) {
@@ -71,21 +71,28 @@ class cookBookActivity : AppCompatActivity()
         }
         return true
     }
-    //when user selects option from menu, start that activity
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         super.onOptionsItemSelected(item)
 
         if(item.itemId == R.id.cook_book)
         {
             startActivity(Intent(this, cookBookActivity::class.java))
-            return true
+            //return true
         }
         if(item.itemId == R.id.country_selection)
         {
-
             startActivity(Intent(this, CountryActivity::class.java))
-            return true
+            //return true
         }
+
+
+        if(item.itemId == R.id.shoppingList_selection)
+        {
+            startActivity(Intent(this, ShoppingListActivity::class.java))
+            //return true
+        }
+
+
         return super.onOptionsItemSelected(item)
     }
 }
