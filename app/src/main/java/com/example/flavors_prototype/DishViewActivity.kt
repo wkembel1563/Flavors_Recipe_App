@@ -90,9 +90,9 @@ class DishViewActivity : AppCompatActivity(){
                     if (LikeChecker.equals(true))
                     {
                         //if like already exists, remove it
-                        if(snapshot.child(currentUserID).hasChild(likesMap.toString()))
+                        if(snapshot.child(currentUserID).child(RecipeKey).exists())
                         {
-                            LikesRef.child(currentUserID).child(likesMap.toString()).removeValue()
+                            LikesRef.child(currentUserID).child(RecipeKey).removeValue()
                             LikeChecker = false
                         }
                         //if no like exists, add it
@@ -125,7 +125,7 @@ class DishViewActivity : AppCompatActivity(){
         LikesRef.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 //this will count all likes when user checks like button and sets the red heart image
-                if(snapshot.child(currentUserID).hasChild(RecipeKey))
+                if(snapshot.child(currentUserID).child(RecipeKey).exists())
                 {
                     //countLikes = snapshot.child(currentUserID).childrenCount.toInt()
                     LikePostButton.setImageResource(R.drawable.like)
