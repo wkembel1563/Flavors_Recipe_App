@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     tools:context=".RecDisplayActivity" >
 
-    <LinearLayout
+    <androidx.appcompat.widget.LinearLayoutCompat
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
@@ -16,7 +16,7 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:orientation="horizontal">
 
             <TextView
@@ -26,26 +26,24 @@
                 android:layout_weight="1"
                 android:gravity="center"
                 android:text="Recommended Dishes"
-                android:textSize="20dp"
+                android:textSize="20sp"
                 android:textStyle="bold"/>
         </LinearLayout>
-        <ScrollView
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recDishRecycler"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            android:scrollbars="vertical"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="match_parent"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="-77dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:listitem="@layout/data_item" >
+        </androidx.recyclerview.widget.RecyclerView>
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/recDishRecycler"
-                android:layout_width="match_parent"
-                android:layout_height="530dp"
-                android:layout_alignParentBottom="true"
-                android:layout_marginBottom="-77dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                tools:listitem="@layout/data_item" >
-            </androidx.recyclerview.widget.RecyclerView>
+    </androidx.appcompat.widget.LinearLayoutCompat>
 
-        </ScrollView>
-    </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

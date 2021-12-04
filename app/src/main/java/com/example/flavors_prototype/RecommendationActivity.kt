@@ -38,7 +38,8 @@ class RecommendationActivity : AppCompatActivity() {
         ingredientRecyclerView.layoutManager = LinearLayoutManager(this)
         ingredientRecyclerView.setHasFixedSize(true)
 
-        /* Commit ingredient selection from autocomplete to list with button */
+        /* Get ingredient selection from autocomplete when button is pressed */
+        /* Send to ingredient list recycler view */
         val autoTextView : AutoCompleteTextView = findViewById<AutoCompleteTextView>(R.id.recview)
         val autoBtn : Button = findViewById<Button>(R.id.autoBtn)
         autoBtn.setOnClickListener {

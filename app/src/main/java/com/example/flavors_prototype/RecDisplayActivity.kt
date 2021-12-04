@@ -10,19 +10,21 @@ import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.database.*
 import org.w3c.dom.Text
 
+// TODO: rank the list
+
 class RecDisplayActivity : AppCompatActivity() {
 
    /* Names of Selected Ingredients */
    private lateinit var ingredientList : ArrayList<String>
 
-   /* List of all dishes */
-   private lateinit var databaseList : ArrayLi
-
-   /* List of Relevant Dishes */
+   /* List of Dishes To Be Displayed */
    private lateinit var dishList : ArrayList<Recipe>
 
+   /* Number of Requested Ingredients Found In Each Dish in dishList*/
+   /* Used to Sort List Before Displaying */
+   private lateinit var hitList : ArrayList<Int>
+
    private  lateinit var  dbreference : DatabaseReference
-   private  lateinit var  ingredDBref: DatabaseReference
    private  lateinit var  dataItemRecyclerView : RecyclerView
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -31,6 +33,7 @@ class RecDisplayActivity : AppCompatActivity() {
 
         ingredientList = arrayListOf<String>()
         dishList = arrayListOf<Recipe>()
+        hitList = arrayListOf<Int>()
 
         dataItemRecyclerView = findViewById(R.id.recDishRecycler)
         dataItemRecyclerView.layoutManager = LinearLayoutManager(this)
@@ -40,9 +43,8 @@ class RecDisplayActivity : AppCompatActivity() {
         buildIngredientList(intent)
 
         /* Fetch list of dishes that use those ingredients */
+        /* Then it sorts them and activates recycler view */
         buildDishList()
-
-        /* Build recycler view with the dishes */
 
     }
 
@@ -60,101 +62,133 @@ class RecDisplayActivity : AppCompatActivity() {
     /* fetch dishes from database that use the selected ingredients */
     private fun buildDishList(){
 
-        // for now use arbitrary single country to populate
+        /* Connect to root not of database */
+        /* Structure: testtree > Country > Recipe > IngredientsList > Ingredients > name/url */
         dbreference = FirebaseDatabase.getInstance().getReference().child("kembel_test_tree")
         dbreference.addValueEventListener(object : ValueEventListener {
 
             override fun onDataChange(snapshot: DataSnapshot) {
                 if (snapshot.exists()){
-                    // Dummy Item for Header
-//                    val dummy = Recipe("", "", "", "", "", "")
-//                    dataArrayList.add(dummy)
 
                     /* visit each dish in each country */
-                    for (countrySnapshot in snapshot.children){
-                        for (dishSnapshot in countrySnapshot.children){
+                    /* add them to list of recommended dishes if they contain
+                    *  some of the selected ingredients */
+                    visitCountries(snapshot)
 
-                            /* extract dish recipe */
-                            val dataItem = dishSnapshot.getValue(Recipe::class.java)
+                    /* Sort valid dishes by number of hits in selected ingredient list */
+                    sortDishes()
 
-                            /* check if it contains requested ingredients */
-                            var valid = false
-                            if (dataItem != null) {
-                                valid = checkIngredients(dataItem.Place.toString(), dataItem.Recipe.toString())
-                            }
+                    /* Generate dish recycler view */
+                    displayDishes()
 
-                            /* add valid dish to list */
-                            if (valid){
-                                dishList.add(dataItem!!)  // !! checks that object is not null
-                            }
-
-                        }
-                    }
-
-                    //go to DishView Activity on click
-                    var adapter = RecDishAdapter(dishList)
-                    dataItemRecyclerView.adapter = adapter
-                    adapter.setOnItemClickListener(object : RecDishAdapter.OnItemClickListener{
-                        override fun onItemClick(position: Int) {
-
-                            // when a card is clicked, go to DishView
-                            val intent = Intent(this@RecDisplayActivity, DishViewActivity::class.java)
-
-                            // pass dish data to DishView
-                            intent.putExtra("dish_Place", dishList[position].Place)
-                            intent.putExtra("dish_Recipe", dishList[position].Recipe)
-                            intent.putExtra("dish_CookTime", dishList[position].CookTime)
-                            intent.putExtra("dish_PrepTime", dishList[position].PrepTime)
-                            intent.putExtra("dish_Instructions", dishList[position].Instructions)
-
-                            // begin DishView
-                            startActivity(intent)
-                        }
-                    })
                 }
+
             }
 
             override fun onCancelled(error: DatabaseError) {
-                TODO("Not yet implemented")
             }
         })
     }
 
+    /* Check Ingredients */
     /* Check if the ingredients for a particular recipe contain one of those selected */
-    private fun checkIngredients(countryName : String, recipeName : String): Boolean{
+    /* Params: single ingredient from recipe in database */
+    /* Returns: true of false depending on if found in selected ingred list */
+    private fun checkIngredients(nameToCheck : String): Boolean{
        var result = false;
 
-        /* connect to node */
-        ingredDBref = FirebaseDatabase.getInstance().getReference()
-            .child("kembel_test_tree")
-            .child(countryName)
-            .child(recipeName)
-            .child("Ingredients")
-
-        /* iterate through ingredients and check them */
-        ingredDBref.addValueEventListener(object : ValueEventListener{
-            override fun onDataChange(snapshot: DataSnapshot) {
-                for (ingredientSnapshot in snapshot.children){
-
-                    /* mark a recipe as a match if it has at least one of the ingredients */
-                    val ingredient = ingredientSnapshot.getValue(Ingredient::class.java)
-                    val nameToCheck = ingredient?.name.toString()
-                    for (name in ingredientList){
-                        if (nameToCheck == name){
-                            result = true
-                            break
-                        }
-                    }
-                    if(result) break
-                }
+        /* Check list of selected ingredients for given name */
+        for (name in ingredientList){
+            if (nameToCheck == name){
+                result = true
+                break
             }
+        }
 
-            override fun onCancelled(error: DatabaseError) {
-                TODO("Not yet implemented")
+        return result
+    }
+
+    /* Sort dishes */
+    /* ___ sort dishes in decreasing order based on their hit count */
+    /* the more ingredients they had in common with those selected, the higher they are in list */
+    private fun sortDishes(){
+
+    }
+
+    /* Display Dishes */
+    /* Generate recyclerview of final list of dishes */
+    /* Connect to DishView activity when a dish is clicked */
+    private fun displayDishes(){
+
+        /* Build Recycler View */
+        //var adapter = RecDishAdapter(dishList)
+        var adapter = DishAdapter(dishList)
+        dataItemRecyclerView.adapter = adapter
+
+        /* Move to DishView when recipe is clicked */
+        //adapter.setOnItemClickListener(object : RecDishAdapter.OnItemClickListener{
+        adapter.setOnItemClickListener(object : DishAdapter.OnItemClickListener{
+            override fun onItemClick(position: Int) {
+
+                val intent = Intent(this@RecDisplayActivity, DishViewActivity::class.java)
+
+                // pass dish data to DishView
+                // ingredients will be dealt with in dishview directly
+                intent.putExtra("dish_Place", dishList[position].Place)
+                intent.putExtra("dish_Recipe", dishList[position].Recipe)
+                intent.putExtra("dish_CookTime", dishList[position].CookTime)
+                intent.putExtra("dish_PrepTime", dishList[position].PrepTime)
+                intent.putExtra("dish_Instructions", dishList[position].Instructions)
+
+                // begin DishView
+                startActivity(intent)
             }
         })
 
-        return result
+    }
+
+    private fun visitCountries(snapshot: DataSnapshot){
+
+        for (countrySnapshot in snapshot.children){     // testtree > country
+            for (dishSnapshot in countrySnapshot.children){  // country > Recipe
+
+                /* keeps track of num of target ingredients found in dish */
+                var hitcount = 0
+
+                /* extract dish recipe */
+                val dataItem = dishSnapshot.getValue(Recipe::class.java)
+
+                /* check if recipe contains requested ingredients */
+                if (dataItem != null) {
+
+                    /* Probe ingredients node of the dish */
+                    val ingredNode = dishSnapshot.child("Ingredients")
+
+                    /* Compare each ingredient in node against req ingred list */
+                    var hit = false
+                    for(ingredSnapshot in ingredNode.children){
+
+                        /* check if ingredient is in list */
+                        hit = checkIngredients(ingredSnapshot.key.toString())
+
+                        /* if valid add to hitcount for this dish */
+                        if (hit){
+                            hitcount++
+                        }
+
+                        /* reset for next iteration */
+                        hit = false
+                    }
+                }
+
+                /* add valid dish to list */
+                if (hitcount > 0){
+                    dishList.add(dataItem!!)  // !! checks that object is not null
+                    hitList.add(hitcount)
+                }
+
+            }
+        }
     }
 
 }
