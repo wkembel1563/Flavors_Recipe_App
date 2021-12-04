@@ -11,14 +11,12 @@ import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
 
+
 class cookBookActivity : AppCompatActivity()
 {
     private  lateinit var  dbreference : DatabaseReference
-    private  lateinit var  getReference : DataSnapshot
     private  lateinit var  dataItemRecyclerView : RecyclerView
     private  lateinit var  dataArrayList: ArrayList<Recipe>
-    private  lateinit var  dishItem : Recipe
-
 
     override fun onCreate(savedInstanceState: Bundle?)
     {

@@ -21,7 +21,10 @@
                 android:id="@+id/dishImageBtn"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:paddingLeft="5dp"
+                android:paddingRight="5dp"
                 app:srcCompat="@drawable/world_food"
+                android:background="@drawable/comment_border"
                 tools:ignore="SpeakableTextPresentCheck" />
 
             <LinearLayout
@@ -59,12 +62,12 @@
                 android:layout_gravity="center"
                 android:numStars="5" />
 
-            <Button
+            <!--Button
                 android:id="@+id/delRating"
                 android:layout_width="134dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:text="CLEAR" />
+                android:text="CLEAR" /-->
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -171,257 +174,270 @@
             </LinearLayout>
 
 
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/linearLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
 
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:id="@+id/linearLayout"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                <TextView
+                    android:id="@+id/ingredients"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="4dp"
+                    android:layout_marginTop="4dp"
+                    android:text="Ingredients: "
+                    android:textColor="@color/black"
+                    android:textSize="26sp"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="@+id/dishIngredient1"
+                    app:layout_constraintTop_toTopOf="parent" />
 
-                    <TextView
-                        android:id="@+id/ingredients"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="16dp"
-                        android:text="Ingredients: "
-                        android:textColor="@color/black"
-                        android:textSize="26sp"
-                        android:textStyle="bold"
-                        app:layout_constraintStart_toStartOf="@+id/dishIngredient1"
-                        app:layout_constraintTop_toTopOf="parent" />
+                <TextView
+                    android:id="@+id/dishIngredient1"
+                    android:layout_width="325dp"
+                    android:layout_height="30dp"
+                    android:layout_marginTop="4dp"
+                    android:text="ingredients"
+                    android:textColor="@color/black"
+                    android:textSize="20sp"
+                    app:layout_constraintEnd_toEndOf="@+id/dishIngredient2"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/ingredients" />
 
-                    <TextView
-                        android:id="@+id/dishIngredient1"
-                        android:layout_width="300dp"
-                        android:layout_height="40dp"
-                        android:layout_marginTop="4dp"
-                        android:text="ingredients"
-                        android:textColor="@color/black"
-                        android:textSize="20sp"
-                        app:layout_constraintEnd_toEndOf="@+id/dishIngredient2"
-                        app:layout_constraintHorizontal_bias="0.0"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/ingredients" />
+                <Button
+                    android:id="@+id/saveToShoppingList1"
+                    android:layout_width="50dp"
+                    android:layout_height="30dp"
 
-                    <Button
-                        android:id="@+id/saveToShoppingList1"
-                        android:layout_width="75dp"
-                        android:layout_height="35dp"
+                    android:layout_marginStart="8dp"
+                    android:text="+"
+                    android:textSize="10dp"
 
-                        android:text="Save"
-                        app:layout_constraintBottom_toBottomOf="parent"
-
-
-
-                        app:layout_constraintHorizontal_bias="0.889"
-                        app:layout_constraintStart_toEndOf="@+id/dishIngredient1"
-                        app:layout_constraintTop_toTopOf="parent"
-                        app:layout_constraintVertical_bias="0.157" />
-
-                    <TextView
-                        android:id="@+id/dishIngredient2"
-                        android:layout_width="300dp"
-                        android:layout_height="35dp"
-                        android:layout_marginTop="5dp"
-                        android:text="ingredients"
-                        android:textColor="@color/black"
-                        android:textSize="20sp"
-                        app:layout_constraintEnd_toEndOf="@+id/dishIngredient3"
-                        app:layout_constraintHorizontal_bias="0.0"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/dishIngredient1" />
-
-                    <Button
-                        android:id="@+id/saveToShoppingList2"
-                        android:layout_width="75dp"
-                        android:layout_height="35dp"
-
-                        android:text="Save"
-                        app:layout_constraintBottom_toBottomOf="parent"
-
-                        app:layout_constraintHorizontal_bias="0.889"
-                        app:layout_constraintStart_toEndOf="@+id/dishIngredient2"
-                        app:layout_constraintTop_toTopOf="parent"
-                        app:layout_constraintVertical_bias="0.255" />
-
-                    <TextView
-                        android:id="@+id/dishIngredient3"
-                        android:layout_width="300dp"
-                        android:layout_height="35dp"
-                        android:layout_marginTop="8dp"
-                        android:text="ingredients"
-                        android:textColor="@color/black"
-                        android:textSize="20sp"
-                        app:layout_constraintEnd_toEndOf="@+id/dishIngredient4"
-                        app:layout_constraintHorizontal_bias="0.0"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/dishIngredient2" />
-
-                    <Button
-                        android:id="@+id/saveToShoppingList3"
-                        android:layout_width="75dp"
-                        android:layout_height="35dp"
-
-                        android:text="Save"
-                        app:layout_constraintBottom_toBottomOf="parent"
-
-                        app:layout_constraintHorizontal_bias="0.889"
-                        app:layout_constraintStart_toEndOf="@+id/dishIngredient3"
-                        app:layout_constraintTop_toTopOf="parent"
-                        app:layout_constraintVertical_bias="0.361" />
-
-                    <TextView
-                        android:id="@+id/dishIngredient4"
-                        android:layout_width="300dp"
-                        android:layout_height="35dp"
-                        android:layout_marginTop="4dp"
-                        android:text="ingredients"
-                        android:textColor="@color/black"
-                        android:textSize="20sp"
-                        app:layout_constraintEnd_toEndOf="@+id/dishIngredient5"
-                        app:layout_constraintHorizontal_bias="0.0"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/dishIngredient3" />
-
-                    <Button
-                        android:id="@+id/saveToShoppingList4"
-                        android:layout_width="75dp"
-                        android:layout_height="35dp"
-
-                        android:text="Save"
-                        app:layout_constraintBottom_toBottomOf="parent"
-
-                        app:layout_constraintHorizontal_bias="0.889"
-                        app:layout_constraintStart_toEndOf="@+id/dishIngredient4"
-                        app:layout_constraintTop_toTopOf="parent"
-                        app:layout_constraintVertical_bias="0.468" />
-
-                    <TextView
-                        android:id="@+id/dishIngredient5"
-                        android:layout_width="300dp"
-                        android:layout_height="35dp"
-                        android:layout_marginTop="5dp"
-                        android:text="ingredients"
-                        android:textColor="@color/black"
-                        android:textSize="20sp"
-                        app:layout_constraintEnd_toEndOf="@+id/dishIngredient6"
-                        app:layout_constraintHorizontal_bias="0.0"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/dishIngredient4" />
-
-                    <Button
-                        android:id="@+id/saveToShoppingList5"
-                        android:layout_width="75dp"
-                        android:layout_height="35dp"
-
-                        android:text="Save"
-                        app:layout_constraintBottom_toBottomOf="parent"
-
-                        app:layout_constraintHorizontal_bias="0.889"
-                        app:layout_constraintStart_toEndOf="@+id/dishIngredient5"
-                        app:layout_constraintTop_toTopOf="parent"
-                        app:layout_constraintVertical_bias="0.574" />
-
-                    <TextView
-                        android:id="@+id/dishIngredient6"
-                        android:layout_width="300dp"
-                        android:layout_height="35dp"
-                        android:layout_marginTop="5dp"
-                        android:text="ingredients"
-                        android:textColor="@color/black"
-                        android:textSize="20sp"
-                        app:layout_constraintEnd_toEndOf="@+id/dishIngredient7"
-                        app:layout_constraintHorizontal_bias="0.0"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/dishIngredient5" />
-
-                    <Button
-                        android:id="@+id/saveToShoppingList6"
-                        android:layout_width="75dp"
-                        android:layout_height="35dp"
-
-                        android:text="Save"
-                        app:layout_constraintBottom_toBottomOf="parent"
-
-                        app:layout_constraintHorizontal_bias="0.889"
-                        app:layout_constraintStart_toEndOf="@+id/dishIngredient6"
-                        app:layout_constraintTop_toTopOf="parent"
-                        app:layout_constraintVertical_bias="0.678" />
-
-                    <TextView
-                        android:id="@+id/dishIngredient7"
-                        android:layout_width="300dp"
-                        android:layout_height="35dp"
-                        android:layout_marginTop="5dp"
-                        android:text="ingredients"
-                        android:textColor="@color/black"
-                        android:textSize="20sp"
-                        app:layout_constraintEnd_toEndOf="@+id/dishIngredient8"
-                        app:layout_constraintHorizontal_bias="0.0"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/dishIngredient6" />
-
-                    <Button
-                        android:id="@+id/saveToShoppingList7"
-                        android:layout_width="75dp"
-                        android:layout_height="35dp"
-
-                        android:text="Save"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintHorizontal_bias="0.889"
-                        app:layout_constraintStart_toEndOf="@+id/dishIngredient7"
-                        app:layout_constraintTop_toTopOf="parent"
-                        app:layout_constraintVertical_bias="0.784" />
-
-                    <TextView
-                        android:id="@+id/dishIngredient8"
-                        android:layout_width="300dp"
-                        android:layout_height="35dp"
-                        android:layout_marginTop="4dp"
-                        android:text="ingredients"
-                        android:textColor="@color/black"
-                        android:textSize="20sp"
-                        app:layout_constraintEnd_toEndOf="@+id/dishIngredient9"
-                        app:layout_constraintHorizontal_bias="0.0"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/dishIngredient7" />
-
-                    <Button
-                        android:id="@+id/saveToShoppingList8"
-                        android:layout_width="75dp"
-                        android:layout_height="35dp"
-
-                        android:text="Save"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintHorizontal_bias="0.889"
-                        app:layout_constraintStart_toEndOf="@+id/dishIngredient8"
-                        app:layout_constraintTop_toTopOf="parent"
-                        app:layout_constraintVertical_bias="0.893" />
-
-                    <TextView
-                        android:id="@+id/dishIngredient9"
-                        android:layout_width="300dp"
-                        android:layout_height="35dp"
-                        android:layout_marginTop="5dp"
-                        android:text="ingredients"
-                        android:textColor="@color/black"
-                        android:textSize="20sp"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/dishIngredient8" />
-
-                    <Button
-                        android:id="@+id/saveToShoppingList9"
-                        android:layout_width="75dp"
-                        android:layout_height="35dp"
-
-                        android:text="Save"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintHorizontal_bias="0.889"
-                        app:layout_constraintStart_toEndOf="@+id/dishIngredient9"
-                        app:layout_constraintTop_toTopOf="parent"
-                        app:layout_constraintVertical_bias="1.0" />
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/dishIngredient1"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.133" />
 
 
-                </androidx.constraintlayout.widget.ConstraintLayout>
+                <TextView
+                    android:id="@+id/dishIngredient2"
+                    android:layout_width="325dp"
+                    android:layout_height="30dp"
+                    android:layout_marginTop="5dp"
+                    android:text="ingredients"
+                    android:textColor="@color/black"
+                    android:textSize="20sp"
+                    app:layout_constraintEnd_toEndOf="@+id/dishIngredient3"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/dishIngredient1" />
+
+                <Button
+                    android:id="@+id/saveToShoppingList2"
+                    android:layout_width="50dp"
+                    android:layout_height="30dp"
+
+                    android:layout_marginStart="8dp"
+                    android:layout_marginEnd="172dp"
+
+                    android:text="+"
+                    android:textSize="10dp"
+
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/dishIngredient2"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.255" />
+
+                <TextView
+                    android:id="@+id/dishIngredient3"
+                    android:layout_width="325dp"
+                    android:layout_height="30dp"
+                    android:layout_marginTop="4dp"
+                    android:text="ingredients"
+                    android:textColor="@color/black"
+                    android:textSize="20sp"
+                    app:layout_constraintEnd_toEndOf="@+id/dishIngredient4"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/dishIngredient2" />
+
+                <Button
+                    android:id="@+id/saveToShoppingList3"
+                    android:layout_width="50dp"
+                    android:layout_height="30dp"
+
+                    android:layout_marginStart="8dp"
+                    android:text="+"
+                    android:textSize="10dp"
+
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/dishIngredient3"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.364" />
+
+                <TextView
+                    android:id="@+id/dishIngredient4"
+                    android:layout_width="325dp"
+                    android:layout_height="30dp"
+                    android:layout_marginTop="4dp"
+                    android:text="ingredients"
+                    android:textColor="@color/black"
+                    android:textSize="20sp"
+                    app:layout_constraintEnd_toEndOf="@+id/dishIngredient5"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/dishIngredient3" />
+
+                <Button
+                    android:id="@+id/saveToShoppingList4"
+                    android:layout_width="50dp"
+                    android:layout_height="30dp"
+
+                    android:layout_marginStart="8dp"
+                    android:text="+"
+                    android:textSize="10dp"
+
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/dishIngredient4"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.465" />
+
+                <TextView
+                    android:id="@+id/dishIngredient5"
+                    android:layout_width="325dp"
+                    android:layout_height="30dp"
+                    android:layout_marginTop="5dp"
+                    android:text="ingredients"
+                    android:textColor="@color/black"
+                    android:textSize="20sp"
+                    app:layout_constraintEnd_toEndOf="@+id/dishIngredient6"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/dishIngredient4" />
+
+                <Button
+                    android:id="@+id/saveToShoppingList5"
+                    android:layout_width="50dp"
+                    android:layout_height="30dp"
+
+                    android:layout_marginStart="8dp"
+                    android:text="+"
+                    android:textSize="10dp"
+
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/dishIngredient5"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.579" />
+
+                <TextView
+                    android:id="@+id/dishIngredient6"
+                    android:layout_width="325dp"
+                    android:layout_height="30dp"
+                    android:layout_marginTop="5dp"
+                    android:text="ingredients"
+                    android:textColor="@color/black"
+                    android:textSize="20sp"
+                    app:layout_constraintEnd_toEndOf="@+id/dishIngredient7"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/dishIngredient5" />
+
+                <Button
+                    android:id="@+id/saveToShoppingList6"
+                    android:layout_width="50dp"
+                    android:layout_height="30dp"
+
+                    android:layout_marginStart="8dp"
+                    android:text="+"
+                    android:textSize="10dp"
+
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/dishIngredient6"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.68" />
+
+                <TextView
+                    android:id="@+id/dishIngredient7"
+                    android:layout_width="325dp"
+                    android:layout_height="30dp"
+                    android:layout_marginTop="5dp"
+                    android:text="ingredients"
+                    android:textColor="@color/black"
+                    android:textSize="20sp"
+                    app:layout_constraintEnd_toEndOf="@+id/dishIngredient8"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/dishIngredient6" />
+
+                <Button
+                    android:id="@+id/saveToShoppingList7"
+                    android:layout_width="50dp"
+                    android:layout_height="30dp"
+
+                    android:layout_marginStart="8dp"
+                    android:text="+"
+                    android:textSize="10dp"
+
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/dishIngredient7"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.787" />
+
+                <TextView
+                    android:id="@+id/dishIngredient8"
+                    android:layout_width="325dp"
+                    android:layout_height="30dp"
+                    android:layout_marginTop="4dp"
+                    android:text="ingredients"
+                    android:textColor="@color/black"
+                    android:textSize="20sp"
+                    app:layout_constraintEnd_toEndOf="@+id/dishIngredient9"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/dishIngredient7" />
+
+                <Button
+                    android:id="@+id/saveToShoppingList8"
+                    android:layout_width="50dp"
+                    android:layout_height="30dp"
+
+                    android:layout_marginStart="8dp"
+                    android:text="+"
+                    android:textSize="10dp"
+
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/dishIngredient8"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.896" />
+
+                <TextView
+                    android:id="@+id/dishIngredient9"
+                    android:layout_width="325dp"
+                    android:layout_height="30dp"
+                    android:layout_marginTop="5dp"
+                    android:text="ingredients"
+                    android:textColor="@color/black"
+                    android:textSize="20sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/dishIngredient8" />
+
+                <Button
+                    android:id="@+id/saveToShoppingList9"
+                    android:layout_width="50dp"
+                    android:layout_height="30dp"
+
+                    android:layout_marginStart="8dp"
+                    android:text="+"
+                    android:textSize="10dp"
+
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/dishIngredient9"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.989" />
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
 
 

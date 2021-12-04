@@ -24,6 +24,8 @@ class cookBookAdapter (private val dataList : ArrayList<Recipe>) : RecyclerView.
 
         //current position of item in array
         val currentitem = dataList[position]
+        val imagePath = currentitem.image
+        //Picasso.get().load(imagePath).into(holder.dishImage)
 
         holder.nameOfPlace.text = currentitem.Place
         holder.Recipe.text = currentitem.Recipe
@@ -39,6 +41,7 @@ class cookBookAdapter (private val dataList : ArrayList<Recipe>) : RecyclerView.
         holder.ingredient8.text = currentitem.Ingredient8
         holder.ingredient9.text = currentitem.Ingredient9
         holder.instructions.text = currentitem.Instructions
+
 
 
 
@@ -66,6 +69,7 @@ class cookBookAdapter (private val dataList : ArrayList<Recipe>) : RecyclerView.
         val ingredient8 : TextView = itemView.findViewById(R.id.tvingredient8)
         val ingredient9 : TextView = itemView.findViewById(R.id.tvingredient9)
         val instructions : TextView = itemView.findViewById(R.id.tvinstructions)
+        //val  dishImage : ImageView = itemView.findViewById(R.id.cook_book_dishImage)
 
     }
 

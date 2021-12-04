@@ -30,7 +30,7 @@ class DishViewActivity : AppCompatActivity(){
         val LikePostButton : ImageButton = findViewById(R.id.like_button)
         val CommentButton : ImageButton = findViewById(R.id.comment_button)
         val RatingBar : RatingBar = findViewById(R.id.ratingBar)
-        val DelRating: Button = findViewById(R.id.delRating)
+        //val DelRating: Button = findViewById(R.id.delRating)
         val SaveShoppingList1: Button = findViewById(R.id.saveToShoppingList1)
         val SaveShoppingList2: Button = findViewById(R.id.saveToShoppingList2)
         val SaveShoppingList3: Button = findViewById(R.id.saveToShoppingList3)
@@ -203,11 +203,11 @@ class DishViewActivity : AppCompatActivity(){
         })
 
         //Deleting Given Rating
-        DelRating.setOnClickListener{
+        /*DelRating.setOnClickListener{
             RatingRef.child(currentUserID).child(RecipeKey).removeValue()
             RatingBar.setRating(0.0F)
             RateChecker = false
-        }
+        }*/
 
         //listen for click on comment button and start the comment activity
         //defined in fuction below
