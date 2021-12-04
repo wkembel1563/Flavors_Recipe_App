@@ -6,9 +6,9 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 
-class DishAdapter(
+class RecDishAdapter(
     private val dataList : ArrayList<Recipe>,
-    ) : RecyclerView.Adapter<DishAdapter.MyViewHolder>() {
+) : RecyclerView.Adapter<RecDishAdapter.MyViewHolder>() {
 
     // SET UP CLICK LISTENER FOR CARDS
     private lateinit var mListener : OnItemClickListener
@@ -23,8 +23,6 @@ class DishAdapter(
         mListener = listener
     }
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
-        //database reference variable and like status tracker
-        //lateinit var LikesRef : DatabaseReference
 
         //layout inflater using the layout from data_item.xml
         val recipeView = LayoutInflater.from(parent.context).inflate(R.layout.data_item,
@@ -37,7 +35,7 @@ class DishAdapter(
     // this method is called everytime a card scrolls onto screen
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
 
-        holder.recipeName.text = dataList[position].Recipe.toString()
+        holder.dishName.text = dataList[position].Recipe.toString()
 
     }
 
@@ -48,11 +46,10 @@ class DishAdapter(
     // this class binds variables to the textViews in data_item
     // setting the clickListener for the recycler view card in here as well
     class MyViewHolder(itemView : View, listener: OnItemClickListener) : RecyclerView.ViewHolder(itemView){
-        var recipeName : TextView = itemView.findViewById(R.id.tvrecipe)
+        var dishName : TextView = itemView.findViewById(R.id.tvrecipe)
 
         // set a clickListener on itemview to activate DishView after
         // clicking anywhere on the recyclerview card
-
         init {
 
             itemView.setOnClickListener{

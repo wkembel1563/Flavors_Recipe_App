@@ -29,15 +29,15 @@ class cookBookAdapter (private val dataList : ArrayList<Recipe>) : RecyclerView.
         holder.Recipe.text = currentitem.Recipe
         holder.prepTime.text = currentitem.PrepTime
         holder.cookTime.text = currentitem.CookTime
-        holder.ingredient1.text = currentitem.Ingredient1
-        holder.ingredient2.text = currentitem.Ingredient2
-        holder.ingredient3.text = currentitem.Ingredient3
-        holder.ingredient4.text = currentitem.Ingredient4
-        holder.ingredient5.text = currentitem.Ingredient5
-        holder.ingredient6.text = currentitem.Ingredient6
-        holder.ingredient7.text = currentitem.Ingredient7
-        holder.ingredient8.text = currentitem.Ingredient8
-        holder.ingredient9.text = currentitem.Ingredient9
+//        holder.ingredient1.text = currentitem.Ingredient1
+//        holder.ingredient2.text = currentitem.Ingredient2
+//        holder.ingredient3.text = currentitem.Ingredient3
+//        holder.ingredient4.text = currentitem.Ingredient4
+//        holder.ingredient5.text = currentitem.Ingredient5
+//        holder.ingredient6.text = currentitem.Ingredient6
+//        holder.ingredient7.text = currentitem.Ingredient7
+//        holder.ingredient8.text = currentitem.Ingredient8
+//        holder.ingredient9.text = currentitem.Ingredient9
         holder.instructions.text = currentitem.Instructions
 
 
@@ -56,15 +56,15 @@ class cookBookAdapter (private val dataList : ArrayList<Recipe>) : RecyclerView.
         val Recipe : TextView = itemView.findViewById(R.id.tvrecipe)
         val prepTime : TextView = itemView.findViewById(R.id.tvpreptime)
         val cookTime : TextView = itemView.findViewById(R.id.tvcooktime)
-        val ingredient1 : TextView = itemView.findViewById(R.id.tvingredient1)
-        val ingredient2 : TextView = itemView.findViewById(R.id.tvingredient2)
-        val ingredient3 : TextView = itemView.findViewById(R.id.tvingredient3)
-        val ingredient4 : TextView = itemView.findViewById(R.id.tvingredient4)
-        val ingredient5 : TextView = itemView.findViewById(R.id.tvingredient5)
-        val ingredient6 : TextView = itemView.findViewById(R.id.tvingredient6)
-        val ingredient7 : TextView = itemView.findViewById(R.id.tvingredient7)
-        val ingredient8 : TextView = itemView.findViewById(R.id.tvingredient8)
-        val ingredient9 : TextView = itemView.findViewById(R.id.tvingredient9)
+//        val ingredient1 : TextView = itemView.findViewById(R.id.tvingredient1)
+//        val ingredient2 : TextView = itemView.findViewById(R.id.tvingredient2)
+//        val ingredient3 : TextView = itemView.findViewById(R.id.tvingredient3)
+//        val ingredient4 : TextView = itemView.findViewById(R.id.tvingredient4)
+//        val ingredient5 : TextView = itemView.findViewById(R.id.tvingredient5)
+//        val ingredient6 : TextView = itemView.findViewById(R.id.tvingredient6)
+//        val ingredient7 : TextView = itemView.findViewById(R.id.tvingredient7)
+//        val ingredient8 : TextView = itemView.findViewById(R.id.tvingredient8)
+//        val ingredient9 : TextView = itemView.findViewById(R.id.tvingredient9)
         val instructions : TextView = itemView.findViewById(R.id.tvinstructions)
 
     }

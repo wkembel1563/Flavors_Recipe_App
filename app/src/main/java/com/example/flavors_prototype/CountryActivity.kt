@@ -79,6 +79,8 @@ class CountryActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMar
             //Toast.makeText(this, "${marker.title} has been clicked: Country = $countrySelected", Toast.LENGTH_SHORT).show()   //Debug tool
             Toast.makeText(this, "${marker.title}", Toast.LENGTH_SHORT).show()
             val countryDishes = Intent(this, DataActivity::class.java)
+            countryDishes.putExtra("countryName", marker.title)
+
             startActivity(countryDishes)
         }
         return false
@@ -105,6 +107,17 @@ class CountryActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMar
         {
 
             startActivity(Intent(this, CountryActivity::class.java))
+            //return true
+        }
+        if(item.itemId == R.id.dish_recommendation)
+        {
+
+            startActivity(Intent(this, RecommendationActivity::class.java))
+            //return true
+        }
+        if(item.itemId == R.id.shoppingList_selection)
+        {
+            startActivity(Intent(this, ShoppingListActivity::class.java))
             //return true
         }
         return super.onOptionsItemSelected(item)

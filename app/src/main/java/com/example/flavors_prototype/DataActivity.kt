@@ -27,16 +27,21 @@ class DataActivity : AppCompatActivity()
         dataItemRecyclerView.setHasFixedSize(true)
 
         dataArrayList = arrayListOf<Recipe>()
-        getRecipeData()
+
+        /* Bundle with Selected Country Name */
+        val bundle : Bundle?= intent.extras
+        val countrySelect : String = bundle?.getString("countryName").toString()
+
+        getRecipeData(countrySelect)
 
     }
 
     //retrieves data from firebase
-    private fun getRecipeData()
+    private fun getRecipeData(countryName : String)
     {
         // TODO: get path from country view, and place in here
         // for now use arbitrary single country to populate
-        dbreference = FirebaseDatabase.getInstance().getReference().child("kembel_test_tree").child("USA")
+        dbreference = FirebaseDatabase.getInstance().getReference().child("kembel_test_tree").child(countryName)
         dbreference.addValueEventListener(object : ValueEventListener{
 
             override fun onDataChange(snapshot: DataSnapshot) {
@@ -47,12 +52,12 @@ class DataActivity : AppCompatActivity()
 
                     for (countrySnapshot in snapshot.children){
                         val dataItem = countrySnapshot.getValue(Recipe::class.java)
-                        dataArrayList.add(dataItem!!)// !! checks that object is not null
+                        dataArrayList.add(dataItem!!)  // !! checks that object is not null
 
                     }
 
                     //go to DishView Activity on click
-                    var adapter = DishAdapter(dataArrayList)/////////////////////////////////////////////
+                    var adapter = DishAdapter(dataArrayList)
                     dataItemRecyclerView.adapter = adapter
                     adapter.setOnItemClickListener(object : DishAdapter.OnItemClickListener{
                         override fun onItemClick(position: Int) {

@@ -8,5 +8,6 @@
     <item
         android:id="@+id/shoppingList_selection"
         android:title="Go to Shopping List" />
-
+    <item android:id="@+id/dish_recommendation"
+        android:title="Dish Recommendation"/>
 </menu>

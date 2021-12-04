@@ -11,14 +11,25 @@ import android.widget.ImageButton
 import android.widget.RatingBar
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
 
 class DishViewActivity : AppCompatActivity(){
 
+    private lateinit var ingredientList : ArrayList<Ingredient>
+    private lateinit var dataItemRecyclerView : RecyclerView
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_dish)
+
+        ingredientList = arrayListOf<Ingredient>()
+
+        dataItemRecyclerView = findViewById(R.id.dishIngredientRecyclerView)
+        dataItemRecyclerView.layoutManager = LinearLayoutManager(this)
+        dataItemRecyclerView.setHasFixedSize(true)
 
         //val NumberOfLikes : TextView = findViewById(R.id.numberOfLikes)
         //var countLikes = 0
@@ -31,15 +42,6 @@ class DishViewActivity : AppCompatActivity(){
         val CommentButton : ImageButton = findViewById(R.id.comment_button)
         val RatingBar : RatingBar = findViewById(R.id.ratingBar)
         val DelRating: Button = findViewById(R.id.delRating)
-        val SaveShoppingList1: Button = findViewById(R.id.saveToShoppingList1)
-        val SaveShoppingList2: Button = findViewById(R.id.saveToShoppingList2)
-        val SaveShoppingList3: Button = findViewById(R.id.saveToShoppingList3)
-        val SaveShoppingList4: Button = findViewById(R.id.saveToShoppingList4)
-        val SaveShoppingList5: Button = findViewById(R.id.saveToShoppingList5)
-        val SaveShoppingList6: Button = findViewById(R.id.saveToShoppingList6)
-        val SaveShoppingList7: Button = findViewById(R.id.saveToShoppingList7)
-        val SaveShoppingList8: Button = findViewById(R.id.saveToShoppingList8)
-        val SaveShoppingList9: Button = findViewById(R.id.saveToShoppingList9)
 
 
         // dish data passed from DataActivity
@@ -55,15 +57,6 @@ class DishViewActivity : AppCompatActivity(){
         val recipe : TextView = findViewById(R.id.dishRecipe)
         val prepTime : TextView = findViewById(R.id.dishPrepTime)
         val cookTime : TextView = findViewById(R.id.dishCookTime)
-        val ingredient1 : TextView = findViewById(R.id.dishIngredient1)
-        val ingredient2 : TextView = findViewById(R.id.dishIngredient2)
-        val ingredient3 : TextView = findViewById(R.id.dishIngredient3)
-        val ingredient4 : TextView = findViewById(R.id.dishIngredient4)
-        val ingredient5 : TextView = findViewById(R.id.dishIngredient5)
-        val ingredient6 : TextView = findViewById(R.id.dishIngredient6)
-        val ingredient7 : TextView = findViewById(R.id.dishIngredient7)
-        val ingredient8 : TextView = findViewById(R.id.dishIngredient8)
-        val ingredient9 : TextView = findViewById(R.id.dishIngredient9)
         val instructions : TextView = findViewById(R.id.dishInstructions)
 
         ////comment and like variables
@@ -214,123 +207,90 @@ class DishViewActivity : AppCompatActivity(){
 
         /* Access ingredients node directly */
         val IngredRef : DatabaseReference =
-            FirebaseDatabase.getInstance().getReference().child("kembel_test_tree").child(dataCountry.toString()).child(dataRecipe.toString()).child("Ingredients")
+            FirebaseDatabase.getInstance().getReference()
+                .child("kembel_test_tree")
+                .child(dataCountry.toString())
+                .child(dataRecipe.toString())
+                .child("Ingredients")
 
         /* Store ingredients in array list to be displayed in DishView recycler view */
         IngredRef.addValueEventListener(object : ValueEventListener{
             override fun onDataChange(snapshot: DataSnapshot) {
                 if (snapshot.exists()){
-
                    for (ingredient in snapshot.children) {
                        val dataItem = ingredient.getValue(Ingredient::class.java)
+                       if (dataItem != null) {
+                           ingredientList.add(dataItem)
+                       }
                    }
 
+                    /* Create recycler view for dish ingredients */
+                    var adapter = DishIngredAdapter(ingredientList)
+                    dataItemRecyclerView.adapter = adapter
+
+                    /* Save Ingredients to shopping list by clicking 'Save' */
+                    adapter.setOnItemClickListener(object : DishIngredAdapter.OnItemClickListener{
+                        override fun onSaveClick(position: Int) {
+                            val recipe : String = dataRecipe.toString()
+                            val ingredientName = ingredientList[position].name.toString()
+                            val url = ingredientList[position].url.toString()
+
+                            /* Write the name to recipe node's ingredient node */
+                            ShoppingRef
+                                .child(currentUserID)
+                                .child(recipe)
+                                .child(ingredientName)
+                                .child("name").setValue(ingredientName)
+
+                            /* Write the image url to recipe node's ingredient node */
+                            ShoppingRef
+                                .child(currentUserID)
+                                .child(recipe)
+                                .child(ingredientName)
+                                .child("url").setValue(url)
+
+//                            /* Write recipe name to recipe node */
+//                            ShoppingRef
+//                                .child(currentUserID)
+//                                .child(recipe)
+//                                .child("Recipe")
+//                                .setValue(recipe)
+                            //ShoppingRef.child(currentUserID).child(dataRecipe).child(dataCountry.toString()).setValue(dataCountry)
+                        }
+                    })
+
                 }
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+                TODO("Not yet implemented")
             }
         })
 
-        SaveShoppingList1.setOnClickListener{
-            //add ingredients to list
-            if (bundle != null) {/////instead of Recipekey the ingredient node needs to be passed here
-                if (dataRecipe != null) {
-                    ShoppingRef.child(currentUserID).child(dataRecipe).child("Ingredient1").setValue(bundle.getString("dish_Ingredient1"))
-                    //somewhere in here, the name of the dish name needs to be pushed onto database at same level as ingredients
-                    ShoppingRef.child(currentUserID).child(dataRecipe).child("Recipe").setValue(dataRecipe)
-                    //ShoppingRef.child(currentUserID).child(dataRecipe).child(dataCountry.toString()).setValue(dataCountry)
-                }
-
-            }
-
-        }
-        SaveShoppingList2.setOnClickListener{
-            //add ingredients to list
-            if (bundle != null) {/////instead of Recipekey the ingredient node needs to be passed here
-                if (dataRecipe != null) {
-                    ShoppingRef.child(currentUserID).child(dataRecipe).child("Ingredient2").setValue(bundle.getString("dish_Ingredient2"))
-                    ShoppingRef.child(currentUserID).child(dataRecipe).child("Recipe").setValue(dataRecipe)
-
-                }
-            }
-
-        }
-        SaveShoppingList3.setOnClickListener{
-            //add ingredients to list
-            if (bundle != null) {/////instead of Recipekey the ingredient node needs to be passed here
-                if (dataRecipe != null) {
-                    ShoppingRef.child(currentUserID).child(dataRecipe).child("Ingredient3").setValue(bundle.getString("dish_Ingredient3"))
-                    ShoppingRef.child(currentUserID).child(dataRecipe).child("Recipe").setValue(dataRecipe)
-
-                }
-            }
-
-        }
-        SaveShoppingList4.setOnClickListener{
-            //add ingredients to list
-            if (bundle != null) {/////instead of Recipekey the ingredient node needs to be passed here
-                if (dataRecipe != null) {
-                    ShoppingRef.child(currentUserID).child(dataRecipe).child("Ingredient4").setValue(bundle.getString("dish_Ingredient4"))
-                    ShoppingRef.child(currentUserID).child(dataRecipe).child("Recipe").setValue(dataRecipe)
-
-                }
-            }
-
-        }
-        SaveShoppingList5.setOnClickListener{
-            //add ingredients to list
-            if (bundle != null) {/////instead of Recipekey the ingredient node needs to be passed here
-                if (dataRecipe != null) {
-                    ShoppingRef.child(currentUserID).child(dataRecipe).child("Ingredient5").setValue(bundle.getString("dish_Ingredient5"))
-                    ShoppingRef.child(currentUserID).child(dataRecipe).child("Recipe").setValue(dataRecipe)
-
-                }
-            }
-
-        }
-        SaveShoppingList6.setOnClickListener{
-            //add ingredints to list
-            if (bundle != null) {/////instead of Recipekey the ingredient node needs to be passed here
-                if (dataRecipe != null) {
-                    ShoppingRef.child(currentUserID).child(dataRecipe).child("Ingredient6").setValue(bundle.getString("dish_Ingredient6"))
-                    ShoppingRef.child(currentUserID).child(dataRecipe).child("Recipe").setValue(dataRecipe)
-
-                }
-            }
-
-        }
-        SaveShoppingList7.setOnClickListener{
-            //add ingredients to list
-            if (bundle != null) {/////instead of Recipekey the ingredient node needs to be passed here
-                if (dataRecipe != null) {
-                    ShoppingRef.child(currentUserID).child(dataRecipe).child("Ingredient7").setValue(bundle.getString("dish_Ingredient7"))
-                    ShoppingRef.child(currentUserID).child(dataRecipe).child("Recipe").setValue(dataRecipe)
-
-                }
-            }
-
-        }
-        SaveShoppingList8.setOnClickListener{
-            //add ingredients to list
-            if (bundle != null) {/////instead of Recipekey the ingredient node needs to be passed here
-                if (dataRecipe != null) {
-                    ShoppingRef.child(currentUserID).child(dataRecipe).child("Ingredient8").setValue(bundle.getString("dish_Ingredient8"))
-
-                    ShoppingRef.child(currentUserID).child(dataRecipe).child("Recipe").setValue(dataRecipe)
-
-                }
-            }
-
-        }
-        SaveShoppingList9.setOnClickListener{
-            //add ingredients to list
-            if (bundle != null) {/////instead of Recipekey the ingredient node needs to be passed here
-                if (dataRecipe != null) {
-                    ShoppingRef.child(currentUserID).child(dataRecipe).child("Ingredient9").setValue(bundle.getString("dish_Ingredient9"))
-                    ShoppingRef.child(currentUserID).child(dataRecipe).child("Recipe").setValue(dataRecipe)
-
-                }
-            }
-
-        }
+//        SaveShoppingList1.setOnClickListener{
+//            //add ingredients to list
+//            if (bundle != null) {/////instead of Recipekey the ingredient node needs to be passed here
+//                if (dataRecipe != null) {
+//                    ShoppingRef.child(currentUserID).child(dataRecipe).child("Ingredient1").setValue(bundle.getString("dish_Ingredient1"))
+//                    //somewhere in here, the name of the dish name needs to be pushed onto database at same level as ingredients
+//                    ShoppingRef.child(currentUserID).child(dataRecipe).child("Recipe").setValue(dataRecipe)
+//                    //ShoppingRef.child(currentUserID).child(dataRecipe).child(dataCountry.toString()).setValue(dataCountry)
+//                }
+//
+//            }
+//
+//        }
+//        SaveShoppingList2.setOnClickListener{
+//            //add ingredients to list
+//            if (bundle != null) {/////instead of Recipekey the ingredient node needs to be passed here
+//                if (dataRecipe != null) {
+//                    ShoppingRef.child(currentUserID).child(dataRecipe).child("Ingredient2").setValue(bundle.getString("dish_Ingredient2"))
+//                    ShoppingRef.child(currentUserID).child(dataRecipe).child("Recipe").setValue(dataRecipe)
+//
+//                }
+//            }
+//
+//        }
 //************************************************************************************************************************//
         // dishView image button
         // TODO: 11/1/21 create image for each dish. use this to manipulate
@@ -341,15 +301,6 @@ class DishViewActivity : AppCompatActivity(){
         recipe.text = dataRecipe
         prepTime.text = dataPrepTime
         cookTime.text = dataCookTime
-        ingredient1.text = dataIngredient1
-        ingredient2.text = dataIngredient2
-        ingredient3.text = dataIngredient3
-        ingredient4.text = dataIngredient4
-        ingredient5.text = dataIngredient5
-        ingredient6.text = dataIngredient6
-        ingredient7.text = dataIngredient7
-        ingredient8.text = dataIngredient8
-        ingredient9.text = dataIngredient9
         instructions.text = dataInstructions
 
     }

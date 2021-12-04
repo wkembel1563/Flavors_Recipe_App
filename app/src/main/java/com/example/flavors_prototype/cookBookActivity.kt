@@ -45,29 +45,18 @@ class cookBookActivity : AppCompatActivity()
         dbreference = FirebaseDatabase.getInstance().getReference("kembel_test_tree").child("USA")
         dbreference.addValueEventListener(object : ValueEventListener {
 
-
             override fun onDataChange(snapshot: DataSnapshot) {
 
                 if (snapshot.exists()){
 
                     for (countrySnapshot in snapshot.children){
 
-
                        val dataItem = countrySnapshot.getValue(Recipe::class.java)
                        dataArrayList.add(dataItem!!)// !! checks that object is not null
 
                    }
 
-
-
-
-                    dataItemRecyclerView.adapter = cookBookAdapter(dataArrayList)//////////////////////////////////////////////
-
-
-
-
-
-
+                    dataItemRecyclerView.adapter = cookBookAdapter(dataArrayList)
 
                 }
             }

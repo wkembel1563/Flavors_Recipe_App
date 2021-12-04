@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -16,30 +17,27 @@
 
 
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:layout_width="313dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
             android:orientation="horizontal">
 
 
-            <ImageView
-                android:id="@+id/recipeListImage"
-                android:layout_width="91dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                app:srcCompat="@drawable/world_food" />
+            <CheckBox
+                android:id="@+id/shopListCheckBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1" />
 
             <TextView
-                android:id="@+id/tvrecipe"
-                android:layout_width="wrap_content"
+                android:id="@+id/shopListIngredText"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:text="Recipe Name"
-                android:textColor="@color/black"
-                android:textSize="26sp"
-                android:textStyle="bold"  />
+                android:layout_weight="1"
+                android:text="ingredient" />
 
         </LinearLayout>
 
     </LinearLayout>
+
 </androidx.cardview.widget.CardView>
