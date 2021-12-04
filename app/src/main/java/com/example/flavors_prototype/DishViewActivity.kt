@@ -74,23 +74,6 @@ class DishViewActivity : AppCompatActivity(){
         val countryName : TextView = findViewById(R.id.dishCountryName)
 
 
-        ////comment and like variables
-
-
-
-        // dishView image button
-        // TODO: 11/1/21 create image for each dish. use this to manipulate
-//        val dishImage : ImageButton = findViewById(R.id.dishImageBtn)
-////
-//
-////
-//        val dataCountry = bundle!!.getString("dish_Place")
-//        val dataRecipe = bundle.getString("dish_Recipe")
-//        val dataCookTime = bundle.getString("dish_CookTime")
-//        val dataPrepTime = bundle.getString("dish_PrepTime")
-//        val dataInstructions = bundle.getString("dish_Instructions")
-//        val dataIngredients = bundle.getString("dish_Ingredients")
-
 
         val dataCountry = bundle!!.getString("dish_Place")
         val dataRecipe = bundle.getString("dish_Recipe")
@@ -110,7 +93,7 @@ class DishViewActivity : AppCompatActivity(){
         val dataIngredient9 = bundle.getString("dish_Ingredient9")
 
         // pass dish data to UI
-        Picasso.get().load(imagePath).into(dishImage)
+        Picasso.get().load(imagePath).into(dishImage)//image for dish view
         countryName.text =  bundle!!.getString("dish_Place")
         recipe.text =  bundle.getString("dish_Recipe")
         prepTime.text = bundle.getString("dish_PrepTime")
@@ -263,35 +246,11 @@ class DishViewActivity : AppCompatActivity(){
 
         })
 
-       //Listen for Changes in the Ratings node
-//        RatingRef.addValueEventListener(object : ValueEventListener {
-//            override fun onDataChange(dataSnapshot: DataSnapshot) {
-//                if(dataSnapshot.child(currentUserID).hasChild(RecipeKey)){
-//                    oldRating = dataSnapshot.getValue(Float::class.java)
-//                    RatingBar.rating = oldRating!!
-//                }else
-//                {
-//                    oldRating = 0.0F
-//                    RatingBar.rating = oldRating!!
-//                }
-//            }
-//
-//            override fun onCancelled(databaseError: DatabaseError) {
-//                println("The read failed: " + databaseError.code)
-//            }
-//        })
+
 
 //***********************************************************Shopping List***************************************************//
         /*All of the buttons can be but in an array an then set an event lister for the children in a loop*/
         /*There is a listener for each button, it works but the code can probably be condensed with method mentioned above*/
-
-
-        //val dataCountry = bundle!!.getString("dish_Place")
-        //val dataRecipe = bundle.getString("dish_Recipe")
-        //val dataCookTime = bundle.getString("dish_CookTime")
-        //val dataPrepTime = bundle.getString("dish_PrepTime")
-        //val dataInstructions = bundle.getString("dish_Instructions")
-
 
 
 
@@ -398,10 +357,6 @@ class DishViewActivity : AppCompatActivity(){
 
         }
 //************************************************************************************************************************//
-        // dishView image button
-        // TODO: 11/1/21 create image for each dish. use this to manipulate
-
-
 
 
 
@@ -441,6 +396,4 @@ class DishViewActivity : AppCompatActivity(){
     }
 }
 
-private fun Button.setOnClickListener(): Boolean{
-    return true
-}
+

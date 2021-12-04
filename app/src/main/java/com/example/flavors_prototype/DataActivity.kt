@@ -23,7 +23,6 @@ class DataActivity : AppCompatActivity()
         setContentView(R.layout.activity_data)
 
         dataItemRecyclerView = findViewById(R.id.dataList)
-
         dataItemRecyclerView.layoutManager = LinearLayoutManager(this)
         dataItemRecyclerView.setHasFixedSize(true)
 
@@ -41,6 +40,7 @@ class DataActivity : AppCompatActivity()
         // for now use arbitrary single country to populate
 
         dbreference = FirebaseDatabase.getInstance().getReference().child("kembel_test_tree").child(countryName)
+
         dbreference.addValueEventListener(object : ValueEventListener{
 
             override fun onDataChange(snapshot: DataSnapshot) {

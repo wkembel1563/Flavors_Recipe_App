@@ -3,14 +3,15 @@ package com.example.flavors_prototype
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.squareup.picasso.Picasso
 
 //this class stores the data from every CountryName node in an array
 class DishAdapter(
     private val dataList : ArrayList<Recipe>,
     ) : RecyclerView.Adapter<DishAdapter.MyViewHolder>() {
-
 
 
 
@@ -42,8 +43,10 @@ class DishAdapter(
     // this method is called everytime a card scrolls onto screen
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         val currentitem = dataList[position]
+        val imagePath = currentitem.image
 
         holder.nameOfdish.text = currentitem.Recipe
+        Picasso.get().load(imagePath).into(holder.dishImage)
 
     }
 
@@ -54,8 +57,6 @@ class DishAdapter(
     //this class binds variables to the textViews in data_item
     // setting the clickListener for the recycler view card in here as well
     class MyViewHolder(itemView : View, listener: OnItemClickListener) : RecyclerView.ViewHolder(itemView){
-
-
 
 
 
@@ -73,7 +74,7 @@ class DishAdapter(
         }
 
         val nameOfdish : TextView = itemView.findViewById(R.id.tvdish)
-
+        var  dishImage : ImageView = itemView.findViewById(R.id.recipeListImage)
 
     }
 
