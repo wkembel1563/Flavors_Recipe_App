@@ -52,9 +52,6 @@ class ShoppingListActivity : AppCompatActivity() {
         lateinit var  dbreference : DatabaseReference
         lateinit var  getReference : DataSnapshot
 
-
-        //this is where you will be looking for information about likes , still look on tree with countries and recipes but create method above to retrieve the names of what you need first
-
         //you want the shopping lists for the specific user using the app, give the currentuser it look for that child
         dbreference = FirebaseDatabase.getInstance().getReference()
             .child("ShoppingList")
