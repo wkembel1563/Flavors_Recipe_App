@@ -23,6 +23,7 @@ class DataActivity : AppCompatActivity()
         setContentView(R.layout.activity_data)
 
         dataItemRecyclerView = findViewById(R.id.dataList)
+
         dataItemRecyclerView.layoutManager = LinearLayoutManager(this)
         dataItemRecyclerView.setHasFixedSize(true)
 
@@ -35,8 +36,10 @@ class DataActivity : AppCompatActivity()
     private fun getRecipeData()
     {
         val countryName = intent.extras?.get("country_name").toString()
+
         // TODO: get path from country view, and place in here
         // for now use arbitrary single country to populate
+
         dbreference = FirebaseDatabase.getInstance().getReference().child("kembel_test_tree").child(countryName)
         dbreference.addValueEventListener(object : ValueEventListener{
 
@@ -65,6 +68,8 @@ class DataActivity : AppCompatActivity()
                             intent.putExtra("dish_Place", dataArrayList[position].Place)
                             intent.putExtra("dish_Recipe", dataArrayList[position].Recipe)
                             intent.putExtra("dish_CookTime", dataArrayList[position].CookTime)
+                            intent.putExtra("dish_image", dataArrayList[position].image)
+
                             intent.putExtra("dish_PrepTime", dataArrayList[position].PrepTime)
                             intent.putExtra("dish_Instructions", dataArrayList[position].Instructions)
                             intent.putExtra("dish_Ingredient1", dataArrayList[position].Ingredient1)

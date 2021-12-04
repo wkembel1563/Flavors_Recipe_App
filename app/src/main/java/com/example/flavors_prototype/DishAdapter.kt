@@ -3,6 +3,7 @@ package com.example.flavors_prototype
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 
 //this class stores the data from every CountryName node in an array
@@ -40,8 +41,9 @@ class DishAdapter(
     // will store data from each node in currentItem, and populates each card item with text from given place
     // this method is called everytime a card scrolls onto screen
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
+        val currentitem = dataList[position]
 
-
+        holder.nameOfdish.text = currentitem.Recipe
 
     }
 
@@ -53,7 +55,7 @@ class DishAdapter(
     // setting the clickListener for the recycler view card in here as well
     class MyViewHolder(itemView : View, listener: OnItemClickListener) : RecyclerView.ViewHolder(itemView){
 
-        //val nameOfPlace : TextView = itemView.findViewById(R.id.tvnameOfPlace)
+
 
 
 
@@ -64,14 +66,14 @@ class DishAdapter(
         init {
 
 
-
-
-
             itemView.setOnClickListener{
                 listener.onItemClick(adapterPosition)
             }
 
         }
+
+        val nameOfdish : TextView = itemView.findViewById(R.id.tvdish)
+
 
     }
 

@@ -6,13 +6,11 @@ import android.util.Log
 import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
-import android.widget.Button
-import android.widget.ImageButton
-import android.widget.RatingBar
-import android.widget.TextView
+import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
+import com.squareup.picasso.Picasso
 
 class DishViewActivity : AppCompatActivity(){
 
@@ -28,7 +26,7 @@ class DishViewActivity : AppCompatActivity(){
         val RatingRef : DatabaseReference = FirebaseDatabase.getInstance().getReference().child("Ratings")
         val ShoppingRef : DatabaseReference = FirebaseDatabase.getInstance().getReference().child("ShoppingList")
         val currentUserID : String = FirebaseAuth.getInstance().currentUser?.uid.toString()
-
+        val dishImage : ImageView = findViewById(R.id.dishImageBtn)
         val LikePostButton : ImageButton = findViewById(R.id.like_button)
         val CommentButton : ImageButton = findViewById(R.id.comment_button)
         val RatingBar : RatingBar = findViewById(R.id.ratingBar)
@@ -42,18 +40,6 @@ class DishViewActivity : AppCompatActivity(){
         val SaveShoppingList7: Button = findViewById(R.id.saveToShoppingList7)
         val SaveShoppingList8: Button = findViewById(R.id.saveToShoppingList8)
         val SaveShoppingList9: Button = findViewById(R.id.saveToShoppingList9)
-
-
-        // dish data passed from DataActivity
-        val bundle : Bundle?= intent.extras
-
-        //current user id and key used to track likes and comments
-        //val currentUserID : String = FirebaseAuth.getInstance().currentUser?.uid.toString()
-        val RecipeKey = bundle?.getString("dish_Recipe").toString()
-        var LikeChecker : Boolean = false
-
-        // dishView display variables
-        val countryName : TextView = findViewById(R.id.dishCountryName)
         val recipe : TextView = findViewById(R.id.dishRecipe)
         val prepTime : TextView = findViewById(R.id.dishPrepTime)
         val cookTime : TextView = findViewById(R.id.dishCookTime)
@@ -67,6 +53,27 @@ class DishViewActivity : AppCompatActivity(){
         val ingredient8 : TextView = findViewById(R.id.dishIngredient8)
         val ingredient9 : TextView = findViewById(R.id.dishIngredient9)
         val instructions : TextView = findViewById(R.id.dishInstructions)
+
+
+
+
+
+
+
+
+
+        // dish data passed from DataActivity
+        val bundle : Bundle?= intent.extras
+
+        //current user id and key used to track likes and comments
+        //val currentUserID : String = FirebaseAuth.getInstance().currentUser?.uid.toString()
+        val RecipeKey = bundle?.getString("dish_Recipe").toString()
+        var LikeChecker : Boolean = false
+
+        // dishView display variables
+        val countryName : TextView = findViewById(R.id.dishCountryName)
+
+
         ////comment and like variables
 
 
@@ -89,16 +96,44 @@ class DishViewActivity : AppCompatActivity(){
         val dataRecipe = bundle.getString("dish_Recipe")
         val dataCookTime = bundle.getString("dish_CookTime")
         val dataPrepTime = bundle.getString("dish_PrepTime")
+        val imagePath = bundle.getString("dish_image")
         val dataInstructions = bundle.getString("dish_Instructions")
         val dataIngredients = bundle.getString("dish_Ingredients")
+        val dataIngredient1 = bundle.getString("dish_Ingredient1")
+        val dataIngredient2 = bundle.getString("dish_Ingredient2")
+        val dataIngredient3 = bundle.getString("dish_Ingredient3")
+        val dataIngredient4 = bundle.getString("dish_Ingredient4")
+        val dataIngredient5 = bundle.getString("dish_Ingredient5")
+        val dataIngredient6 = bundle.getString("dish_Ingredient6")
+        val dataIngredient7 = bundle.getString("dish_Ingredient7")
+        val dataIngredient8 = bundle.getString("dish_Ingredient8")
+        val dataIngredient9 = bundle.getString("dish_Ingredient9")
 
         // pass dish data to UI
+        Picasso.get().load(imagePath).into(dishImage)
         countryName.text =  bundle!!.getString("dish_Place")
         recipe.text =  bundle.getString("dish_Recipe")
         prepTime.text = bundle.getString("dish_PrepTime")
         cookTime.text = bundle.getString("dish_CookTime")
         //ingredients.text = bundle.getString("dish_Ingredients")
         instructions.text =bundle.getString("dish_Instructions")
+        countryName.text = dataCountry
+        recipe.text = dataRecipe
+        prepTime.text = dataPrepTime
+        cookTime.text = dataCookTime
+        ingredient1.text = dataIngredient1
+        ingredient2.text = dataIngredient2
+        ingredient3.text = dataIngredient3
+        ingredient4.text = dataIngredient4
+        ingredient5.text = dataIngredient5
+        ingredient6.text = dataIngredient6
+        ingredient7.text = dataIngredient7
+        ingredient8.text = dataIngredient8
+        ingredient9.text = dataIngredient9
+        instructions.text = dataInstructions
+
+
+
 
         val likesMap : HashMap<String, Any> = HashMap()
         likesMap["CookTime"] = dataCookTime.toString()
@@ -250,21 +285,13 @@ class DishViewActivity : AppCompatActivity(){
         /*All of the buttons can be but in an array an then set an event lister for the children in a loop*/
         /*There is a listener for each button, it works but the code can probably be condensed with method mentioned above*/
 
-        val dishImage : ImageButton = findViewById(R.id.dishImageBtn)
+
         //val dataCountry = bundle!!.getString("dish_Place")
         //val dataRecipe = bundle.getString("dish_Recipe")
         //val dataCookTime = bundle.getString("dish_CookTime")
         //val dataPrepTime = bundle.getString("dish_PrepTime")
         //val dataInstructions = bundle.getString("dish_Instructions")
-        val dataIngredient1 = bundle.getString("dish_Ingredient1")
-        val dataIngredient2 = bundle.getString("dish_Ingredient2")
-        val dataIngredient3 = bundle.getString("dish_Ingredient3")
-        val dataIngredient4 = bundle.getString("dish_Ingredient4")
-        val dataIngredient5 = bundle.getString("dish_Ingredient5")
-        val dataIngredient6 = bundle.getString("dish_Ingredient6")
-        val dataIngredient7 = bundle.getString("dish_Ingredient7")
-        val dataIngredient8 = bundle.getString("dish_Ingredient8")
-        val dataIngredient9 = bundle.getString("dish_Ingredient9")
+
 
 
 
@@ -375,21 +402,8 @@ class DishViewActivity : AppCompatActivity(){
         // TODO: 11/1/21 create image for each dish. use this to manipulate
 
 
-        // pass dish data to UI
-        countryName.text = dataCountry
-        recipe.text = dataRecipe
-        prepTime.text = dataPrepTime
-        cookTime.text = dataCookTime
-        ingredient1.text = dataIngredient1
-        ingredient2.text = dataIngredient2
-        ingredient3.text = dataIngredient3
-        ingredient4.text = dataIngredient4
-        ingredient5.text = dataIngredient5
-        ingredient6.text = dataIngredient6
-        ingredient7.text = dataIngredient7
-        ingredient8.text = dataIngredient8
-        ingredient9.text = dataIngredient9
-        instructions.text = dataInstructions
+
+
 
     }
 
