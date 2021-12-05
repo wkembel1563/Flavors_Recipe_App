@@ -5,9 +5,13 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
+import android.view.View
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.chip.Chip
+import com.google.android.material.chip.ChipGroup
 import com.google.firebase.database.*
 
 class DataActivity : AppCompatActivity()
@@ -15,6 +19,7 @@ class DataActivity : AppCompatActivity()
     private  lateinit var  dbreference : DatabaseReference
     private  lateinit var  dataItemRecyclerView : RecyclerView
     private  lateinit var  dataArrayList: ArrayList<Recipe>
+    private  lateinit var  sortedDataArrayList: ArrayList<Recipe>
 
 
     override fun onCreate(savedInstanceState: Bundle?)
@@ -29,6 +34,33 @@ class DataActivity : AppCompatActivity()
         dataArrayList = arrayListOf<Recipe>()
         getRecipeData()
 
+        // Set chip group checked change listener
+        val chipGroup: ChipGroup = findViewById(R.id.chipGroup)
+
+        var lastCheckedId = View.NO_ID
+        //Listen to Change in the Chips
+        chipGroup.setOnCheckedChangeListener { group, checkedId ->
+            if(checkedId == View.NO_ID) {
+                // User tried to uncheck, make sure to keep the chip checked
+                group.check(lastCheckedId)
+                return@setOnCheckedChangeListener
+            }
+            lastCheckedId = checkedId
+
+            // New selection happened, do your logic here.
+            when (lastCheckedId) {
+                R.id.likesChip -> {
+                    Toast.makeText(this, "Sorted by the Number of Likes", Toast.LENGTH_SHORT).show()
+                }
+                R.id.ratingChip -> {
+                    Toast.makeText(this, "Sorted by the Ratings", Toast.LENGTH_SHORT).show()
+                }
+                R.id.cooktimeChip -> {
+                    Toast.makeText(this, "Sorted by the Cooktime", Toast.LENGTH_SHORT).show()
+                }
+            }
+
+        }
     }
 
     //retrieves data from firebase
@@ -52,11 +84,14 @@ class DataActivity : AppCompatActivity()
                     for (countrySnapshot in snapshot.children){
                         val dataItem = countrySnapshot.getValue(Recipe::class.java)
                         dataArrayList.add(dataItem!!)// !! checks that object is not null
-
                     }
+
+                    //Sort The data depending on the chip selected
+                    //sortedDataArrayList = dataArrayList.sortedWith(compareByDescending({ it.Recipe })) as ArrayList<Recipe>
 
                     //go to DishView Activity on click
                     var adapter = DishAdapter(dataArrayList)/////////////////////////////////////////////
+
                     dataItemRecyclerView.adapter = adapter
                     adapter.setOnItemClickListener(object : DishAdapter.OnItemClickListener{
                         override fun onItemClick(position: Int) {
@@ -94,6 +129,15 @@ class DataActivity : AppCompatActivity()
             }
         })
     }
+
+//    //Sort the List
+//    private fun compareBy(selector: (Recipe) -> Unit): Comparator<Recipe> {
+//
+//    }
+
+
+
+    
     //creates menu bar
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         super.onCreateOptionsMenu(menu)
