@@ -8,20 +8,22 @@
     android:layout_margin="5dp">
 
     <LinearLayout
-        android:layout_width="407dp"
-        android:layout_height="725dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <ImageButton
+        <ImageView
             android:id="@+id/dishImageBtn"
-            android:layout_width="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:layout_height="200dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingLeft="5dp"
+            android:paddingRight="5dp"
             app:srcCompat="@drawable/world_food"
+            android:background="@drawable/comment_border"
             tools:ignore="SpeakableTextPresentCheck" />
 
         <LinearLayout
@@ -59,12 +61,12 @@
             android:layout_gravity="center"
             android:numStars="5" />
 
-        <Button
+        <!--Button
             android:id="@+id/delRating"
             android:layout_width="134dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:text="CLEAR" />
+            android:text="CLEAR" /-->
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -76,7 +78,7 @@
                 android:layout_width="13dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:text="Country Name: "
+                android:text="Country: "
                 android:textColor="@color/black"
                 android:textSize="20sp"
                 android:textStyle="bold" />
@@ -188,30 +190,29 @@
         </androidx.recyclerview.widget.RecyclerView>
 
         <LinearLayout
-            android:id="@+id/dvInstructionsLL"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:orientation="vertical">
 
             <TextView
                 android:id="@+id/instructions"
-                android:layout_width="13dp"
-                android:layout_height="match_parent"
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
                 android:layout_weight="1"
                 android:text="Instructions: "
                 android:textColor="@color/black"
-                android:textSize="20sp"
-                android:textStyle="bold" />
+                android:textSize="26sp"
+                android:textStyle="bold"/>
 
             <TextView
                 android:id="@+id/dishInstructions"
-                android:layout_width="48dp"
-                android:layout_height="match_parent"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
                 android:layout_weight="1"
                 android:text="instructions"
                 android:textColor="@color/black"
-                android:textSize="18sp" />
+                android:textSize="20sp" />
         </LinearLayout>
 
 

@@ -41,7 +41,7 @@ class DishViewActivity : AppCompatActivity(){
         val LikePostButton : ImageButton = findViewById(R.id.like_button)
         val CommentButton : ImageButton = findViewById(R.id.comment_button)
         val RatingBar : RatingBar = findViewById(R.id.ratingBar)
-        val DelRating: Button = findViewById(R.id.delRating)
+        //val DelRating: Button = findViewById(R.id.delRating)
 
 
         // dish data passed from DataActivity
@@ -131,12 +131,12 @@ class DishViewActivity : AppCompatActivity(){
             }
         })
 
-        //Deleting Given Rating
+        /*/Deleting Given Rating
         DelRating.setOnClickListener{
             RatingRef.child(currentUserID).child(RecipeKey).removeValue()
             RatingBar.setRating(0.0F)
             RateChecker = false
-        }
+        }*/
 
         //listen for click on comment button and start the comment activity
         //defined in fuction below
