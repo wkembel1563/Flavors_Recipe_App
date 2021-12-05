@@ -7,6 +7,7 @@ import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.squareup.picasso.Picasso
 
 class DishIngredAdapter(
     private val dataList : ArrayList<Ingredient>
@@ -42,6 +43,7 @@ class DishIngredAdapter(
     /* Create cards with selected ingredients */
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         holder.cardText.text = dataList[position].name
+        Picasso.get().load(dataList[position].url).into(holder.cardImage)
     }
 
     /* Let the adapter know how many cards there are */

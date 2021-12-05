@@ -234,6 +234,7 @@ class DishViewActivity : AppCompatActivity(){
                             val recipe : String = dataRecipe.toString()
                             val ingredientName = ingredientList[position].name.toString()
                             val url = ingredientList[position].url.toString()
+                            val quantity = ingredientList[position].quantity.toString()
 
                             /* Write the name to recipe node's ingredient node */
                             ShoppingRef
@@ -249,13 +250,12 @@ class DishViewActivity : AppCompatActivity(){
                                 .child(ingredientName)
                                 .child("url").setValue(url)
 
-//                            /* Write recipe name to recipe node */
-//                            ShoppingRef
-//                                .child(currentUserID)
-//                                .child(recipe)
-//                                .child("Recipe")
-//                                .setValue(recipe)
-                            //ShoppingRef.child(currentUserID).child(dataRecipe).child(dataCountry.toString()).setValue(dataCountry)
+                            /* Write the quantity to recipe node's ingredient node */
+                            ShoppingRef
+                                .child(currentUserID)
+                                .child(recipe)
+                                .child(ingredientName)
+                                .child("quantity").setValue(quantity)
                         }
                     })
 
