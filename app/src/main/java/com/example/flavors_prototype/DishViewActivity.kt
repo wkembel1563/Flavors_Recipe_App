@@ -6,10 +6,7 @@ import android.util.Log
 import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
-import android.widget.Button
-import android.widget.ImageButton
-import android.widget.RatingBar
-import android.widget.TextView
+import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -256,6 +253,9 @@ class DishViewActivity : AppCompatActivity(){
                                 .child(recipe)
                                 .child(ingredientName)
                                 .child("quantity").setValue(quantity)
+
+                            /* Output confirmation feedback to user */
+                            Toast.makeText(this@DishViewActivity, "Saved to Shopping List", Toast.LENGTH_SHORT).show()
                         }
                     })
 

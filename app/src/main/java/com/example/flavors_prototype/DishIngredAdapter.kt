@@ -43,6 +43,7 @@ class DishIngredAdapter(
     /* Create cards with selected ingredients */
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         holder.cardText.text = dataList[position].name
+        holder.cardQty.text = dataList[position].quantity
         Picasso.get().load(dataList[position].url).into(holder.cardImage)
     }
 
@@ -57,17 +58,16 @@ class DishIngredAdapter(
         /* connect to save button of card */
         var save : Button = itemView.findViewById(R.id.saveIngred)
 
-        /* connect to textview of card */
+        /* connect to name textview of card */
         var cardText : TextView = itemView.findViewById(R.id.tvdishIngred)
+
+        /* connect to quantity textview of card */
+        var cardQty: TextView = itemView.findViewById(R.id.tvdishIngred2)
 
         /* connect to image of card */
         var cardImage : ImageView = itemView.findViewById(R.id.dishIngredImage)
 
         init {
-
-//            itemView.setOnClickListener{
-//                listener.onItemClick(adapterPosition)
-//            }
 
             save.setOnClickListener {
                 listener.onSaveClick(adapterPosition)

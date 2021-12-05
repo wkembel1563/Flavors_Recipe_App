@@ -5,22 +5,37 @@
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="horizontal"
-    app:cardElevation="8dp"
-    app:cardCornerRadius="8dp"
-    android:layout_margin="16dp">
+    android:layout_margin="2dp">
 
     <CheckBox
         android:id="@+id/shopListCheckBox"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_weight="1" />
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="1dp"
+        android:textColor="@color/black"
+        android:layout_weight="0" />
+
+    <TextView
+        android:id="@+id/shopListIngredQty"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="0"
+        android:paddingRight="8dp"
+        android:text="ingredient"
+        android:textStyle="bold"
+        android:textColor="@color/black"
+        />
 
     <TextView
         android:id="@+id/shopListIngredText"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:text="ingredient" />
+        android:text="ingredient"
+        android:textStyle="bold"
+        android:textColor="@color/black"
+        />
 
 <!--    <LinearLayout-->
 <!--        android:layout_width="match_parent"-->

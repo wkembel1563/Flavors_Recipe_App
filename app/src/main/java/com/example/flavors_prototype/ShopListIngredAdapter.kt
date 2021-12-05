@@ -26,6 +26,7 @@ class ShopListIngredAdapter(
         override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
 
             holder.cardText.text = ingredientList[position].name.toString()
+            holder.cardQty.text = ingredientList[position].quantity.toString()
 
         }
 
@@ -39,6 +40,7 @@ class ShopListIngredAdapter(
 
             /* connect to textview of card */
             var cardText : TextView = itemView.findViewById(R.id.shopListIngredText)
+            var cardQty : TextView = itemView.findViewById(R.id.shopListIngredQty)
 
         }
 

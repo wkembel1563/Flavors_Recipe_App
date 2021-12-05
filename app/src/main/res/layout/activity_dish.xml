@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.core.widget.NestedScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -143,6 +144,7 @@
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/dvCookTimeLL"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
@@ -166,9 +168,26 @@
                 android:text="cook_time"
                 android:textColor="@color/black"
                 android:textSize="18sp" />
+
+
         </LinearLayout>
 
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/dishIngredientRecyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="20dp"
+            app:layout_constraintBottom_toTopOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:listitem="@layout/dishingredient_item">
+        </androidx.recyclerview.widget.RecyclerView>
+
         <LinearLayout
+            android:id="@+id/dvInstructionsLL"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
@@ -194,19 +213,6 @@
                 android:textSize="18sp" />
         </LinearLayout>
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/dishIngredientRecyclerView"
-            android:layout_width="match_parent"
-            android:layout_height="530dp"
-
-            android:layout_alignParentBottom="true"
-            android:layout_marginBottom="-77dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:listitem="@layout/dishingredient_item">
-        </androidx.recyclerview.widget.RecyclerView>
 
     </LinearLayout>
-</ScrollView>
+</androidx.core.widget.NestedScrollView>
