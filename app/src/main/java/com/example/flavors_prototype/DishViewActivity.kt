@@ -86,7 +86,7 @@ class DishViewActivity : AppCompatActivity(){
         cookTime.text = dataCookTime
         instructions.text = dataInstructions
 
-        /* TODO: PLACED LIKE BUTTOM FUNCTIONALITY BELOW IN SHOPPING LIST AREA */
+        /* TODO: PLACED LIKE BUTTON FUNCTIONALITY BELOW IN SHOPPING LIST AREA */
         /* TODO: NEEDED ACCESS TO INGREDIENT INFORMATION */
 
         //Set Initial Rating and Rate Change Checker to 0

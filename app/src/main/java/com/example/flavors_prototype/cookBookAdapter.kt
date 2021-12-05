@@ -40,7 +40,7 @@ class cookBookAdapter (private val dataList : ArrayList<Recipe>,
         holder.dataItemRecyclerView.setHasFixedSize(true)
 
         /* pass to ingredients to ingredients list adapter */
-        var adapter = ShopListIngredAdapter(recipeIngredients[position])
+        var adapter = CookBookIngredAdapter(recipeIngredients[position])
         holder.dataItemRecyclerView.adapter = adapter
 
     }
