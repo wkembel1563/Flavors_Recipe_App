@@ -123,6 +123,12 @@ class ShoppingListActivity : AppCompatActivity() {
             //return true
         }
 
+        if(item.itemId == R.id.dish_recommendation)
+        {
+
+            startActivity(Intent(this, RecommendationActivity::class.java))
+            //return true
+        }
 
         return super.onOptionsItemSelected(item)
     }

@@ -4,6 +4,9 @@ import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuInflater
+import android.view.MenuItem
 import android.widget.*
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -190,10 +193,43 @@ class RecommendationActivity : AppCompatActivity() {
     }
 
 
-    /* Allow user to edit menu */
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        super.onCreateOptionsMenu(menu)
+        val inflater : MenuInflater = menuInflater
+        with(inflater) {
+            inflate(R.menu.main_menu,menu)
+        }
+        return true
+    }
 
-    /* Get list of all dishes. Map them to a number of ingredients hits. */
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        super.onOptionsItemSelected(item)
 
-    /* Show in descending order */
+        if(item.itemId == R.id.cook_book)
+        {
+            startActivity(Intent(this, cookBookActivity::class.java))
+            //return true
+        }
+        if(item.itemId == R.id.country_selection)
+        {
+            startActivity(Intent(this, CountryActivity::class.java))
+            //return true
+        }
 
+
+        if(item.itemId == R.id.shoppingList_selection)
+        {
+            startActivity(Intent(this, ShoppingListActivity::class.java))
+            //return true
+        }
+
+        if(item.itemId == R.id.dish_recommendation)
+        {
+
+            startActivity(Intent(this, RecommendationActivity::class.java))
+            //return true
+        }
+
+        return super.onOptionsItemSelected(item)
+    }
 }
