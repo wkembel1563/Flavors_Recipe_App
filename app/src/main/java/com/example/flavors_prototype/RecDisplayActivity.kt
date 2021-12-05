@@ -142,6 +142,7 @@ class RecDisplayActivity : AppCompatActivity() {
                 intent.putExtra("dish_CookTime", dishList[position].CookTime)
                 intent.putExtra("dish_PrepTime", dishList[position].PrepTime)
                 intent.putExtra("dish_Instructions", dishList[position].Instructions)
+                intent.putExtra("dish_image", dishList[position].image)
 
                 // begin DishView
                 startActivity(intent)
