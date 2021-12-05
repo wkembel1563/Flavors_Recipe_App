@@ -141,8 +141,8 @@ class DishViewActivity : AppCompatActivity(){
         //listen for click on comment button and start the comment activity
         //defined in fuction below
         CommentButton.setOnClickListener {
-
-            //startActivity(context,StartComment, Bundle())//need to pass context for comment button
+            //val dataCountry = bundle!!.getString("dish_Place")
+            startActivity(Intent(this, CommentActivity::class.java).putExtra("Place", countryName.text).putExtra("Recipe", recipe.text).putExtra("user_id",currentUserID))//need to pass context for comment button
         }
 
         ///listen for click on like button
