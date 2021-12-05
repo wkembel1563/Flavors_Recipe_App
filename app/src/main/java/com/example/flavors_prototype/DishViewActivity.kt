@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
+import com.squareup.picasso.Picasso
 
 class DishViewActivity : AppCompatActivity(){
 
@@ -35,6 +36,8 @@ class DishViewActivity : AppCompatActivity(){
         val ShoppingRef : DatabaseReference = FirebaseDatabase.getInstance().getReference().child("ShoppingList")
         val currentUserID : String = FirebaseAuth.getInstance().currentUser?.uid.toString()
 
+        val dshImage : ImageView = findViewById(R.id.dishImageBtn)
+
         val LikePostButton : ImageButton = findViewById(R.id.like_button)
         val CommentButton : ImageButton = findViewById(R.id.comment_button)
         val RatingBar : RatingBar = findViewById(R.id.ratingBar)
@@ -56,36 +59,35 @@ class DishViewActivity : AppCompatActivity(){
         val cookTime : TextView = findViewById(R.id.dishCookTime)
         val instructions : TextView = findViewById(R.id.dishInstructions)
 
-        ////comment and like variables
-        LikePostButton.setOnClickListener {
-            LikeChecker = true
+        val dataCountry = bundle!!.getString("dish_Place")
+        val dataRecipe = bundle.getString("dish_Recipe")
+        val dataCookTime = bundle.getString("dish_CookTime")
+        val dataPrepTime = bundle.getString("dish_PrepTime")
+        val imagePath = bundle.getString("dish_image")
+        val dataInstructions = bundle.getString("dish_Instructions")
 
-            //listen for change in Likes node
-            LikesRef.addValueEventListener(object : ValueEventListener{
-                override fun onDataChange(snapshot: DataSnapshot) {
-                    if (LikeChecker.equals(true))
-                    {
-                        //if like already exists, remove it
-                        if(snapshot.child(currentUserID).hasChild(RecipeKey))
-                        {
-                            LikesRef.child(currentUserID).child(RecipeKey).removeValue()
-                            LikeChecker = false
-                        }
-                        //if no like exists, add it
-                        else
-                        {
-                            LikesRef.child(currentUserID).child(RecipeKey).setValue(true)
-                            LikeChecker = false
-                        }
-                    }
-                }
+        val likesMap : HashMap<String, Any> = HashMap()
+        likesMap["CookTime"] = dataCookTime.toString()
+        likesMap["Recipe"] = dataRecipe.toString()
+        likesMap["Place"] = dataCountry.toString()
+        likesMap["PrepTime"] = dataPrepTime.toString()
+        likesMap["Instructions"] = dataInstructions.toString()
 
-                override fun onCancelled(error: DatabaseError) {
-                    TODO("Not yet implemented")
-                }
+        // pass dish data to UI
+        Picasso.get().load(imagePath).into(dshImage)//image for dish view
+//        countryName.text =  bundle!!.getString("dish_Place")
+//        recipe.text =  bundle.getString("dish_Recipe")
+//        prepTime.text = bundle.getString("dish_PrepTime")
+//        cookTime.text = bundle.getString("dish_CookTime")
+//        instructions.text =bundle.getString("dish_Instructions")
+        countryName.text = dataCountry
+        recipe.text = dataRecipe
+        prepTime.text = dataPrepTime
+        cookTime.text = dataCookTime
+        instructions.text = dataInstructions
 
-            })
-        }
+        /* TODO: PLACED LIKE BUTTOM FUNCTIONALITY BELOW IN SHOPPING LIST AREA */
+        /* TODO: NEEDED ACCESS TO INGREDIENT INFORMATION */
 
         //Set Initial Rating and Rate Change Checker to 0
         var oldRating: Float = 0.0F
@@ -195,13 +197,6 @@ class DishViewActivity : AppCompatActivity(){
         /*All of the buttons can be but in an array an then set an event lister for the children in a loop*/
         /*There is a listener for each button, it works but the code can probably be condensed with method mentioned above*/
 
-        val dishImage : ImageButton = findViewById(R.id.dishImageBtn)
-        val dataCountry = bundle!!.getString("dish_Place")
-        val dataRecipe = bundle.getString("dish_Recipe")
-        val dataCookTime = bundle.getString("dish_CookTime")
-        val dataPrepTime = bundle.getString("dish_PrepTime")
-        val dataInstructions = bundle.getString("dish_Instructions")
-
         /* Access ingredients node directly */
         val IngredRef : DatabaseReference =
             FirebaseDatabase.getInstance().getReference()
@@ -220,6 +215,55 @@ class DishViewActivity : AppCompatActivity(){
                            ingredientList.add(dataItem)
                        }
                    }
+
+                    ////comment and like variables
+                    LikePostButton.setOnClickListener {
+                        LikeChecker = true
+
+                        //listen for change in Likes node
+                        LikesRef.addValueEventListener(object : ValueEventListener{
+                            override fun onDataChange(snapshot: DataSnapshot) {
+                                if (LikeChecker.equals(true))
+                                {
+                                    //if like already exists, remove it
+                                    if(snapshot.child(currentUserID).hasChild(RecipeKey))
+                                    {
+                                        LikesRef.child(currentUserID).child(RecipeKey).removeValue()
+                                        LikeChecker = false
+                                    }
+                                    //if no like exists, add it
+                                    else
+                                    {
+                                        LikesRef.child(currentUserID).child(RecipeKey).setValue(likesMap)
+                                        for (ingredient in ingredientList){
+
+                                            val idx = ingredientList.indexOf(ingredient)
+                                            val name : String = ingredientList[idx].name.toString()
+                                            val ingredMap : HashMap<String, String> = HashMap()
+                                            ingredMap["name"] = name
+                                            ingredMap["url"] = ingredientList[idx].url.toString()
+                                            ingredMap["quantity"] = ingredientList[idx].quantity.toString()
+
+                                            /* set ingredient node content */
+                                            LikesRef.child(currentUserID)
+                                                    .child(RecipeKey)
+                                                    .child("Ingredients")
+                                                    .child(name)
+                                                    .setValue(ingredMap)
+
+                                        }
+                                        LikeChecker = false
+                                    }
+                                }
+                            }
+
+                            override fun onCancelled(error: DatabaseError) {
+                                TODO("Not yet implemented")
+                            }
+
+                        })
+                    }
+
 
                     /* Create recycler view for dish ingredients */
                     var adapter = DishIngredAdapter(ingredientList)

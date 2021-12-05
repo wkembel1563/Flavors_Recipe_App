@@ -24,6 +24,7 @@ class cookBookActivity : AppCompatActivity()
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_cook_book)//activity_data
 
+        recipeIngredients = arrayListOf<ArrayList<Ingredient>>()
 
         dataItemRecyclerView = findViewById(R.id.dishList)
         dataItemRecyclerView.layoutManager = LinearLayoutManager(this)
