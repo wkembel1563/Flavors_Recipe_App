@@ -30,7 +30,7 @@
                 app:srcCompat="@drawable/world_food" />
 
             <TextView
-                android:id="@+id/tvrecipe"
+                android:id="@+id/tvdish"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"

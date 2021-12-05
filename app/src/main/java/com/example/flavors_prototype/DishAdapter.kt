@@ -3,8 +3,10 @@ package com.example.flavors_prototype
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.squareup.picasso.Picasso
 
 class DishAdapter(
     private val dataList : ArrayList<Recipe>,
@@ -36,8 +38,11 @@ class DishAdapter(
     // will store data from each node in currentItem, and populates each card item with text from given place
     // this method is called everytime a card scrolls onto screen
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
+        val currentitem = dataList[position]
+        val imagePath = currentitem.image
 
-        holder.recipeName.text = dataList[position].Recipe.toString()
+        holder.nameOfdish.text = currentitem.Recipe
+        Picasso.get().load(imagePath).into(holder.dishImage)
 
     }
 
@@ -45,10 +50,11 @@ class DishAdapter(
         return dataList.size
     }
 
-    // this class binds variables to the textViews in data_item
+    //this class binds variables to the textViews in data_item
     // setting the clickListener for the recycler view card in here as well
     class MyViewHolder(itemView : View, listener: OnItemClickListener) : RecyclerView.ViewHolder(itemView){
-        var recipeName : TextView = itemView.findViewById(R.id.tvrecipe)
+
+
 
         // set a clickListener on itemview to activate DishView after
         // clicking anywhere on the recyclerview card
@@ -59,5 +65,9 @@ class DishAdapter(
                 listener.onItemClick(adapterPosition)
             }
         }
+
+        val nameOfdish : TextView = itemView.findViewById(R.id.tvdish)
+        var  dishImage : ImageView = itemView.findViewById(R.id.recipeListImage)
+
     }
 }

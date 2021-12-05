@@ -12,6 +12,7 @@ import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
+import com.google.android.gms.maps.model.BitmapDescriptorFactory
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.Marker
 import com.google.android.gms.maps.model.MarkerOptions
@@ -56,11 +57,12 @@ class CountryActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMar
 
         //Create Saved Markers on the Map & add data object to the Markers
         //Best to hardcode these values, it's redundant to call them from database
-        markerChina = mMap.addMarker(MarkerOptions().position(china).title("China"))//.icon(BitmapDescriptorFactory.fromResource(R.drawable.china)))
+        markerChina = mMap.addMarker(MarkerOptions().position(china).title("China").icon(
+            BitmapDescriptorFactory.fromResource(R.drawable.china)))
         markerChina?.tag = 0
-        markerIndia = mMap.addMarker(MarkerOptions().position(india).title("India"))//.icon(BitmapDescriptorFactory.fromResource(R.drawable.india)))
+        markerIndia = mMap.addMarker(MarkerOptions().position(india).title("India").icon(BitmapDescriptorFactory.fromResource(R.drawable.india)))
         markerIndia?.tag = 1
-        markerUsa = mMap.addMarker(MarkerOptions().position(usa).title("USA"))//.icon(BitmapDescriptorFactory.fromResource(R.drawable.usa)))
+        markerUsa = mMap.addMarker(MarkerOptions().position(usa).title("USA").icon(BitmapDescriptorFactory.fromResource(R.drawable.usa)))
         markerUsa?.tag = 2
 
         //Move Camera to USA marker
@@ -72,13 +74,14 @@ class CountryActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMar
     override fun onMarkerClick(marker: Marker): Boolean {
         //Retrieve data of the marker tag
         val countrySelected = marker.tag as? Int
+        val countryName = marker.title
         //Check if data was set before attempting to display the data
         countrySelected?.let{
             //Tag allows modification of Displayed Dishes depending on Country
             marker.tag = countrySelected
             //Toast.makeText(this, "${marker.title} has been clicked: Country = $countrySelected", Toast.LENGTH_SHORT).show()   //Debug tool
-            Toast.makeText(this, "${marker.title}", Toast.LENGTH_SHORT).show()
-            val countryDishes = Intent(this, DataActivity::class.java)
+            Toast.makeText(this, countryName, Toast.LENGTH_SHORT).show()
+            val countryDishes = Intent(this, DataActivity::class.java).putExtra("country_name", countryName)
             countryDishes.putExtra("countryName", marker.title)
 
             startActivity(countryDishes)
@@ -94,7 +97,6 @@ class CountryActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMar
         }
         return true
     }
-    //when user selects option from menu, start that activity
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         super.onOptionsItemSelected(item)
 
@@ -105,7 +107,6 @@ class CountryActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMar
         }
         if(item.itemId == R.id.country_selection)
         {
-
             startActivity(Intent(this, CountryActivity::class.java))
             //return true
         }
@@ -115,11 +116,14 @@ class CountryActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMar
             startActivity(Intent(this, RecommendationActivity::class.java))
             //return true
         }
+
         if(item.itemId == R.id.shoppingList_selection)
         {
             startActivity(Intent(this, ShoppingListActivity::class.java))
             //return true
         }
+
+
         return super.onOptionsItemSelected(item)
     }
 

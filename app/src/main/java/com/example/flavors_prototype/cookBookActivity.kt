@@ -11,28 +11,22 @@ import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
 
+
 class cookBookActivity : AppCompatActivity()
 {
-
-
     private  lateinit var  dbreference : DatabaseReference
-    private  lateinit var  getReference : DataSnapshot
     private  lateinit var  dataItemRecyclerView : RecyclerView
     private  lateinit var  dataArrayList: ArrayList<Recipe>
-
-    private  lateinit var  dishItem : Recipe
-    val currentUserID : String = FirebaseAuth.getInstance().currentUser?.uid.toString()
-    //val LikesRef = FirebaseDatabase.getInstance().getReference("likes").child(currentUserID)
 
     override fun onCreate(savedInstanceState: Bundle?)
     {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_data)
+        setContentView(R.layout.activity_cook_book)//activity_data
 
-        dataItemRecyclerView = findViewById(R.id.dataList)
+
+        dataItemRecyclerView = findViewById(R.id.dishList)
         dataItemRecyclerView.layoutManager = LinearLayoutManager(this)
         dataItemRecyclerView.setHasFixedSize(true)
-
         dataArrayList = arrayListOf<Recipe>()
         getRecipeData()
 
@@ -41,8 +35,9 @@ class cookBookActivity : AppCompatActivity()
     private fun getRecipeData()
     {
 
-        //this is where you will be looking for information about likes , still look on tree with countries and recipes but create method above to retrieve the names of what you need first
-        dbreference = FirebaseDatabase.getInstance().getReference("kembel_test_tree").child("USA")
+        val currentUserID : String = FirebaseAuth.getInstance().currentUser?.uid.toString()
+
+        dbreference = FirebaseDatabase.getInstance().getReference("Likes").child(currentUserID)
         dbreference.addValueEventListener(object : ValueEventListener {
 
             override fun onDataChange(snapshot: DataSnapshot) {
@@ -55,17 +50,13 @@ class cookBookActivity : AppCompatActivity()
                        dataArrayList.add(dataItem!!)// !! checks that object is not null
 
                    }
-
                     dataItemRecyclerView.adapter = cookBookAdapter(dataArrayList)
-
                 }
             }
-
 
             override fun onCancelled(error: DatabaseError) {
                 TODO("Not yet implemented")
             }
-
 
         })
     }
@@ -78,21 +69,28 @@ class cookBookActivity : AppCompatActivity()
         }
         return true
     }
-    //when user selects option from menu, start that activity
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         super.onOptionsItemSelected(item)
 
         if(item.itemId == R.id.cook_book)
         {
             startActivity(Intent(this, cookBookActivity::class.java))
-            return true
+            //return true
         }
         if(item.itemId == R.id.country_selection)
         {
-
             startActivity(Intent(this, CountryActivity::class.java))
-            return true
+            //return true
         }
+
+
+        if(item.itemId == R.id.shoppingList_selection)
+        {
+            startActivity(Intent(this, ShoppingListActivity::class.java))
+            //return true
+        }
+
+
         return super.onOptionsItemSelected(item)
     }
 }

@@ -3,4 +3,3 @@
     <item android:color="@color/browser_actions_bg_grey" android:state_checked="false"/>
     <item android:color="@color/design_default_color_primary" android:state_checked="true"/>
 </selector>
-</selector>

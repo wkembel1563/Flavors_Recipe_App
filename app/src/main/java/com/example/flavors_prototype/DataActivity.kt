@@ -32,16 +32,20 @@ class DataActivity : AppCompatActivity()
         val bundle : Bundle?= intent.extras
         val countrySelect : String = bundle?.getString("countryName").toString()
 
-        getRecipeData(countrySelect)
+        getRecipeData()
 
     }
 
     //retrieves data from firebase
-    private fun getRecipeData(countryName : String)
+    private fun getRecipeData()
     {
+        val countryName = intent.extras?.get("country_name").toString()
+
         // TODO: get path from country view, and place in here
         // for now use arbitrary single country to populate
+
         dbreference = FirebaseDatabase.getInstance().getReference().child("kembel_test_tree").child(countryName)
+
         dbreference.addValueEventListener(object : ValueEventListener{
 
             override fun onDataChange(snapshot: DataSnapshot) {
@@ -69,6 +73,8 @@ class DataActivity : AppCompatActivity()
                             intent.putExtra("dish_Place", dataArrayList[position].Place)
                             intent.putExtra("dish_Recipe", dataArrayList[position].Recipe)
                             intent.putExtra("dish_CookTime", dataArrayList[position].CookTime)
+                            intent.putExtra("dish_image", dataArrayList[position].image)
+
                             intent.putExtra("dish_PrepTime", dataArrayList[position].PrepTime)
                             intent.putExtra("dish_Instructions", dataArrayList[position].Instructions)
 
@@ -93,21 +99,28 @@ class DataActivity : AppCompatActivity()
         }
         return true
     }
-    //when user selects option from menu, start that activity
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         super.onOptionsItemSelected(item)
 
         if(item.itemId == R.id.cook_book)
         {
             startActivity(Intent(this, cookBookActivity::class.java))
-            return true
+            //return true
         }
         if(item.itemId == R.id.country_selection)
         {
-
             startActivity(Intent(this, CountryActivity::class.java))
-            return true
+            //return true
         }
+
+
+        if(item.itemId == R.id.shoppingList_selection)
+        {
+            startActivity(Intent(this, ShoppingListActivity::class.java))
+            //return true
+        }
+
+
         return super.onOptionsItemSelected(item)
     }
 }

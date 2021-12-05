@@ -15,13 +15,18 @@ class ListViewAdapter(private val context: Context, private val list: ArrayList<
             internal var tvLabel: TextView
 
             init {
-                tvLabel = itemView.findViewById(R.id.tvCountry) // Initialize your All views prensent in list items
+                tvLabel = itemView.findViewById(R.id.tvdish) // Initialize your All views prensent in list items
             }
 
             internal fun bind(position: Int) {
                 // This method will be called anytime a list item is created or update its data
                 //Do your stuff here
-                tvLabel.text = list[position]
+
+                val currentitem = list[position]
+
+
+
+                tvLabel.text = currentitem
             }
         }
 

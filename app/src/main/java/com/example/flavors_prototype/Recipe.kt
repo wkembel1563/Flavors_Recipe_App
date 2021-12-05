@@ -5,7 +5,8 @@ data class Recipe(var Place : String ?= null,
                   var Recipe : String ?= null,
                   var CookTime : String ?= null,
                   var PrepTime : String ?= null,
-                  var Instructions : String ?= null)
+                  var Instructions : String ?= null,
+                  var image : String ?= null)
 /* Ingredients will be access directly with their own reference pointer */
 
 // place = countryname
