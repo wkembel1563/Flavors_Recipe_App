@@ -267,30 +267,6 @@ class DishViewActivity : AppCompatActivity(){
             }
         })
 
-//        SaveShoppingList1.setOnClickListener{
-//            //add ingredients to list
-//            if (bundle != null) {/////instead of Recipekey the ingredient node needs to be passed here
-//                if (dataRecipe != null) {
-//                    ShoppingRef.child(currentUserID).child(dataRecipe).child("Ingredient1").setValue(bundle.getString("dish_Ingredient1"))
-//                    //somewhere in here, the name of the dish name needs to be pushed onto database at same level as ingredients
-//                    ShoppingRef.child(currentUserID).child(dataRecipe).child("Recipe").setValue(dataRecipe)
-//                    //ShoppingRef.child(currentUserID).child(dataRecipe).child(dataCountry.toString()).setValue(dataCountry)
-//                }
-//
-//            }
-//
-//        }
-//        SaveShoppingList2.setOnClickListener{
-//            //add ingredients to list
-//            if (bundle != null) {/////instead of Recipekey the ingredient node needs to be passed here
-//                if (dataRecipe != null) {
-//                    ShoppingRef.child(currentUserID).child(dataRecipe).child("Ingredient2").setValue(bundle.getString("dish_Ingredient2"))
-//                    ShoppingRef.child(currentUserID).child(dataRecipe).child("Recipe").setValue(dataRecipe)
-//
-//                }
-//            }
-//
-//        }
 //************************************************************************************************************************//
         // dishView image button
         // TODO: 11/1/21 create image for each dish. use this to manipulate

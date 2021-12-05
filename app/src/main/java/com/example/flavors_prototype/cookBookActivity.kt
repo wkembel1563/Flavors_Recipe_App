@@ -17,6 +17,7 @@ class cookBookActivity : AppCompatActivity()
     private  lateinit var  dbreference : DatabaseReference
     private  lateinit var  dataItemRecyclerView : RecyclerView
     private  lateinit var  dataArrayList: ArrayList<Recipe>
+    private  lateinit var  recipeIngredients: ArrayList<ArrayList<Ingredient>>
 
     override fun onCreate(savedInstanceState: Bundle?)
     {
@@ -44,13 +45,32 @@ class cookBookActivity : AppCompatActivity()
 
                 if (snapshot.exists()){
 
-                    for (countrySnapshot in snapshot.children){
+                    for (recipeSnapShot in snapshot.children){
 
-                       val dataItem = countrySnapshot.getValue(Recipe::class.java)
-                       dataArrayList.add(dataItem!!)// !! checks that object is not null
+                        /* prepare 1D array to hold this recipes ingredients */
+                        val tempArray : ArrayList<Ingredient> = arrayListOf<Ingredient>()
+
+                        /* Probe ingredients node of the dish */
+                        val ingredNode = recipeSnapShot.child("Ingredients")
+
+                        /* collect ingredients */
+                        for (ingredient in ingredNode.children){
+
+                            val dataItem = ingredient.getValue(Ingredient::class.java)
+                            tempArray.add(dataItem!!)// !! checks that object is not null
+
+                        }
+
+                        /* store ingredients for this recipe */
+                        /* this 2d array will be passed to the adapter after ingredients for each
+                         * recipe is collected */
+                        recipeIngredients.add(tempArray)
+
+                        val dataItem = recipeSnapShot.getValue(Recipe::class.java)
+                        dataArrayList.add(dataItem!!)// !! checks that object is not null
 
                    }
-                    dataItemRecyclerView.adapter = cookBookAdapter(dataArrayList)
+                    dataItemRecyclerView.adapter = cookBookAdapter(dataArrayList, recipeIngredients, this@cookBookActivity)
                 }
             }
 
@@ -87,6 +107,12 @@ class cookBookActivity : AppCompatActivity()
         if(item.itemId == R.id.shoppingList_selection)
         {
             startActivity(Intent(this, ShoppingListActivity::class.java))
+            //return true
+        }
+
+        if(item.itemId == R.id.dish_recommendation)
+        {
+            startActivity(Intent(this, RecommendationActivity::class.java))
             //return true
         }
 

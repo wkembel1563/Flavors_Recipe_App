@@ -17,13 +17,9 @@ import com.google.firebase.database.*
 class ShoppingListActivity : AppCompatActivity() {
 
 
-//jj    private  lateinit var  dbreference : DatabaseReference
-//    private  lateinit var  getReference : DataSnapshot
     private  lateinit var  shopListItemRecyclerView : RecyclerView
-//    private  lateinit var  shopListIngredRecyclerView : RecyclerView
     private  lateinit var  recipeIngredients: ArrayList<ArrayList<Ingredient>>
     private  lateinit var  recipeNames: ArrayList<String>
-    private  lateinit var  listItem : Recipe
 
 
 
@@ -35,11 +31,6 @@ class ShoppingListActivity : AppCompatActivity() {
         shopListItemRecyclerView= findViewById(R.id.shopList)
         shopListItemRecyclerView.layoutManager = LinearLayoutManager(this)
         shopListItemRecyclerView.setHasFixedSize(true)
-
-        // from activity_shopping_list.xml
-//        shopListIngredRecyclerView = findViewById(R.id.shopListIngredient)
-//        shopListIngredRecyclerView.layoutManager = LinearLayoutManager(this)
-//        shopListIngredRecyclerView.setHasFixedSize(true)
 
         recipeIngredients = arrayListOf<ArrayList<Ingredient>>()
         recipeNames = arrayListOf<String>()
@@ -54,7 +45,6 @@ class ShoppingListActivity : AppCompatActivity() {
 
         val currentUserID : String = FirebaseAuth.getInstance().currentUser?.uid.toString()
         lateinit var  dbreference : DatabaseReference
-        lateinit var  getReference : DataSnapshot
 
         //you want the shopping lists for the specific user using the app, give the currentuser it look for that child
         dbreference = FirebaseDatabase.getInstance().getReference()
