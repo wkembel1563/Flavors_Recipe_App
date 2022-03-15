@@ -1,4 +1,4 @@
-package com.example.flavors_prototype
+package com.example.flavors_prototype.controllers
 
 import android.content.Intent
 import android.os.Bundle
@@ -8,12 +8,16 @@ import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.flavors_prototype.*
+import com.example.flavors_prototype.R
+import com.example.flavors_prototype.models.Recipe
+import com.example.flavors_prototype.views.DishAdapter
 import com.google.firebase.database.*
 
 class DataActivity : AppCompatActivity()
 {
-    private  lateinit var  dbreference : DatabaseReference
-    private  lateinit var  dataItemRecyclerView : RecyclerView
+    private  lateinit var  dbreference : DatabaseReference//reference to parent node
+    private  lateinit var  dataItemRecyclerView : RecyclerView//recycler view
     private  lateinit var  dataArrayList: ArrayList<Recipe>
 
 
@@ -63,7 +67,7 @@ class DataActivity : AppCompatActivity()
                     //go to DishView Activity on click
                     var adapter = DishAdapter(dataArrayList)
                     dataItemRecyclerView.adapter = adapter
-                    adapter.setOnItemClickListener(object : DishAdapter.OnItemClickListener{
+                    adapter.setOnItemClickListener(object : DishAdapter.OnItemClickListener {
                         override fun onItemClick(position: Int) {
 
                             // when a card is clicked, go to DishView
@@ -99,34 +103,5 @@ class DataActivity : AppCompatActivity()
         }
         return true
     }
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        super.onOptionsItemSelected(item)
 
-        if(item.itemId == R.id.cook_book)
-        {
-            startActivity(Intent(this, cookBookActivity::class.java))
-            //return true
-        }
-        if(item.itemId == R.id.country_selection)
-        {
-            startActivity(Intent(this, CountryActivity::class.java))
-            //return true
-        }
-
-
-        if(item.itemId == R.id.shoppingList_selection)
-        {
-            startActivity(Intent(this, ShoppingListActivity::class.java))
-            //return true
-        }
-
-        if(item.itemId == R.id.dish_recommendation)
-        {
-
-            startActivity(Intent(this, RecommendationActivity::class.java))
-            //return true
-        }
-
-        return super.onOptionsItemSelected(item)
-    }
 }

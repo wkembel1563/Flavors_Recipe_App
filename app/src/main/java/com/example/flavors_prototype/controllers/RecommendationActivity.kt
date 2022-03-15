@@ -1,6 +1,5 @@
-package com.example.flavors_prototype
+package com.example.flavors_prototype.controllers
 
-import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -10,8 +9,10 @@ import android.view.MenuItem
 import android.widget.*
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.flavors_prototype.R
+import com.example.flavors_prototype.models.Ingredient
+import com.example.flavors_prototype.views.IngredientAdapter
 import com.google.firebase.database.*
-import org.w3c.dom.Text
 
 class RecommendationActivity : AppCompatActivity() {
 
@@ -125,7 +126,7 @@ class RecommendationActivity : AppCompatActivity() {
             adapterRecView = IngredientAdapter(selectedIngredients)
             ingredientRecyclerView.adapter = adapterRecView
 
-            adapterRecView.setOnItemClickListener(object :  IngredientAdapter.OnItemClickListener {
+            adapterRecView.setOnItemClickListener(object : IngredientAdapter.OnItemClickListener {
                 override fun onDeleteClick(position: Int) {
                     removeItem(position)
                 }
@@ -207,7 +208,7 @@ class RecommendationActivity : AppCompatActivity() {
 
         if(item.itemId == R.id.cook_book)
         {
-            startActivity(Intent(this, cookBookActivity::class.java))
+            startActivity(Intent(this, CookBookActivity::class.java))
             //return true
         }
         if(item.itemId == R.id.country_selection)

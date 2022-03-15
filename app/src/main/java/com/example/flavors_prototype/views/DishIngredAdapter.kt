@@ -1,4 +1,4 @@
-package com.example.flavors_prototype
+package com.example.flavors_prototype.views
 
 import android.view.LayoutInflater
 import android.view.View
@@ -7,6 +7,8 @@ import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.example.flavors_prototype.R
+import com.example.flavors_prototype.models.Ingredient
 import com.squareup.picasso.Picasso
 
 class DishIngredAdapter(
@@ -33,7 +35,8 @@ class DishIngredAdapter(
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
 
         //layout inflater using the layout from data_item.xml
-        val ingredientView = LayoutInflater.from(parent.context).inflate(R.layout.dishingredient_item,
+        val ingredientView = LayoutInflater.from(parent.context).inflate(
+            R.layout.dishingredient_item,
             parent,false)
 
         return MyViewHolder(ingredientView, mListener)

@@ -1,4 +1,4 @@
-package com.example.flavors_prototype
+package com.example.flavors_prototype.views
 
 import android.view.LayoutInflater
 import android.view.View
@@ -7,6 +7,8 @@ import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.example.flavors_prototype.R
+import com.example.flavors_prototype.models.Ingredient
 
 class IngredientAdapter(
     private val dataList : ArrayList<Ingredient>
@@ -30,7 +32,8 @@ class IngredientAdapter(
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
 
         //layout inflater using the layout from data_item.xml
-        val ingredientView = LayoutInflater.from(parent.context).inflate(R.layout.ingredient_item,
+        val ingredientView = LayoutInflater.from(parent.context).inflate(
+            R.layout.ingredient_item,
             parent,false)
 
         return MyViewHolder(ingredientView, mListener)

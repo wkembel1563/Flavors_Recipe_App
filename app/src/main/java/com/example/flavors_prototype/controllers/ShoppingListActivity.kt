@@ -1,4 +1,4 @@
-package com.example.flavors_prototype
+package com.example.flavors_prototype.controllers
 
 //import android.R
 
@@ -10,6 +10,9 @@ import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.flavors_prototype.models.Ingredient
+import com.example.flavors_prototype.R
+import com.example.flavors_prototype.views.ShopListAdapter
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
 
@@ -107,7 +110,7 @@ class ShoppingListActivity : AppCompatActivity() {
 
         if(item.itemId == R.id.cook_book)
         {
-            startActivity(Intent(this, cookBookActivity::class.java))
+            startActivity(Intent(this, CookBookActivity::class.java))
             //return true
         }
         if(item.itemId == R.id.country_selection)

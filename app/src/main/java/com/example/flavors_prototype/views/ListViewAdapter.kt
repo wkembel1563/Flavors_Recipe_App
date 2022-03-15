@@ -1,4 +1,4 @@
-package com.example.flavors_prototype
+package com.example.flavors_prototype.views
 
 import android.content.Context
 import android.view.LayoutInflater
@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.example.flavors_prototype.R
 import java.util.*
 
 class ListViewAdapter(private val context: Context, private val list: ArrayList<String>) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
@@ -15,7 +16,7 @@ class ListViewAdapter(private val context: Context, private val list: ArrayList<
             internal var tvLabel: TextView
 
             init {
-                tvLabel = itemView.findViewById(R.id.tvdish) // Initialize your All views prensent in list items
+                tvLabel = itemView.findViewById(R.id.dishButton) // Initialize your All views prensent in list items
             }
 
             internal fun bind(position: Int) {

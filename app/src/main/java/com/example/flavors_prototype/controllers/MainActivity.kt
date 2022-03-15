@@ -1,4 +1,4 @@
-package com.example.flavors_prototype
+package com.example.flavors_prototype.controllers
 
 import android.content.Intent
 import android.os.Bundle

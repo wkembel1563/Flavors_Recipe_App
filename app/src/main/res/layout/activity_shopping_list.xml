@@ -7,16 +7,19 @@
     xmlns:tools="http://schemas.android.com/tools"
     app:cardElevation="8dp"
     app:cardCornerRadius="8dp"
-    android:layout_margin="16dp">
+    android:layout_margin="16dp"
+    tools:context=".controllers.ShoppingListActivity"
+    >
 
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginVertical="6dp"
-        android:layout_marginStart="16dp"
-        android:padding="12dp"
-        android:orientation="vertical">
+        android:layout_marginVertical="0dp"
+        android:layout_marginStart="0dp"
+        android:background="@color/cardBackground"
+        android:orientation="vertical"
+        android:padding="12dp">
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -54,19 +57,19 @@
 
             <TextView
                 android:id="@+id/shopListIngredTitle"
-                app:layout_constraintTop_toTopOf="@id/slConstraintLayout"
                 android:layout_width="match_parent"
                 android:layout_height="35dp"
                 android:text="Ingredients: \n"
                 android:textColor="@color/black"
                 android:textSize="26sp"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                app:layout_constraintTop_toTopOf="@id/slConstraintLayout" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/shopListIngredient"
-                app:layout_constraintTop_toBottomOf="@id/shopListIngredTitle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@id/shopListIngredTitle"
                 tools:listitem="@layout/shoplist_dataitem" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>

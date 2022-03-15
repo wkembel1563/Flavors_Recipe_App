@@ -10,6 +10,9 @@ import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.flavors_prototype.controllers.*
+import com.example.flavors_prototype.models.Ingredient
+import com.example.flavors_prototype.views.DishIngredAdapter
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
 import com.squareup.picasso.Picasso
@@ -269,7 +272,7 @@ class DishViewActivity : AppCompatActivity(){
                     var adapter = DishIngredAdapter(ingredientList)
                     dataItemRecyclerView.adapter = adapter
 
-                    /* Save Ingredients to shopping list by clicking 'Save' */
+                    /* Save Ingredients to shopping list by clicking + */
                     adapter.setOnItemClickListener(object : DishIngredAdapter.OnItemClickListener{
                         override fun onSaveClick(position: Int) {
                             val recipe : String = dataRecipe.toString()
@@ -339,7 +342,7 @@ class DishViewActivity : AppCompatActivity(){
 
         if(item.itemId == R.id.cook_book)
         {
-            startActivity(Intent(this, cookBookActivity::class.java))
+            startActivity(Intent(this, CookBookActivity::class.java))
             //return true
         }
         if(item.itemId == R.id.country_selection)

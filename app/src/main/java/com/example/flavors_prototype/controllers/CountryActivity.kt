@@ -1,4 +1,4 @@
-package com.example.flavors_prototype
+package com.example.flavors_prototype.controllers
 
 import android.content.Intent
 import android.os.Bundle
@@ -7,6 +7,7 @@ import android.view.MenuInflater
 import android.view.MenuItem
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.example.flavors_prototype.R
 import com.example.flavors_prototype.databinding.ActivityCountryBinding
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
@@ -60,12 +61,16 @@ class CountryActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMar
         markerChina = mMap.addMarker(MarkerOptions().position(china).title("China").icon(
             BitmapDescriptorFactory.fromResource(R.drawable.china)))
         markerChina?.tag = 0
-        markerIndia = mMap.addMarker(MarkerOptions().position(india).title("India").icon(BitmapDescriptorFactory.fromResource(R.drawable.india)))
+        markerIndia = mMap.addMarker(MarkerOptions().position(india).title("India").icon(BitmapDescriptorFactory.fromResource(
+            R.drawable.india
+        )))
         markerIndia?.tag = 1
-        markerUsa = mMap.addMarker(MarkerOptions().position(usa).title("USA").icon(BitmapDescriptorFactory.fromResource(R.drawable.usa)))
+        markerUsa = mMap.addMarker(MarkerOptions().position(usa).title("USA").icon(BitmapDescriptorFactory.fromResource(
+            R.drawable.usa
+        )))
         markerUsa?.tag = 2
 
-        //Move Camera to USA marker
+        //Move Camera to USA marker on start
         mMap.moveCamera(CameraUpdateFactory.newLatLng(usa))
         //Set a listener for marker clicks
         mMap.setOnMarkerClickListener(this)
@@ -102,7 +107,7 @@ class CountryActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMar
 
         if(item.itemId == R.id.cook_book)
         {
-            startActivity(Intent(this, cookBookActivity::class.java))
+            startActivity(Intent(this, CookBookActivity::class.java))
             //return true
         }
         if(item.itemId == R.id.country_selection)
@@ -116,13 +121,11 @@ class CountryActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMar
             startActivity(Intent(this, RecommendationActivity::class.java))
             //return true
         }
-
         if(item.itemId == R.id.shoppingList_selection)
         {
             startActivity(Intent(this, ShoppingListActivity::class.java))
             //return true
         }
-
 
         return super.onOptionsItemSelected(item)
     }

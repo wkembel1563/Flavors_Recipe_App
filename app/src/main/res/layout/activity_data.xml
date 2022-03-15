@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    tools:context=".DataActivity">
+    tools:context=".controllers.DataActivity"
+    android:background="@color/cardBackground">
 
     <TextView
         android:id="@+id/textView2"

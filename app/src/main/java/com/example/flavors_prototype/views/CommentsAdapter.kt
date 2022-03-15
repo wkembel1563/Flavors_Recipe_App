@@ -1,10 +1,12 @@
-package com.example.flavors_prototype
+package com.example.flavors_prototype.views
 
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.example.flavors_prototype.R
+import com.example.flavors_prototype.models.Comments
 
 class CommentsAdapter(private val commentList : ArrayList<Comments>) : RecyclerView.Adapter<CommentsAdapter.ViewHolder>()  {
 

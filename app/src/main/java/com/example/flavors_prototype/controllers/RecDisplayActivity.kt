@@ -1,4 +1,4 @@
-package com.example.flavors_prototype
+package com.example.flavors_prototype.controllers
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
@@ -6,12 +6,13 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
-import android.widget.TextView
-import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.flavors_prototype.views.DishAdapter
+import com.example.flavors_prototype.DishViewActivity
+import com.example.flavors_prototype.R
+import com.example.flavors_prototype.models.Recipe
 import com.google.firebase.database.*
-import org.w3c.dom.Text
 
 // TODO: rank the list
 
@@ -130,7 +131,7 @@ class RecDisplayActivity : AppCompatActivity() {
 
         /* Move to DishView when recipe is clicked */
         //adapter.setOnItemClickListener(object : RecDishAdapter.OnItemClickListener{
-        adapter.setOnItemClickListener(object : DishAdapter.OnItemClickListener{
+        adapter.setOnItemClickListener(object : DishAdapter.OnItemClickListener {
             override fun onItemClick(position: Int) {
 
                 val intent = Intent(this@RecDisplayActivity, DishViewActivity::class.java)
@@ -209,7 +210,7 @@ class RecDisplayActivity : AppCompatActivity() {
 
         if(item.itemId == R.id.cook_book)
         {
-            startActivity(Intent(this, cookBookActivity::class.java))
+            startActivity(Intent(this, CookBookActivity::class.java))
             //return true
         }
         if(item.itemId == R.id.country_selection)

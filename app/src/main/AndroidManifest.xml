@@ -18,13 +18,13 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Flavors_Prototype">
         <activity
-            android:name=".ShoppingListActivity"
+            android:name=".controllers.ShoppingListActivity"
             android:exported="false" />
         <activity
-            android:name=".RecDisplayActivity"
+            android:name=".controllers.RecDisplayActivity"
             android:exported="true" />
         <activity
-            android:name=".RecommendationActivity"
+            android:name=".controllers.RecommendationActivity"
             android:exported="true" />
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
@@ -39,30 +39,30 @@
             android:value="@string/google_maps_key" />
 
         <activity
-            android:name=".CountryActivity"
+            android:name=".controllers.CountryActivity"
             android:exported="true"
             android:label="@string/title_activity_country" />
         <activity
-            android:name=".DataActivity"
+            android:name=".controllers.DataActivity"
             android:exported="true" />
         <activity
             android:name=".DishViewActivity"
             android:exported="true" />
         <activity
-            android:name=".LoginActivity"
+            android:name=".controllers.LoginActivity"
             android:exported="true" />
         <activity
-            android:name=".SignupActivity"
+            android:name=".controllers.SignupActivity"
             android:exported="true" />
         <activity
-            android:name=".cookBookActivity"
+            android:name=".controllers.CookBookActivity"
             android:exported="true" />
         <activity
-            android:name=".CommentActivity"
+            android:name=".controllers.CommentActivity"
             android:exported="true" />
 
         <activity
-            android:name=".MainActivity"
+            android:name=".controllers.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

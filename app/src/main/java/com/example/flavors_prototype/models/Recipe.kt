@@ -1,4 +1,4 @@
-package com.example.flavors_prototype
+package com.example.flavors_prototype.models
 
 //names of variables for recipe and country, must match firebase database node names
 data class Recipe(var Place : String ?= null,
@@ -9,5 +9,3 @@ data class Recipe(var Place : String ?= null,
                   var image : String ?= null)
 /* Ingredients will be access directly with their own reference pointer */
 
-// place = countryname
-// recipe = dish name
