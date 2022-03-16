@@ -4,7 +4,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.ImageView
-import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.flavors_prototype.R
 import com.example.flavors_prototype.models.Recipe
@@ -35,7 +34,7 @@ class DishAdapter(
 
         //layout inflater using the layout from data_item.xml
         val recipeView = LayoutInflater.from(parent.context).inflate(
-            R.layout.data_item,
+            R.layout.dish_item,
             parent,false)
 
         //returns view holder with listener for clicks on list items

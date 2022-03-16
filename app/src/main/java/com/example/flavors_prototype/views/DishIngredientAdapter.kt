@@ -11,16 +11,16 @@ import com.example.flavors_prototype.R
 import com.example.flavors_prototype.models.Ingredient
 import com.squareup.picasso.Picasso
 
-class DishIngredAdapter(
+class DishIngredientAdapter(
     private val dataList : ArrayList<Ingredient>
-) : RecyclerView.Adapter<DishIngredAdapter.MyViewHolder> (){
+) : RecyclerView.Adapter<DishIngredientAdapter.MyViewHolder> (){
 
     // SET UP CLICK LISTENER FOR CARDS
     private lateinit var mListener : OnItemClickListener
 
     // any class that implements OnItemClickListener
     // must also implement onItemClick
-    // TODO: add ingredient page
+
     interface OnItemClickListener{
         // pass the position of the item clicked to method
         //fun onItemClick(position: Int)
@@ -36,7 +36,7 @@ class DishIngredAdapter(
 
         //layout inflater using the layout from data_item.xml
         val ingredientView = LayoutInflater.from(parent.context).inflate(
-            R.layout.dishingredient_item,
+            R.layout.dish_ingredient,
             parent,false)
 
         return MyViewHolder(ingredientView, mListener)
@@ -59,16 +59,16 @@ class DishIngredAdapter(
     class MyViewHolder(itemView : View, listener: OnItemClickListener) : RecyclerView.ViewHolder(itemView){
 
         /* connect to save button of card */
-        var save : Button = itemView.findViewById(R.id.saveIngred)
+        private var save : Button = itemView.findViewById(R.id.saveIngredient)
 
         /* connect to name textview of card */
-        var cardText : TextView = itemView.findViewById(R.id.tvdishIngred)
+        var cardText : TextView = itemView.findViewById(R.id.tvDishIngredient)
 
         /* connect to quantity textview of card */
-        var cardQty: TextView = itemView.findViewById(R.id.tvdishIngred2)
+        var cardQty: TextView = itemView.findViewById(R.id.tvDishIngredient2)
 
         /* connect to image of card */
-        var cardImage : ImageView = itemView.findViewById(R.id.dishIngredImage)
+        var cardImage : ImageView = itemView.findViewById(R.id.dishIngredientImage)
 
         init {
 

@@ -12,7 +12,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.flavors_prototype.controllers.*
 import com.example.flavors_prototype.models.Ingredient
-import com.example.flavors_prototype.views.DishIngredAdapter
+import com.example.flavors_prototype.views.DishIngredientAdapter
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
 import com.squareup.picasso.Picasso
@@ -89,8 +89,6 @@ class DishViewActivity : AppCompatActivity(){
         cookTime.text = dataCookTime
         instructions.text = dataInstructions
 
-        /* TODO: PLACED LIKE BUTTON FUNCTIONALITY BELOW IN SHOPPING LIST AREA */
-        /* TODO: NEEDED ACCESS TO INGREDIENT INFORMATION */
 
         //Set Initial Rating and Rate Change Checker to 0
         var oldRating: Float = 0.0F
@@ -128,7 +126,7 @@ class DishViewActivity : AppCompatActivity(){
                         }
                     }
                     override fun onCancelled(error: DatabaseError) {
-                        TODO("Not yet implemented")
+
                     }
                 })
             }
@@ -171,7 +169,7 @@ class DishViewActivity : AppCompatActivity(){
             }
 
             override fun onCancelled(error: DatabaseError) {
-                TODO("Not yet implemented")
+
             }
 
         })
@@ -261,7 +259,7 @@ class DishViewActivity : AppCompatActivity(){
                             }
 
                             override fun onCancelled(error: DatabaseError) {
-                                TODO("Not yet implemented")
+
                             }
 
                         })
@@ -269,11 +267,11 @@ class DishViewActivity : AppCompatActivity(){
 
 
                     /* Create recycler view for dish ingredients */
-                    var adapter = DishIngredAdapter(ingredientList)
+                    var adapter = DishIngredientAdapter(ingredientList)
                     dataItemRecyclerView.adapter = adapter
 
                     /* Save Ingredients to shopping list by clicking + */
-                    adapter.setOnItemClickListener(object : DishIngredAdapter.OnItemClickListener{
+                    adapter.setOnItemClickListener(object : DishIngredientAdapter.OnItemClickListener{
                         override fun onSaveClick(position: Int) {
                             val recipe : String = dataRecipe.toString()
                             val ingredientName = ingredientList[position].name.toString()
@@ -310,13 +308,13 @@ class DishViewActivity : AppCompatActivity(){
             }
 
             override fun onCancelled(error: DatabaseError) {
-                TODO("Not yet implemented")
+
             }
         })
 
 //************************************************************************************************************************//
         // dishView image button
-        // TODO: 11/1/21 create image for each dish. use this to manipulate
+
 
 
         // pass dish data to UI

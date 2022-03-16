@@ -76,7 +76,7 @@ class CommentActivity : AppCompatActivity() {
             commentInputText.setText("")
 
             //override fun onCancelled(error: DatabaseError) {
-           //     TODO("Not yet implemented")
+           //
            // }
         }
     }
@@ -114,7 +114,7 @@ class CommentActivity : AppCompatActivity() {
             }
             //error should request fail
             override fun onCancelled(error: DatabaseError) {
-                TODO("Not yet implemented")
+
             }
         })
     }

@@ -19,7 +19,7 @@ class IngredientAdapter(
 
     // any class that implements OnItemClickListener
     // must also implement onItemClick
-    // TODO: add ingredient page
+
     interface OnItemClickListener{
         // pass the position of the item clicked to method
         //fun onItemClick(position: Int)

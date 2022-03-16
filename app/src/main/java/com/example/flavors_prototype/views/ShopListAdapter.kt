@@ -45,7 +45,7 @@ class ShopListAdapter (
 //        holder.dataItemRecyclerView.setRecycledViewPool(viewPool)
 
     }
-
+    //added this comment
     override fun getItemCount(): Int {
 
         return recipeNames.size

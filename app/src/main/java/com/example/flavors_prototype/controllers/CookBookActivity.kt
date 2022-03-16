@@ -66,10 +66,10 @@ class CookBookActivity : AppCompatActivity()
                         val tempArray : ArrayList<Ingredient> = arrayListOf<Ingredient>()
 
                         /* Probe ingredients node of the dish */
-                        val ingredNode = recipeSnapShot.child("Ingredients")
+                        val ingredientNode = recipeSnapShot.child("Ingredients")
 
                         /* collect ingredients */
-                        for (ingredient in ingredNode.children){
+                        for (ingredient in ingredientNode.children){
 
                             val dataItem = ingredient.getValue(Ingredient::class.java)
                             tempArray.add(dataItem!!)// !! checks that object is not null
