@@ -6,7 +6,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     app:cardElevation="8dp"
     app:cardCornerRadius="8dp"
-    android:layout_margin="3dp">
+    android:layout_margin="3pt">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -21,7 +21,9 @@
                 android:layout_width="60dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:paddingStart="1pt"
+                android:paddingBottom="2pt"
+                android:paddingTop="2pt"
+                android:paddingStart="2pt"
                 android:paddingEnd="1pt"
                 app:srcCompat="@drawable/world_food"
                 android:contentDescription="@string/ingredients" />
@@ -64,7 +66,8 @@
                 android:id="@+id/saveIngredient"
                 android:layout_width="48dp"
                 android:layout_height="48dp"
-                android:layout_marginStart="10dp"
+                android:layout_marginStart="2pt"
+                android:layout_marginEnd="2pt"
                 android:text="@string/add"
                 android:textSize="11sp"
                 android:layout_gravity="center_vertical"

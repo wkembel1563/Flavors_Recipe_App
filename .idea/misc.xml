@@ -3,6 +3,7 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/carlo/AndroidStudioProjects/flavors1/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.297" />
         <entry key="..\:/Users/carlo/AndroidStudioProjects/flavors1/app/src/main/res/drawable/button_custom.xml" value="0.3485" />
         <entry key="..\:/Users/carlo/AndroidStudioProjects/flavors1/app/src/main/res/layout/activity_comment.xml" value="0.30052083333333335" />
         <entry key="..\:/Users/carlo/AndroidStudioProjects/flavors1/app/src/main/res/layout/activity_cook_book.xml" value="0.2911458333333333" />
@@ -14,6 +15,7 @@
         <entry key="..\:/Users/carlo/AndroidStudioProjects/flavors1/app/src/main/res/layout/activity_rec_display.xml" value="0.35104166666666664" />
         <entry key="..\:/Users/carlo/AndroidStudioProjects/flavors1/app/src/main/res/layout/activity_recommendation.xml" value="0.35052083333333334" />
         <entry key="..\:/Users/carlo/AndroidStudioProjects/flavors1/app/src/main/res/layout/activity_shopping_list.xml" value="0.4" />
+        <entry key="..\:/Users/carlo/AndroidStudioProjects/flavors1/app/src/main/res/layout/activity_signup.xml" value="0.15273556231003038" />
         <entry key="..\:/Users/carlo/AndroidStudioProjects/flavors1/app/src/main/res/layout/comments_layout.xml" value="0.4" />
         <entry key="..\:/Users/carlo/AndroidStudioProjects/flavors1/app/src/main/res/layout/cookbook_item.xml" value="0.4" />
         <entry key="..\:/Users/carlo/AndroidStudioProjects/flavors1/app/src/main/res/layout/cookbook_recycle_item.xml" value="0.4" />
@@ -25,6 +27,7 @@
         <entry key="..\:/Users/carlo/AndroidStudioProjects/flavors1/app/src/main/res/layout/item_list.xml" value="0.4" />
         <entry key="..\:/Users/carlo/AndroidStudioProjects/flavors1/app/src/main/res/layout/shoplist_dataitem.xml" value="0.4" />
         <entry key="..\:/Users/carlo/AndroidStudioProjects/flavors1/app/src/main/res/layout/shoplistholder.xml" value="0.4" />
+        <entry key="..\:/Users/carlo/AndroidStudioProjects/flavors1/app/src/main/res/menu/main_menu.xml" value="0.2935185185185185" />
         <entry key="..\:/Users/carlo/StudioProjects/se_flavors/app/src/main/res/drawable/comment_border.xml" value="0.41510416666666666" />
         <entry key="..\:/Users/carlo/StudioProjects/se_flavors/app/src/main/res/drawable/ic_launcher_background.xml" value="0.25677083333333334" />
         <entry key="..\:/Users/carlo/StudioProjects/se_flavors/app/src/main/res/layout/activity_comment.xml" value="0.4" />

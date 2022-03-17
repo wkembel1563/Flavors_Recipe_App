@@ -30,7 +30,7 @@ class ShoppingListActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.shoplistholder)
 
-        // this will be the from the shoplisthold.xml
+        // this will be from the shoplistholder.xml
         shopListItemRecyclerView= findViewById(R.id.shopList)
         shopListItemRecyclerView.layoutManager = LinearLayoutManager(this)
         shopListItemRecyclerView.setHasFixedSize(true)

@@ -134,26 +134,6 @@ class RecommendationActivity : AppCompatActivity() {
         }
     }
 
-//    /* Delete card from recycler view when trash can is selected */
-//    private fun deleteItem(item : String){
-//
-//        /* Remove ingredient from selected list */
-//        var position = 0
-//        for (ingredient in selectedIngredients){
-//            if (item == ingredient.name.toString()){
-//                position = selectedIngredients.indexOf(ingredient)
-//                selectedIngredients.remove(ingredient)
-//                break
-//            }
-//        }
-//
-//        /* Update Adapter */
-//        var adapterRecView = IngredientAdapter(selectedIngredients)
-//        ingredientRecyclerView.adapter = adapterRecView
-//        //adapterRecView.notifyItemRemoved(position)
-//
-//    }
-
     private fun removeItem(position : Int){
         selectedIngredients.removeAt(position)
         adapterRecView.notifyItemRemoved(position)

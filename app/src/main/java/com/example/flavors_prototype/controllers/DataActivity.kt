@@ -104,4 +104,32 @@ class DataActivity : AppCompatActivity()
         return true
     }
 
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        super.onOptionsItemSelected(item)
+
+        if(item.itemId == R.id.cook_book)
+        {
+            startActivity(Intent(this, CookBookActivity::class.java))
+            //return true
+        }
+        if(item.itemId == R.id.country_selection)
+        {
+            startActivity(Intent(this, CountryActivity::class.java))
+            //return true
+        }
+        if(item.itemId == R.id.dish_recommendation)
+        {
+
+            startActivity(Intent(this, RecommendationActivity::class.java))
+            //return true
+        }
+        if(item.itemId == R.id.shoppingList_selection)
+        {
+            startActivity(Intent(this, ShoppingListActivity::class.java))
+            //return true
+        }
+
+        return super.onOptionsItemSelected(item)
+    }
+
 }
