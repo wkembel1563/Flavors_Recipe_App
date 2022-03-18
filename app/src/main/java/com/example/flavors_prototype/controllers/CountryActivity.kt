@@ -29,7 +29,7 @@ class CountryActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMar
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
+        title="Choose a Country...";
         binding = ActivityCountryBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
@@ -107,22 +107,24 @@ class CountryActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMar
 
         if(item.itemId == R.id.cook_book)
         {
+            Toast.makeText(this, "Cookbook", Toast.LENGTH_SHORT).show()
             startActivity(Intent(this, CookBookActivity::class.java))
             //return true
         }
         if(item.itemId == R.id.country_selection)
-        {
+        {   Toast.makeText(this, "Select a Country", Toast.LENGTH_SHORT).show()
             startActivity(Intent(this, CountryActivity::class.java))
             //return true
         }
         if(item.itemId == R.id.dish_recommendation)
         {
-
+            Toast.makeText(this, "Recommendations", Toast.LENGTH_SHORT).show()
             startActivity(Intent(this, RecommendationActivity::class.java))
             //return true
         }
         if(item.itemId == R.id.shoppingList_selection)
         {
+            Toast.makeText(this, "Shopping List", Toast.LENGTH_SHORT).show()
             startActivity(Intent(this, ShoppingListActivity::class.java))
             //return true
         }

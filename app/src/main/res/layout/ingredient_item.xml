@@ -9,7 +9,7 @@
     android:layout_margin="16dp">
 
     <LinearLayout
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginVertical="0dp"
         android:layout_marginStart="0dp"
@@ -24,6 +24,10 @@
 
             <ImageView
                 android:id="@+id/ingredientListImage"
+                android:layout_marginStart="2pt"
+                android:layout_marginBottom="2pt"
+                android:layout_marginTop="2pt"
+                android:layout_marginEnd="2pt"
                 android:layout_width="91dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
@@ -38,7 +42,7 @@
                 android:layout_marginStart="0dp"
                 android:paddingLeft="0dp"
                 android:paddingRight="0dp"
-                android:paddingTop="0dp"
+                android:paddingTop="2pt"
                 android:text="Recipe Name"
                 android:textColor="@color/black"
                 android:textSize="26sp"
@@ -48,6 +52,7 @@
                 android:id="@+id/delIngredientBtn"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
+                android:layout_marginEnd="2pt"
                 android:src="@drawable/delete_can" />
 
         </LinearLayout>

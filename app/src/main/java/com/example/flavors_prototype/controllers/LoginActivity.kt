@@ -24,7 +24,7 @@ class LoginActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
-
+        title = "";
         val etLoginEmail = findViewById<EditText>(R.id.etLoginEmail)
         var etLoginPassword = findViewById<EditText>(R.id.etLoginPassword)
 
@@ -47,7 +47,7 @@ class LoginActivity : AppCompatActivity() {
         super.onStart()
         //Check for User login
         val currentUser = auth.currentUser
-        if(currentUser != null){
+        if(currentUser == null){
             startActivity(Intent(this@LoginActivity, CountryActivity::class.java))
         }
     }

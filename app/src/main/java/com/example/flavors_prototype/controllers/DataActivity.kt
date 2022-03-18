@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -25,7 +26,7 @@ class DataActivity : AppCompatActivity()
     {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_data)
-
+        title = "Available Dishes..."
         dataItemRecyclerView = findViewById(R.id.dataList)
         dataItemRecyclerView.layoutManager = LinearLayoutManager(this)
         dataItemRecyclerView.setHasFixedSize(true)
@@ -72,7 +73,7 @@ class DataActivity : AppCompatActivity()
 
                             // when a card is clicked, go to DishView
                             val intent = Intent(this@DataActivity, DishViewActivity::class.java)
-
+                            Toast.makeText(this@DataActivity, dataArrayList[position].Recipe, Toast.LENGTH_SHORT).show()
                             // pass dish data to DishView
                             intent.putExtra("dish_Place", dataArrayList[position].Place)
                             intent.putExtra("dish_Recipe", dataArrayList[position].Recipe)
@@ -109,22 +110,24 @@ class DataActivity : AppCompatActivity()
 
         if(item.itemId == R.id.cook_book)
         {
+            Toast.makeText(this, "Cookbook", Toast.LENGTH_SHORT).show()
             startActivity(Intent(this, CookBookActivity::class.java))
             //return true
         }
         if(item.itemId == R.id.country_selection)
-        {
+        {   Toast.makeText(this, "Select a Country", Toast.LENGTH_SHORT).show()
             startActivity(Intent(this, CountryActivity::class.java))
             //return true
         }
         if(item.itemId == R.id.dish_recommendation)
         {
-
+            Toast.makeText(this, "Recommendations", Toast.LENGTH_SHORT).show()
             startActivity(Intent(this, RecommendationActivity::class.java))
             //return true
         }
         if(item.itemId == R.id.shoppingList_selection)
         {
+            Toast.makeText(this, "Shopping List", Toast.LENGTH_SHORT).show()
             startActivity(Intent(this, ShoppingListActivity::class.java))
             //return true
         }

@@ -29,6 +29,7 @@ class RecommendationActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        title = "Enter Ingredients...";
         setContentView(R.layout.activity_recommendation)
 
         ingredientList = arrayListOf<Ingredient>()
@@ -188,26 +189,25 @@ class RecommendationActivity : AppCompatActivity() {
 
         if(item.itemId == R.id.cook_book)
         {
+            Toast.makeText(this, "Cookbook", Toast.LENGTH_SHORT).show()
             startActivity(Intent(this, CookBookActivity::class.java))
             //return true
         }
         if(item.itemId == R.id.country_selection)
-        {
+        {   Toast.makeText(this, "Select a Country", Toast.LENGTH_SHORT).show()
             startActivity(Intent(this, CountryActivity::class.java))
             //return true
         }
-
-
-        if(item.itemId == R.id.shoppingList_selection)
-        {
-            startActivity(Intent(this, ShoppingListActivity::class.java))
-            //return true
-        }
-
         if(item.itemId == R.id.dish_recommendation)
         {
-
+            Toast.makeText(this, "Recommendations", Toast.LENGTH_SHORT).show()
             startActivity(Intent(this, RecommendationActivity::class.java))
+            //return true
+        }
+        if(item.itemId == R.id.shoppingList_selection)
+        {
+            Toast.makeText(this, "Shopping List", Toast.LENGTH_SHORT).show()
+            startActivity(Intent(this, ShoppingListActivity::class.java))
             //return true
         }
 

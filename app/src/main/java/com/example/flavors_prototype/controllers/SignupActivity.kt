@@ -26,7 +26,7 @@ class SignupActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_signup)
-
+        title = "";
         val etRegEmail = findViewById<EditText>(R.id.etRegEmail)
         val etRegPassword = findViewById<EditText>(R.id.etRegPassword)
         btnSignup = findViewById(R.id.btnSignup)

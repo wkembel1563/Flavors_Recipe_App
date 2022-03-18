@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -27,7 +28,7 @@ class CookBookActivity : AppCompatActivity()
     override fun onCreate(savedInstanceState: Bundle?)
     {
         super.onCreate(savedInstanceState)
-
+        title="Cookbook...";
         //uses method from Bundle to bind to the correct xlm file
         setContentView(R.layout.activity_cook_book)
 
@@ -110,22 +111,25 @@ class CookBookActivity : AppCompatActivity()
 
         if(item.itemId == R.id.cook_book)
         {
+            Toast.makeText(this, "Cookbook", Toast.LENGTH_SHORT).show()
             startActivity(Intent(this, CookBookActivity::class.java))
             //return true
         }
         if(item.itemId == R.id.country_selection)
-        {
+        {   Toast.makeText(this, "Select a Country", Toast.LENGTH_SHORT).show()
             startActivity(Intent(this, CountryActivity::class.java))
-            //return true
-        }
-        if(item.itemId == R.id.shoppingList_selection)
-        {
-            startActivity(Intent(this, ShoppingListActivity::class.java))
             //return true
         }
         if(item.itemId == R.id.dish_recommendation)
         {
+            Toast.makeText(this, "Recommendations", Toast.LENGTH_SHORT).show()
             startActivity(Intent(this, RecommendationActivity::class.java))
+            //return true
+        }
+        if(item.itemId == R.id.shoppingList_selection)
+        {
+            Toast.makeText(this, "Shopping List", Toast.LENGTH_SHORT).show()
+            startActivity(Intent(this, ShoppingListActivity::class.java))
             //return true
         }
 
